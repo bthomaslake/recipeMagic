@@ -1,1 +1,2 @@
 # recipeMagic
+I was able to successfully pull to Android studio
