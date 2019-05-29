@@ -1,3 +1,7 @@
+/*
+    Thomas Lake - Testing commit
+ */
+
 package com.example.recipemagic;
 
 import android.annotation.SuppressLint;
