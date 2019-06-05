@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD:RecipeMagic.iml
 <module external.linked.project.id="RecipeMagic" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$" external.system.id="GRADLE" type="JAVA_MODULE" version="4">
+=======
+<module external.linked.project.id="TeamFinalProject" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$" external.system.id="GRADLE" type="JAVA_MODULE" version="4">
+>>>>>>> origin/master:TeamFinalProject.iml
   <component name="FacetManager">
     <facet type="java-gradle" name="Java-Gradle">
       <configuration>
