@@ -1,8 +1,10 @@
-package com.example.recipemagic;
+package com.example.recipemagic.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.recipemagic.R;
 
 public class MainActivity extends AppCompatActivity {
 
