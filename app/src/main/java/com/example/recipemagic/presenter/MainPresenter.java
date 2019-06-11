@@ -1,4 +1,6 @@
 package com.example.recipemagic.presenter;
 
-public class MainPresenter {
+import java.io.Serializable;
+
+public class MainPresenter implements Serializable {
 }
