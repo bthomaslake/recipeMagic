@@ -72,10 +72,10 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] C:\Users\nl
 		ADDED from C:\Users\nlvau\AndroidStudioProjects\recipeMagic\app\src\main\AndroidManifest.xml:6:9-35
 	android:theme
 		ADDED from C:\Users\nlvau\AndroidStudioProjects\recipeMagic\app\src\main\AndroidManifest.xml:11:9-40
-activity#com.example.recipemagic.MainActivity
+activity#com.example.recipemagic.view.MainActivity
 ADDED from C:\Users\nlvau\AndroidStudioProjects\recipeMagic\app\src\main\AndroidManifest.xml:12:9-17:20
 	android:name
-		ADDED from C:\Users\nlvau\AndroidStudioProjects\recipeMagic\app\src\main\AndroidManifest.xml:12:19-47
+		ADDED from C:\Users\nlvau\AndroidStudioProjects\recipeMagic\app\src\main\AndroidManifest.xml:12:19-52
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
 ADDED from C:\Users\nlvau\AndroidStudioProjects\recipeMagic\app\src\main\AndroidManifest.xml:13:13-16:29
 action#android.intent.action.MAIN
