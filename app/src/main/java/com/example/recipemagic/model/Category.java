@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Category {
     private List<Recipe> recipes;
-    private string category;
+    private String category;
 
     public String getCategorty(){
         return category;
