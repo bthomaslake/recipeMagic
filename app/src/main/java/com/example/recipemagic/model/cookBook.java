@@ -22,7 +22,8 @@ public class cookBook {
     }
 
     //will return a string later.
-    private void readFile(){
-
+    public String readAPI(String url){
+        String file = null;
+        return file;
     }
 }
