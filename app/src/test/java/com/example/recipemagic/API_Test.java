@@ -4,7 +4,8 @@ import com.example.recipemagic.model.cookBook;
 
 import org.junit.Test;
 
-import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertNull;
 
 public class API_Test {
 
@@ -12,13 +13,13 @@ public class API_Test {
     public void readAPI_valid(){
         cookBook book = new cookBook();
         String result = book.readAPI("https://www.byui.edu");
-        assertEquals(result.contains("Rexburg"), true);
+        assertTrue(result.contains("Rexburg"));
     }
 
     @Test
     public void readAPI_invalid(){
         cookBook book = new cookBook();
         String result = book.readAPI("https://nowhere");
-        assertEquals(result.equals(null), true);
+        assertNull(result);
     }
 }
