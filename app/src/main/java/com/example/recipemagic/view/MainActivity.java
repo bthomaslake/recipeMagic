@@ -27,8 +27,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
 
 
-    private ViewPager;
-    private CollactionPagerAdapter adapter;
+    private ViewPager viewPager;
     private MainPresenter presenter;
     private ActionBar actionBar;
     @Override
@@ -37,11 +36,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         actionBar = getSupportActionBar();
 
-        presenter = new MainPresenter(this);
+        presenter = new MainPresenter();
 
-        adapter = new CollectionPagerAdapter(getSupportFragmentManager());
         viewPager = findViewById(R.id.fragment);
-        loadFragment(R.id.menu_browse);
+        loadFragment(R.id.menu_search);
 
         BottomNavigationView bnv = (BottomNavigationView) findViewById(R.id.navigation);
         bnv.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -56,17 +54,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadFragment(int menuId) {
         switch (menuId) {
-            case R.id.menu_browse :
-                viewPager.setCurrentItem(0);
-                actionBar.setTitle("Browse Scriptures");
-                break;
             case R.id.menu_search :
-                viewPager.setCurrentItem(1);
-                actionBar.setTitle("Search Scriptures");
-                break;
-            case R.id.menu_favorites :
-                viewPager.setCurrentItem(2);
-                actionBar.setTitle("Favorite Scriptures");
+                viewPager.setCurrentItem(0);
+                actionBar.setTitle("Search Recipes");
                 break;
         }
     }
