@@ -1,20 +1,20 @@
 package com.example.recipemagic.view;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-
-import com.example.recipemagic.R;
 import com.example.recipemagic.presenter.MainPresenter;
+import com.example.recipemagic.R;
+import androidx.appcompat.app.ActionBar;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -22,12 +22,17 @@ import java.io.IOException;
 
 import com.example.recipemagic.presenter.MainPresenter;
 import com.example.recipemagic.R;
+import com.example.recipemagic.view.dummy.DummyContent;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+        implements AddRecipe.OnFragmentInteractionListener,
+        FavoritesFragment.OnListFragmentInteractionListener,
+        Timer.OnFragmentInteractionListener{
 
 
     private ViewPager viewPager;
+    private CollectionPagerAdapter adapter;
     private MainPresenter presenter;
     private ActionBar actionBar;
     @Override
@@ -37,12 +42,17 @@ public class MainActivity extends AppCompatActivity {
         actionBar = getSupportActionBar();
 
         presenter = new MainPresenter();
+        adapter = new CollectionPagerAdapter(getSupportFragmentManager());
 
         viewPager = findViewById(R.id.fragment);
+        viewPager.setAdapter(adapter);
+
         loadFragment(R.id.menu_search);
 
-        BottomNavigationView bnv = (BottomNavigationView) findViewById(R.id.navigation);
-        bnv.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        BottomNavigationView bnv = findViewById(R.id.navigation);
+
+        bnv.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 loadFragment(item.getItemId());
@@ -63,6 +73,22 @@ public class MainActivity extends AppCompatActivity {
 
     public MainPresenter getPresenter() {
         return presenter;
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+        /* This function must be implemented in every
+         * class that wants to use a fragment. It does not need to be
+         * used, but it can make it possible to communicate between fragments.
+         * Information from
+         * https://stackoverflow.com/questions/24777985/how-to-implement-onfragmentinteractionlistener#27666001
+         */
+
+    }
+
+    @Override
+    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+        // I think this can be gotten rid of when we have all fragments implemented.
     }
 
     private class CollectionPagerAdapter extends FragmentPagerAdapter {
@@ -96,7 +122,6 @@ public class MainActivity extends AppCompatActivity {
     public int getCount() {
         return 3;
     }
-
 }
 
 }
