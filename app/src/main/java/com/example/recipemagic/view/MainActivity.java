@@ -28,8 +28,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity
         implements AddRecipe.OnFragmentInteractionListener,
         FavoritesFragment.OnListFragmentInteractionListener,
-        Timer.OnFragmentInteractionListener {
-
+        Timer.OnFragmentInteractionListener,
+        CategoryList.OnFragmentInteractionListener {
 
     private ViewPager viewPager;
     private CollectionPagerAdapter adapter;
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onListFragmentInteraction(DummyContent.DummyItem item) {
-        // I think this can be gotten rid of when we have all fragments implemented.
+        // I think this can be gotten rid of when we have all fragments implemented.a
     }
 
     private class CollectionPagerAdapter extends FragmentPagerAdapter {
@@ -97,30 +97,37 @@ public class MainActivity extends AppCompatActivity
         super(fm);
     }
 
-    @Override
-    public Fragment getItem(int i) {
-        Fragment fragment;
+        @Override
+        public Fragment getItem(int i) {
+            Fragment fragment;
 
-        switch(i) {
-            case 0:
-                fragment = new AddRecipe();
-                break;
-            case 1:
-                fragment = new FavoritesFragment();
-                break;
-            case 2:
-                fragment = new Timer();
-                break;
-
-            default:
-                fragment = null;
-        }
+            switch(i) {
+                case 0:
+                    fragment = new AddRecipe();
+                    break;
+                case 1:
+                    fragment = new FavoritesFragment();
+                    break;
+                case 2:
+                    fragment = new Timer();
+                    break;
+                case 3:
+                    fragment = new CategoryList();
+                    break;
+                default:
+                    fragment = null;
+            }
         return fragment;
-    }
+        }
 
+
+    /*
+     * This is the number of fragments that will be seen by the activity. The order
+     * is determined by the getItem() function above.
+     */
     @Override
     public int getCount() {
-        return 3;
+        return 4;
     }
 }
 
