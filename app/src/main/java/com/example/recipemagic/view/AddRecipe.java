@@ -32,7 +32,7 @@ public class AddRecipe extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
-    private AddRecipePresenter presenter
+    private AddRecipePresenter presenter;
 
     public AddRecipe() {
         // Required empty public constructor
