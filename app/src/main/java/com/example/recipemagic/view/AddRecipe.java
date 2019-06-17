@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.recipemagic.R;
+import com.example.recipemagic.presenter.AddRecipePresenter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,6 +32,7 @@ public class AddRecipe extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+    private AddRecipePresenter presenter
 
     public AddRecipe() {
         // Required empty public constructor
