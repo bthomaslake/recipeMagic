@@ -28,7 +28,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity
         implements AddRecipe.OnFragmentInteractionListener,
         FavoritesFragment.OnListFragmentInteractionListener,
-        Timer.OnFragmentInteractionListener{
+        Timer.OnFragmentInteractionListener {
 
 
     private ViewPager viewPager;
