@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity
         viewPager = findViewById(R.id.fragment);
         viewPager.setAdapter(adapter);
 
-        loadFragment(R.id.menu_search);
+        loadFragment(R.id.menu_category);
 
         BottomNavigationView bnv = findViewById(R.id.navigation);
 
@@ -64,9 +64,25 @@ public class MainActivity extends AppCompatActivity
 
     private void loadFragment(int menuId) {
         switch (menuId) {
-            case R.id.menu_search :
+            case R.id.menu_category :
                 viewPager.setCurrentItem(0);
-                actionBar.setTitle("Search Recipes");
+                actionBar.setTitle("Categories");
+                break;
+            case R.id.menu_timer :
+                viewPager.setCurrentItem(1);
+                actionBar.setTitle("Timer");
+                break;
+            case R.id.menu_favorites :
+                viewPager.setCurrentItem(2);
+                actionBar.setTitle("Favorites");
+                break;
+            case R.id.menu_search :
+                viewPager.setCurrentItem(3);
+                actionBar.setTitle("Search");
+                break;
+            case R.id.menu_add :
+                viewPager.setCurrentItem(4);
+                actionBar.setTitle("Add Recipe");
                 break;
         }
     }
@@ -103,16 +119,19 @@ public class MainActivity extends AppCompatActivity
 
             switch(i) {
                 case 0:
-                    fragment = new AddRecipe();
+                    fragment = new CategoryList();
                     break;
                 case 1:
-                    fragment = new FavoritesFragment();
-                    break;
-                case 2:
                     fragment = new Timer();
                     break;
+                case 2:
+                    fragment = new FavoritesFragment();
+                    break;
                 case 3:
-                    fragment = new CategoryList();
+                    fragment = new SearchFragment();
+                    break;
+                case 4:
+                    fragment = new AddRecipe();
                     break;
                 default:
                     fragment = null;
@@ -127,7 +146,7 @@ public class MainActivity extends AppCompatActivity
      */
     @Override
     public int getCount() {
-        return 4;
+        return 5;
     }
 }
 
