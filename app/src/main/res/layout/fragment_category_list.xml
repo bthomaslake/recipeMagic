@@ -20,11 +20,13 @@
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_rowWeight="1"
-            app:layout_columnWeight="1"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:layout_marginBottom="16dp">
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="#FFFFFF"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1">
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -32,12 +34,20 @@
                 android:layout_margin="16dp"
                 android:orientation="vertical">
 
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="141dp"
+                    android:layout_height="128dp"
+                    android:backgroundTint="#00404040"
+                    tools:text="@string/breakfast" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/breakfast"
                     android:textAlignment="center"
                     android:textSize="16sp" />
+
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
