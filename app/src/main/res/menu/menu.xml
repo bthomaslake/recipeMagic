@@ -1,6 +1,33 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/menu_category"
+        android:title="@string/menu_category"
+        android:icon="@drawable/category"
+        android:enabled="true"
+        app:showAsAction="always"
+        app:labelVisibilityMode="labeled"
+        />
+
+    <item
+        android:id="@+id/menu_timer"
+        android:title="@string/menu_timer"
+        android:icon="@drawable/timer"
+        android:enabled="true"
+        app:showAsAction="always"
+        app:labelVisibilityMode="labeled"
+        />
+
+    <item
+        android:id="@+id/menu_favorites"
+        android:title="@string/menu_favorites"
+        android:icon="@drawable/favorites"
+        android:enabled="true"
+        app:showAsAction="always"
+        app:labelVisibilityMode="labeled"
+        />
+
+    <item
         android:id="@+id/menu_search"
         android:title="@string/menu_search"
         android:icon="@drawable/search"
@@ -8,4 +35,13 @@
         app:showAsAction="always"
         app:labelVisibilityMode="labeled"
         />
+    <item
+        android:id="@+id/menu_add"
+        android:title="@string/menu_add"
+        android:icon="@drawable/add"
+        android:enabled="true"
+        app:showAsAction="always"
+        app:labelVisibilityMode="labeled"
+        />
+
 </menu>
