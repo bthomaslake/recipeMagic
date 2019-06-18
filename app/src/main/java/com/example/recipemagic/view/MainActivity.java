@@ -29,7 +29,8 @@ public class MainActivity extends AppCompatActivity
         implements AddRecipe.OnFragmentInteractionListener,
         FavoritesFragment.OnListFragmentInteractionListener,
         Timer.OnFragmentInteractionListener,
-        CategoryList.OnFragmentInteractionListener {
+        CategoryList.OnFragmentInteractionListener,
+        SearchFragment.OnFragmentInteractionListener {
 
     private ViewPager viewPager;
     private CollectionPagerAdapter adapter;
