@@ -6,4 +6,12 @@
     <string name="menu_search">Search</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="other">Other</string>
+    <string name="snacks">Snacks</string>
+    <string name="bread">Bread</string>
+    <string name="salad">Salad</string>
+    <string name="dessert">Dessert</string>
+    <string name="dinner">Dinner</string>
+    <string name="lunch">Lunch</string>
+    <string name="breakfast">Breakfast</string>
 </resources>
