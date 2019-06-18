@@ -30,7 +30,8 @@ public class MainActivity extends AppCompatActivity
         FavoritesFragment.OnListFragmentInteractionListener,
         Timer.OnFragmentInteractionListener,
         CategoryList.OnFragmentInteractionListener,
-        SearchFragment.OnFragmentInteractionListener {
+        SearchFragment.OnFragmentInteractionListener,
+        {
 
     private ViewPager viewPager;
     private CollectionPagerAdapter adapter;
