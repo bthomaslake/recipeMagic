@@ -1,9 +1,11 @@
 package com.example.recipemagic.view;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 
+import android.preference.PreferenceManager;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -30,13 +32,13 @@ public class MainActivity extends AppCompatActivity
         FavoritesFragment.OnListFragmentInteractionListener,
         Timer.OnFragmentInteractionListener,
         CategoryList.OnFragmentInteractionListener,
-        SearchFragment.OnFragmentInteractionListener,
-        {
+        SearchFragment.OnFragmentInteractionListener {
 
     private ViewPager viewPager;
     private CollectionPagerAdapter adapter;
     private MainPresenter presenter;
     private ActionBar actionBar;
+    private int currentFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +50,35 @@ public class MainActivity extends AppCompatActivity
 
         viewPager = findViewById(R.id.fragment);
         viewPager.setAdapter(adapter);
-
+        SharedPreferences fragmentSave = PreferenceManager.getDefaultSharedPreferences(this);
+        currentFragment = fragmentSave.getInt("currentFragment", 0);
+        switch (currentFragment) {
+            case R.id.menu_category :
+                viewPager.setCurrentItem(0);
+                actionBar.setTitle("Categories");
+                currentFragment = 0;
+                break;
+            case R.id.menu_timer :
+                viewPager.setCurrentItem(1);
+                actionBar.setTitle("Timer");
+                currentFragment = 1;
+                break;
+            case R.id.menu_favorites :
+                viewPager.setCurrentItem(2);
+                actionBar.setTitle("Favorites");
+                currentFragment = 2;
+                break;
+            case R.id.menu_search :
+                viewPager.setCurrentItem(3);
+                actionBar.setTitle("Search");
+                currentFragment = 3;
+                break;
+            case R.id.menu_add :
+                viewPager.setCurrentItem(4);
+                actionBar.setTitle("Add Recipe");
+                currentFragment = 4;
+                break;
+        }
         loadFragment(R.id.menu_category);
 
         BottomNavigationView bnv = findViewById(R.id.navigation);
@@ -63,28 +93,43 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
+    protected void onStop() {
+        super.onStop();
+
+        SharedPreferences fragmentSave = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor fragmentEdit = fragmentSave.edit();
+
+        fragmentEdit.putInt("currentFragment", currentFragment);
+        fragmentEdit.apply();
+    }
+
 
     private void loadFragment(int menuId) {
         switch (menuId) {
             case R.id.menu_category :
                 viewPager.setCurrentItem(0);
                 actionBar.setTitle("Categories");
+                currentFragment = 0;
                 break;
             case R.id.menu_timer :
                 viewPager.setCurrentItem(1);
                 actionBar.setTitle("Timer");
+                currentFragment = 1;
                 break;
             case R.id.menu_favorites :
                 viewPager.setCurrentItem(2);
                 actionBar.setTitle("Favorites");
+                currentFragment = 2;
                 break;
             case R.id.menu_search :
                 viewPager.setCurrentItem(3);
                 actionBar.setTitle("Search");
+                currentFragment = 3;
                 break;
             case R.id.menu_add :
                 viewPager.setCurrentItem(4);
                 actionBar.setTitle("Add Recipe");
+                currentFragment = 4;
                 break;
         }
     }
