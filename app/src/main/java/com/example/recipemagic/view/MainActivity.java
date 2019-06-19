@@ -53,33 +53,28 @@ public class MainActivity extends AppCompatActivity
         SharedPreferences fragmentSave = PreferenceManager.getDefaultSharedPreferences(this);
         currentFragment = fragmentSave.getInt("currentFragment", 0);
         switch (currentFragment) {
-            case R.id.menu_category :
+            case 0 :
                 viewPager.setCurrentItem(0);
                 actionBar.setTitle("Categories");
-                currentFragment = 0;
                 break;
-            case R.id.menu_timer :
+            case 1 :
                 viewPager.setCurrentItem(1);
                 actionBar.setTitle("Timer");
-                currentFragment = 1;
                 break;
-            case R.id.menu_favorites :
+            case 2 :
                 viewPager.setCurrentItem(2);
                 actionBar.setTitle("Favorites");
-                currentFragment = 2;
                 break;
-            case R.id.menu_search :
+            case 3 :
                 viewPager.setCurrentItem(3);
                 actionBar.setTitle("Search");
-                currentFragment = 3;
                 break;
-            case R.id.menu_add :
+            case 4 :
                 viewPager.setCurrentItem(4);
                 actionBar.setTitle("Add Recipe");
-                currentFragment = 4;
                 break;
         }
-        loadFragment(R.id.menu_category);
+        //loadFragment(R.id.menu_category);
 
         BottomNavigationView bnv = findViewById(R.id.navigation);
 
