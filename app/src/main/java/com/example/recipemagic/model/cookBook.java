@@ -21,7 +21,6 @@ public class cookBook {
 
     }
 
-    //will return a string later.
     public String readAPI(String url){
         String file = null;
         return file;

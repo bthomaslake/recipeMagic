@@ -105,7 +105,12 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onListFragmentInteraction(DummyContent.DummyItem item) {
-        // I think this can be gotten rid of when we have all fragments implemented.a
+        /* This function must be implemented in every
+         * class that wants to use a fragment. It does not need to be
+         * used, but it can make it possible to communicate between fragments.
+         * Information from
+         * https://stackoverflow.com/questions/24777985/how-to-implement-onfragmentinteractionlistener#27666001
+         */
     }
 
     private class CollectionPagerAdapter extends FragmentPagerAdapter {
