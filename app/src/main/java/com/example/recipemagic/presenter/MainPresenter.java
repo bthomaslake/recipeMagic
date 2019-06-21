@@ -35,6 +35,6 @@ public class MainPresenter {
     }
 
     public interface Listener{
-        public void notifyDataReady();
+        void notifyDataReady();
     }
 }
