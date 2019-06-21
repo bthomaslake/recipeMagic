@@ -9,5 +9,4 @@ public class RecipeListPresenter {
         book = presenter.getCookBook();
 
     }
-    public
 }
