@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         actionBar = getSupportActionBar();
 
-        presenter = new MainPresenter();
+        presenter = new MainPresenter(this);
         adapter = new CollectionPagerAdapter(getSupportFragmentManager());
 
         viewPager = findViewById(R.id.fragment);

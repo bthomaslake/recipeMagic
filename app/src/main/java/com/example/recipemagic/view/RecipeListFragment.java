@@ -13,8 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.recipemagic.R;
+import com.example.recipemagic.presenter.MainPresenter;
 import com.example.recipemagic.view.dummy.DummyContent;
 import com.example.recipemagic.view.dummy.DummyContent.DummyItem;
+import com.example.recipemagic.presenter.RecipeListPresenter;
 
 import java.util.List;
 
@@ -31,6 +33,8 @@ public class RecipeListFragment extends Fragment {
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
+    private RecipeListPresenter recipeListPresenter;
+    private MainPresenter mainPresenter;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -56,6 +60,8 @@ public class RecipeListFragment extends Fragment {
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
+        mainPresenter = ((MainActivity) getActivity()).getPresenter();
+        recipeListPresenter = new RecipeListPresenter(mainPresenter);
     }
 
     @Override
