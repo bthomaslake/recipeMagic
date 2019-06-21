@@ -23,6 +23,10 @@ public class MainPresenter {
 
     }
 
+    public MainPresenter() {
+
+    }
+
     public void registerDataUser(MainPresenter.Listener dataUser){
         registeredDataUsers.add(dataUser);
         if (bookReady){

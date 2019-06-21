@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.recipemagic.R;
+import com.example.recipemagic.presenter.MainPresenter;
 import com.example.recipemagic.presenter.SearchPresenter;
 
 /**
@@ -32,7 +33,9 @@ public class SearchFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
-    private SearchPresenter presenter;
+    private SearchPresenter searchPresenter;
+    private MainPresenter mainPresenter;
+
 
     public SearchFragment() {
         // Required empty public constructor
@@ -63,6 +66,8 @@ public class SearchFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        mainPresenter = ((MainActivity) getActivity()).getPresenter();
+        searchPresenter = new SearchPresenter(mainPresenter);
     }
 
     @Override
