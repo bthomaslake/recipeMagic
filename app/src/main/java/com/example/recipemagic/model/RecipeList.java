@@ -2,15 +2,12 @@ package com.example.recipemagic.model;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
-import java.util.List;
+public class RecipeList {
 
-public class Category {
-
-    @SerializedName("strCategory")
+    @SerializedName("strMeal")
     private String title;
 
-    @SerializedName("strCategoryThumb")
+    @SerializedName("strMealThumb")
     private String imageURL;
 
     public String getTitle() {
