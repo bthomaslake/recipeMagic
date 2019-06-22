@@ -2,7 +2,10 @@ package com.example.recipemagic.presenter;
 
 import android.os.AsyncTask;
 
+import com.example.recipemagic.model.Category;
+
 import java.lang.ref.WeakReference;
+import java.util.List;
 
 public class DownloadLibraryTask extends AsyncTask<Void, Void, Void> {
 

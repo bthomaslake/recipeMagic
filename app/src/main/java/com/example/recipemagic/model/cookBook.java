@@ -1,76 +1,55 @@
 package com.example.recipemagic.model;
 
-import android.content.Context;
-
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class cookBook {
-    private List<Category> categories;
+    private List<CategoryList> categories;
+    private List<MealList> recipes;
+    private List<RecipeHelper> recipeHelpers;
     private List<Favorite> favorites;
     private Gson gson;
-    private FileHelper fileHelper;
     private HTTPHelper httpHelper;
-    private List<RecipeList> recipes;
-    private Recipe singleRecipe;
 
-    public cookBook(Context context){
-        categories = new ArrayList<Category>();
-        recipes = new ArrayList<RecipeList>();
+    public cookBook(){
+        categories = new ArrayList<CategoryList>();
+        recipes = new ArrayList<MealList>();
         favorites = new ArrayList<Favorite>();
         gson = new Gson();
-        fileHelper = new FileHelper(context);
         httpHelper = new HTTPHelper();
-        singleRecipe = new Recipe();
+        recipeHelpers = new ArrayList<RecipeHelper>();
     }
 
     public void loadCategory(String url){
-        String data = fileHelper.readFile(url);
-        Category category = gson.fromJson(data, Category.class);
-        categories.add(category);
+        String data = httpHelper.readHTTP(url);
+        CategoryList categoryList = gson.fromJson(data, CategoryList.class);
+        categories.add(categoryList);
     }
 
-    public List<Category> getCategories() {
+    public List<CategoryList> getCategoryList(){
         return categories;
     }
-
-    public Category getCategory(String title){
-        for (Category category : categories) {
-            if (category.getTitle().toUpperCase().equals(title.toUpperCase())) {
-                return category;
-            }
-        }
-        return null;
+    public void loadMealList(String url){
+        String data = httpHelper.readHTTP(url);
+        MealList mealList = gson.fromJson(data, MealList.class);
+        recipes.add(mealList);
     }
 
-    public void loadRecipeList(String url){
-        String data = fileHelper.readFile(url);
-        RecipeList recipeList = gson.fromJson(data, RecipeList.class);
-        recipes.add(recipeList);
-    }
-
-    public List<RecipeList> getRecipeLists() {
+    public List<MealList> getRecipeLists() {
         return recipes;
     }
 
-    public RecipeList getRecipeList(String title){
-        for (RecipeList recipeList : recipes) {
-            if (recipeList.getTitle().toUpperCase().equals(title.toUpperCase())) {
-                return recipeList;
-            }
-        }
-        return null;
-    }
 
     public void loadRecipe(String url){
-        String data = fileHelper.readFile(url);
-        Recipe recipe = gson.fromJson(data, Recipe.class);
+        String data = httpHelper.readHTTP(url);
+        RecipeHelper recipeHelper = gson.fromJson(data, RecipeHelper.class);
+        recipeHelpers.add(recipeHelper);
     }
 
-    public Recipe getSingleRecipe(){
-        return singleRecipe;
+    public List<RecipeHelper> getRecipeHelper(){
+        return recipeHelpers;
     }
 
     public void loadFavorites(){

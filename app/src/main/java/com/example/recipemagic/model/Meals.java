@@ -2,8 +2,10 @@ package com.example.recipemagic.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class RecipeList {
+import java.util.ArrayList;
+import java.util.List;
 
+public class Meals {
     @SerializedName("strMeal")
     private String title;
 

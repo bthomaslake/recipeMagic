@@ -12,7 +12,7 @@ public class MainPresenter {
     private List<Listener> registeredDataUsers;
 
     public MainPresenter(MainActivity mainActivity){
-        book = new cookBook(mainActivity);
+        book = new cookBook();
         bookReady = false;
         registeredDataUsers = new ArrayList<Listener>();
         DownloadLibraryTask task = new DownloadLibraryTask(this);

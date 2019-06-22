@@ -27,7 +27,7 @@ public class HTTPHelper {
             while (line != null);
             return data.toString();
         } catch (IOException ioe) {
-            Log.e("HTTPHelper", "Exception (" + url + "): " + ioe);
+            Log.e("HTTPHelper", "Error reading from file (" + url + "): " + ioe);
             return null;
         }
     }
