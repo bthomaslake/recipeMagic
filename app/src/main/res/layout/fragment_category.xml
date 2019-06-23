@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cardview_recipe"
+    android:id="@+id/cardview_category"
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
     android:layout_width="120dp"
@@ -15,14 +15,14 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/recipe_Img"
+            android:id="@+id/category_Img"
             android:layout_width="match_parent"
             android:layout_height="160dp"
             android:scaleType="centerCrop"
             android:background="@color/colorPrimaryDark"/>
 
         <TextView
-            android:id="@+id/recipe"
+            android:id="@+id/category"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"

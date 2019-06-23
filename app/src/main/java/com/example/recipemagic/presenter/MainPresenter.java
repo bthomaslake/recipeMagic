@@ -1,10 +1,9 @@
 package com.example.recipemagic.presenter;
 
-import com.example.recipemagic.model.cookBook;
-import com.example.recipemagic.view.MainActivity;
-
 import java.util.ArrayList;
 import java.util.List;
+import com.example.recipemagic.model.cookBook;
+import com.example.recipemagic.view.MainActivity;
 
 public class MainPresenter {
     private cookBook book;

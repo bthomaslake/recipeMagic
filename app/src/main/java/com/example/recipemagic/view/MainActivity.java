@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity
         implements AddRecipe.OnFragmentInteractionListener,
         FavoritesFragment.OnListFragmentInteractionListener,
         Timer.OnFragmentInteractionListener,
-        CategoryList.OnFragmentInteractionListener,
+        CategoryListFragment.OnListFragmentInteractionListener,
         SearchFragment.OnFragmentInteractionListener {
 
     private ViewPager viewPager;
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity
 
             switch(i) {
                 case 0:
-                    fragment = new CategoryList();
+                    fragment = new CategoryListFragment();
                     break;
                 case 1:
                     fragment = new Timer();

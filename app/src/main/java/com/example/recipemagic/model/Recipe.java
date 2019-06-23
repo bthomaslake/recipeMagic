@@ -6,11 +6,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Recipe {
+
+    private int thumbNail;
+
     @SerializedName("strInstructions")
     private String directions;
 
     @SerializedName("strMeal")
     private String title;
+
+    public int getThumbNail(){
+        return thumbNail;
+    }
 
     @SerializedName(value ="ingredient1", alternate = "strIngredient1")
     private String ingredient1;
@@ -100,6 +107,7 @@ public class Recipe {
     public String getTitle() {
         return title;
     }
+
     public List<String> getIngredients() {
         List<String> ingredients = new ArrayList<String>();
         if(measurement1 != null && !measurement1.equals("")) {

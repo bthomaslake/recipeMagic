@@ -1,5 +1,8 @@
 package com.example.recipemagic.model;
 
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.recipemagic.R;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
