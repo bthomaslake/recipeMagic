@@ -1,13 +1,12 @@
 package com.example.recipemagic.presenter;
 
+import java.util.ArrayList;
+import java.util.List;
 import com.example.recipemagic.model.cookBook;
 import com.example.recipemagic.view.MainActivity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class MainPresenter {
-    cookBook book;
+    private cookBook book;
     private boolean bookReady;
     private List<Listener> registeredDataUsers;
 
@@ -15,16 +14,8 @@ public class MainPresenter {
         book = new cookBook();
         bookReady = false;
         registeredDataUsers = new ArrayList<Listener>();
-        /*
         DownloadLibraryTask task = new DownloadLibraryTask(this);
         task.execute();
-        */
-
-
-    }
-
-    public MainPresenter() {
-
     }
 
     public void registerDataUser(MainPresenter.Listener dataUser){

@@ -31,14 +31,13 @@ public class MainActivity extends AppCompatActivity
         implements AddRecipe.OnFragmentInteractionListener,
         FavoritesFragment.OnListFragmentInteractionListener,
         Timer.OnFragmentInteractionListener,
-        CategoryList.OnFragmentInteractionListener,
+        CategoryListFragment.OnListFragmentInteractionListener,
         SearchFragment.OnFragmentInteractionListener {
 
     private ViewPager viewPager;
     private CollectionPagerAdapter adapter;
     private MainPresenter presenter;
     private ActionBar actionBar;
-    private int currentFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,31 +49,8 @@ public class MainActivity extends AppCompatActivity
 
         viewPager = findViewById(R.id.fragment);
         viewPager.setAdapter(adapter);
-        SharedPreferences fragmentSave = PreferenceManager.getDefaultSharedPreferences(this);
-        currentFragment = fragmentSave.getInt("currentFragment", 0);
-        switch (currentFragment) {
-            case 0 :
-                viewPager.setCurrentItem(0);
-                actionBar.setTitle("Categories");
-                break;
-            case 1 :
-                viewPager.setCurrentItem(1);
-                actionBar.setTitle("Timer");
-                break;
-            case 2 :
-                viewPager.setCurrentItem(2);
-                actionBar.setTitle("Favorites");
-                break;
-            case 3 :
-                viewPager.setCurrentItem(3);
-                actionBar.setTitle("Search");
-                break;
-            case 4 :
-                viewPager.setCurrentItem(4);
-                actionBar.setTitle("Add Recipe");
-                break;
-        }
-        //loadFragment(R.id.menu_category);
+
+        loadFragment(R.id.menu_category);
 
         BottomNavigationView bnv = findViewById(R.id.navigation);
 
@@ -88,43 +64,27 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
-    protected void onStop() {
-        super.onStop();
-
-        SharedPreferences fragmentSave = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor fragmentEdit = fragmentSave.edit();
-
-        fragmentEdit.putInt("currentFragment", currentFragment);
-        fragmentEdit.apply();
-    }
-
-
     private void loadFragment(int menuId) {
         switch (menuId) {
             case R.id.menu_category :
                 viewPager.setCurrentItem(0);
                 actionBar.setTitle("Categories");
-                currentFragment = 0;
                 break;
             case R.id.menu_timer :
                 viewPager.setCurrentItem(1);
                 actionBar.setTitle("Timer");
-                currentFragment = 1;
                 break;
             case R.id.menu_favorites :
                 viewPager.setCurrentItem(2);
                 actionBar.setTitle("Favorites");
-                currentFragment = 2;
                 break;
             case R.id.menu_search :
                 viewPager.setCurrentItem(3);
                 actionBar.setTitle("Search");
-                currentFragment = 3;
                 break;
             case R.id.menu_add :
                 viewPager.setCurrentItem(4);
-                actionBar.setTitle("Add Recipe");
-                currentFragment = 4;
+                actionBar.setTitle("Add Meals");
                 break;
         }
     }
@@ -166,7 +126,7 @@ public class MainActivity extends AppCompatActivity
 
             switch(i) {
                 case 0:
-                    fragment = new CategoryList();
+                    fragment = new CategoryListFragment();
                     break;
                 case 1:
                     fragment = new Timer();

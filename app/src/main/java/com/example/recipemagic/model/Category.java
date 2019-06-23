@@ -1,16 +1,26 @@
 package com.example.recipemagic.model;
 
-import java.util.List;
+import com.google.gson.annotations.SerializedName;
 
 public class Category {
-    private List<Recipe> recipes;
-    private String category;
 
-    public String getCategorty(){
-        return category;
+    @SerializedName("strCategory")
+    private String title;
+
+    @SerializedName("strCategoryThumb")
+    private String image;
+
+    private int thumbNail;
+
+    public String getTitle() {
+        return title;
     }
 
-    public List<Recipe> getRecipes(){
-        return recipes;
+    public String getImage() {
+        return image;
+    }
+
+    public int getThumbNail(){
+        return thumbNail;
     }
 }
