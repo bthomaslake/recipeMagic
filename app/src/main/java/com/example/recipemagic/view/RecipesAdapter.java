@@ -31,7 +31,7 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.ViewHold
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_myRecipes, parent, false);
+                .inflate(R.layout.fragment_myrecipes, parent, false);
         return new ViewHolder(view);
     }
 

@@ -10,4 +10,4 @@
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
     tools:context=".view.MyRecipes"
-    tools:listitem="@layout/fragment_myRecipes" />
+    tools:listitem="@layout/fragment_myrecipes" />
