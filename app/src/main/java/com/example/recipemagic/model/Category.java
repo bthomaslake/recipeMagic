@@ -10,6 +10,11 @@ public class Category {
     @SerializedName("strCategoryThumb")
     private String image;
 
+    public Category(String title, int thumbNail) {
+        this.title = title;
+        this.thumbNail = thumbNail;
+    }
+
     private int thumbNail;
 
     public String getTitle() {

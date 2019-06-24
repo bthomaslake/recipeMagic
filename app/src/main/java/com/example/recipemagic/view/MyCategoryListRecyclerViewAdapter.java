@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.recipemagic.R;
+import com.example.recipemagic.model.Category;
 import com.example.recipemagic.model.Recipe;
 import com.example.recipemagic.view.CategoryListFragment.OnListFragmentInteractionListener;
 import com.example.recipemagic.view.dummy.DummyContent.DummyItem;
@@ -25,14 +26,13 @@ import java.util.List;
  */
 public class MyCategoryListRecyclerViewAdapter extends RecyclerView.Adapter<MyCategoryListRecyclerViewAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
-    private final OnListFragmentInteractionListener mListener;
     private Context context;
-    private List<Recipe>data;
+    private List<Category>data;
 
-    public MyCategoryListRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
-        mValues = items;
-        mListener = listener;
+
+    public MyCategoryListRecyclerViewAdapter(Context context, List<Category>data) {
+        this.context = context;
+        this.data = data;
     }
 
     @Override
@@ -44,20 +44,22 @@ public class MyCategoryListRecyclerViewAdapter extends RecyclerView.Adapter<MyCa
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        holder.recipe_title.setText(data.get(position).getTitle());
-        holder.recipe_image.setImageResource(data.get(position).getThumbNail());
-        holder.cardview.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view){
-                Intent intent = new Intent(context, Recipe.class);
+        System.out.println("Title: " + data.get(0).getTitle());
+        System.out.println("Position: " + position);
+        holder.category_title.setText(data.get(position).getTitle());
+        holder.category_image.setImageResource(data.get(position).getThumbNail());
+        //      holder.cardview.setOnClickListener(new View.OnClickListener(){
+        //        public void onClick(View view){
+        //             Intent intent = new Intent(context, Recipe.class);
 
-                //passing data to recipe activity
-                intent.putExtra("Title", data.get(position).getTitle());
-                intent.putExtra("Thumbnail", data.get(position).getThumbNail());
+        //           //passing data to recipe activity
+        //         intent.putExtra("Title", RecipeData.get(position).getTitle());
+        //         intent.putExtra("Thumbnail", RecipeData.get(position).getThumbNail());
 
-                //start activity
-                context.startActivity(intent);
-            }
-        });
+        //       //start activity
+        //       context.startActivity(intent);
+        //   }
+        //});
     }
 
     @Override
@@ -66,14 +68,14 @@ public class MyCategoryListRecyclerViewAdapter extends RecyclerView.Adapter<MyCa
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView recipe_title;
-        ImageView recipe_image;
+        TextView category_title;
+        ImageView category_image;
         CardView cardview;
 
         public ViewHolder(View view) {
             super(view);
-            recipe_title = (TextView) itemView.findViewById(R.id.recipe);
-            recipe_image = (ImageView) itemView.findViewById(R.id.recipe_Img);
+            category_title = (TextView) itemView.findViewById(R.id.category);
+            category_image = (ImageView) itemView.findViewById(R.id.category_Img);
             cardview = (CardView) itemView.findViewById(R.id.cardview_recipe);
         }
 

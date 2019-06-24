@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -13,9 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.recipemagic.R;
+import com.example.recipemagic.model.Category;
 import com.example.recipemagic.presenter.CategoryPresenter;
-import com.example.recipemagic.view.dummy.DummyContent;
 import com.example.recipemagic.view.dummy.DummyContent.DummyItem;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A fragment representing a list of Items.
@@ -25,12 +27,11 @@ import com.example.recipemagic.view.dummy.DummyContent.DummyItem;
  */
 public class CategoryListFragment extends Fragment {
 
-    // TODO: Customize parameter argument names
-    private static final String ARG_COLUMN_COUNT = "column-count";
-    // TODO: Customize parameters
-    private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
     private CategoryPresenter categoryPresenter;
+    private List<Category> category;
+    private RecyclerView myrv;
+    private RecyclerView.Adapter myAdapter;
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -43,17 +44,8 @@ public class CategoryListFragment extends Fragment {
     public static CategoryListFragment newInstance(int columnCount) {
         CategoryListFragment fragment = new CategoryListFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
         return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
-        }
     }
 
     @Override
@@ -61,17 +53,14 @@ public class CategoryListFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_category_list, container, false);
 
-        // Set the adapter
-        if (view instanceof RecyclerView) {
-            Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
-            if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
-            }
-            recyclerView.setAdapter(new MyCategoryListRecyclerViewAdapter(DummyContent.ITEMS, mListener));
-        }
+        category = new ArrayList<Category>();
+        category.add(new Category("Title1", R.drawable.category));
+        System.out.println("Title: " + category.get(0).getTitle());
+        myrv = (RecyclerView) view.findViewById(R.id.recyclerview_category);
+        myAdapter = new MyCategoryListRecyclerViewAdapter(getContext(), category);
+        myrv.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        myrv.setAdapter(myAdapter);
+
         return view;
     }
 
