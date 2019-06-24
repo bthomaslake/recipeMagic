@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.recipemagic.R;
-import com.example.recipemagic.view.FavoritesFragment.OnListFragmentInteractionListener;
+import com.example.recipemagic.view.MyRecipes.OnListFragmentInteractionListener;
 import com.example.recipemagic.view.dummy.DummyContent.DummyItem;
 
 import java.util.List;
@@ -18,12 +18,12 @@ import java.util.List;
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class MyFavoritesRecyclerViewAdapter extends RecyclerView.Adapter<MyFavoritesRecyclerViewAdapter.ViewHolder> {
+public class MyRecipesRecyclerViewAdapter extends RecyclerView.Adapter<MyRecipesRecyclerViewAdapter.ViewHolder> {
 
     private final List<DummyItem> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyFavoritesRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+    public MyRecipesRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -31,7 +31,7 @@ public class MyFavoritesRecyclerViewAdapter extends RecyclerView.Adapter<MyFavor
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_favorites, parent, false);
+                .inflate(R.layout.fragment_myRecipes, parent, false);
         return new ViewHolder(view);
     }
 
