@@ -1,11 +1,8 @@
 package com.example.recipemagic.view;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 
-import android.preference.PreferenceManager;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -18,18 +15,12 @@ import com.example.recipemagic.presenter.MainPresenter;
 import com.example.recipemagic.R;
 import androidx.appcompat.app.ActionBar;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
-import com.example.recipemagic.presenter.MainPresenter;
-import com.example.recipemagic.R;
 import com.example.recipemagic.view.dummy.DummyContent;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity
         implements AddRecipe.OnFragmentInteractionListener,
-        FavoritesFragment.OnListFragmentInteractionListener,
+        MyRecipes.OnListFragmentInteractionListener,
         Timer.OnFragmentInteractionListener,
         CategoryListFragment.OnListFragmentInteractionListener,
         SearchFragment.OnFragmentInteractionListener {
@@ -76,7 +67,7 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.menu_favorites :
                 viewPager.setCurrentItem(2);
-                actionBar.setTitle("Favorites");
+                actionBar.setTitle("My Recipes");
                 break;
             case R.id.menu_search :
                 viewPager.setCurrentItem(3);
@@ -132,7 +123,7 @@ public class MainActivity extends AppCompatActivity
                     fragment = new Timer();
                     break;
                 case 2:
-                    fragment = new FavoritesFragment();
+                    fragment = new MyRecipes();
                     break;
                 case 3:
                     fragment = new SearchFragment();
