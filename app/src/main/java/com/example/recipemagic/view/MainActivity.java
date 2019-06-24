@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity
                 return true;
             }
         });
+        // set something here to listen to viewPager changes...
     }
 
     private void loadFragment(int menuId) {
@@ -127,18 +128,23 @@ public class MainActivity extends AppCompatActivity
             switch(i) {
                 case 0:
                     fragment = new CategoryListFragment();
+                    getSupportActionBar().setTitle("This is Working!!!"); // still not on swipe...
                     break;
                 case 1:
                     fragment = new Timer();
+                    getSupportActionBar().setTitle("This is Working~~~~2"); // still not on swipe...
                     break;
                 case 2:
                     fragment = new FavoritesFragment();
+                    getSupportActionBar().setTitle("This is Working!!!3"); // still not on swipe...
                     break;
                 case 3:
                     fragment = new SearchFragment();
+                    getSupportActionBar().setTitle("This is Working!!!4"); // still not on swipe...
                     break;
                 case 4:
                     fragment = new AddRecipe();
+                    getSupportActionBar().setTitle("This is Working!!!5"); // still not on swipe...
                     break;
                 default:
                     fragment = null;
