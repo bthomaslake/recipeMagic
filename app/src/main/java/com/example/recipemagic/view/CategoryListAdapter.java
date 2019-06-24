@@ -3,8 +3,6 @@ package com.example.recipemagic.view;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +11,9 @@ import android.widget.TextView;
 
 import com.example.recipemagic.R;
 import com.example.recipemagic.model.Category;
-import com.example.recipemagic.model.Recipe;
+import com.example.recipemagic.model.CategoryList;
+import com.example.recipemagic.model.CookBook;
+import com.example.recipemagic.presenter.MainPresenter;
 import com.example.recipemagic.view.CategoryListFragment.OnListFragmentInteractionListener;
 import com.example.recipemagic.view.dummy.DummyContent.DummyItem;
 
@@ -24,15 +24,13 @@ import java.util.List;
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class MyCategoryListRecyclerViewAdapter extends RecyclerView.Adapter<MyCategoryListRecyclerViewAdapter.ViewHolder> {
+public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapter.ViewHolder> {
 
-    private Context context;
-    private List<Category>data;
-
-
-    public MyCategoryListRecyclerViewAdapter(Context context, List<Category>data) {
-        this.context = context;
-        this.data = data;
+   private List<String>titles;
+   private List<Integer>images;
+    public CategoryListAdapter(List<String> titles, List<Integer>images) {
+        this.titles = titles;
+        this.images = images;
     }
 
     @Override
@@ -43,11 +41,9 @@ public class MyCategoryListRecyclerViewAdapter extends RecyclerView.Adapter<MyCa
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, final int position) {
-        System.out.println("Title: " + data.get(0).getTitle());
-        System.out.println("Position: " + position);
-        holder.category_title.setText(data.get(position).getTitle());
-        holder.category_image.setImageResource(data.get(position).getThumbNail());
+    public void onBindViewHolder(final ViewHolder holder, final int i) {
+        holder.category_title.setText(titles.get(i));
+        holder.category_image.setImageResource(images.get(i));
         //      holder.cardview.setOnClickListener(new View.OnClickListener(){
         //        public void onClick(View view){
         //             Intent intent = new Intent(context, Recipe.class);
@@ -64,7 +60,7 @@ public class MyCategoryListRecyclerViewAdapter extends RecyclerView.Adapter<MyCa
 
     @Override
     public int getItemCount() {
-        return data.size();
+        return titles.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

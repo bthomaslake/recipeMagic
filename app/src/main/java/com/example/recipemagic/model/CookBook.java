@@ -8,7 +8,7 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
-public class cookBook {
+public class CookBook {
     private List<CategoryList> categories;
     private List<MealList> recipes;
     private List<RecipeHelper> recipeHelpers;
@@ -16,7 +16,7 @@ public class cookBook {
     private Gson gson;
     private HTTPHelper httpHelper;
 
-    public cookBook(){
+    public CookBook(){
         categories = new ArrayList<CategoryList>();
         recipes = new ArrayList<MealList>();
         favorites = new ArrayList<Favorite>();
@@ -31,9 +31,16 @@ public class cookBook {
         categories.add(categoryList);
     }
 
-    public List<CategoryList> getCategoryList(){
-        return categories;
+    public List<String> getCategoryTitles() {
+        List<String> titles = categories.get(0).getCategoryNames();
+        return titles;
     }
+
+    public List<Integer> getCategoryThumbNails() {
+        List<Integer> thumbNails = categories.get(0).getCategoryThumbNails();
+        return thumbNails;
+    }
+
     public void loadMealList(String url){
         String data = httpHelper.readHTTP(url);
         MealList mealList = gson.fromJson(data, MealList.class);

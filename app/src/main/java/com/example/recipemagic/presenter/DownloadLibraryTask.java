@@ -17,4 +17,9 @@ public class DownloadLibraryTask extends AsyncTask<Void, Void, Void> {
         presenter.get().getCookBook().loadCategory("https://www.themealdb.com/api/json/v1/1/categories.php");
         return null;
     }
+
+    @Override
+    protected void onPostExecute(Void aVoid) {
+        presenter.get().notifyDataUsers();
+    }
 }

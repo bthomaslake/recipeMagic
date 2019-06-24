@@ -1,13 +1,10 @@
 package com.example.recipemagic.presenter;
 
-import com.example.recipemagic.model.Favorite;
-import com.example.recipemagic.model.cookBook;
-
-import java.util.List;
+import com.example.recipemagic.model.CookBook;
 
 public class FavoritesPresenter {
 
-    private cookBook book;
+    private CookBook book;
 
     public FavoritesPresenter(MainPresenter presenter){
         book = presenter.getCookBook();
@@ -17,6 +14,6 @@ public class FavoritesPresenter {
 
     /*
     public List<Favorite> getFavorittes(){
-        return cookBook.getFavorites();
+        return CookBook.getFavorites();
     }*/
 }

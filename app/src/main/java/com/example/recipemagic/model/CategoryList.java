@@ -22,6 +22,14 @@ public class CategoryList {
         return bookNames;
     }
 
+    public List<Integer> getCategoryThumbNails() {
+        List<Integer> thumbNails = new ArrayList<Integer>();
+        for (Category category : categories) {
+            thumbNails.add(category.getThumbNail());
+        }
+        return thumbNails;
+    }
+
     public String toString() {
         String output;
         try {

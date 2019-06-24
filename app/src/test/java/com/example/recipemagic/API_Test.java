@@ -1,9 +1,9 @@
 package com.example.recipemagic;
 
 import com.example.recipemagic.model.CategoryList;
+import com.example.recipemagic.model.CookBook;
 import com.example.recipemagic.model.MealList;
 import com.example.recipemagic.model.RecipeHelper;
-import com.example.recipemagic.model.cookBook;
 
 import org.junit.Test;
 
@@ -16,7 +16,7 @@ public class API_Test {
     @Test
     public void readAPI_valid(){
         System.out.println("Test 1");
-        cookBook book = new cookBook();
+        CookBook book = new CookBook();
         book.loadCategory("https://www.themealdb.com/api/json/v1/1/categories.php");
         List<CategoryList> categories = book.getCategoryList();
         List<String>names = categories.get(0).getCategoryNames();
@@ -29,7 +29,7 @@ public class API_Test {
     @Test
     public void readMeal_valid(){
         System.out.println("\nTest 2");
-        cookBook book = new cookBook();
+        CookBook book = new CookBook();
         book.loadMealList("https://www.themealdb.com/api/json/v1/1/filter.php?c=Seafood");
         List<MealList> mealLists = book.getRecipeLists();
         List<String>names = mealLists.get(0).getRecipeNames();
@@ -42,7 +42,7 @@ public class API_Test {
     @Test
     public void readRecipe_valid(){
         System.out.println("\nTest 3");
-        cookBook book = new cookBook();
+        CookBook book = new CookBook();
         book.loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata");
         List<RecipeHelper> recipeHelper = book.getRecipeHelper();
         String name = recipeHelper.get(0).getRecipeName();

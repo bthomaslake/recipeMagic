@@ -18,8 +18,6 @@ import com.example.recipemagic.view.dummy.DummyContent;
 import com.example.recipemagic.view.dummy.DummyContent.DummyItem;
 import com.example.recipemagic.presenter.RecipeListPresenter;
 
-import java.util.List;
-
 /**
  * A fragment representing a list of Items.
  * <p/>
@@ -78,7 +76,7 @@ public class RecipeListFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyRecipeListRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            recyclerView.setAdapter(new RecipeListAdapter(DummyContent.ITEMS, mListener));
         }
         return view;
     }

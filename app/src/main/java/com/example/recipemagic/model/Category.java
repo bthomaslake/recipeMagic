@@ -1,5 +1,6 @@
 package com.example.recipemagic.model;
 
+import com.example.recipemagic.R;
 import com.google.gson.annotations.SerializedName;
 
 public class Category {
@@ -26,6 +27,6 @@ public class Category {
     }
 
     public int getThumbNail(){
-        return thumbNail;
+        return R.drawable.category;
     }
 }

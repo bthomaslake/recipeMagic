@@ -1,9 +1,9 @@
 package com.example.recipemagic.presenter;
 
-import com.example.recipemagic.model.cookBook;
+import com.example.recipemagic.model.CookBook;
 
 public class SearchPresenter {
-    private cookBook book;
+    private CookBook book;
     public SearchPresenter(MainPresenter presenter) {
         book = presenter.getCookBook();
 

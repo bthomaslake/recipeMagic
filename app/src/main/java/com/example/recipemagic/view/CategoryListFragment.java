@@ -3,6 +3,7 @@ package com.example.recipemagic.view;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,23 +16,32 @@ import com.example.recipemagic.R;
 import com.example.recipemagic.model.Category;
 import com.example.recipemagic.model.CategoryList;
 import com.example.recipemagic.presenter.CategoryPresenter;
+import com.example.recipemagic.presenter.MainPresenter;
 import com.example.recipemagic.view.dummy.DummyContent.DummyItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryListFragment extends Fragment {
+public class CategoryListFragment extends Fragment implements MainPresenter.Listener{
 
     private OnListFragmentInteractionListener mListener;
     private CategoryPresenter categoryPresenter;
+    private MainPresenter presenter;
     private List<Category> category;
-    private RecyclerView myrv;
-    private RecyclerView.Adapter myAdapter;
-    private CategoryList categoryList;
+    private List<CategoryList> categoryList;
+    private RecyclerView categoryRV;
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
     public CategoryListFragment() {
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        presenter = ((MainActivity) getActivity()).getPresenter();
+        categoryPresenter = new CategoryPresenter(presenter);
     }
 
     // TODO: Customize parameter initialization
@@ -47,12 +57,9 @@ public class CategoryListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_category_list, container, false);
-        categoryList = new CategoryList();
-        category = categoryList.getCategories();
-        myrv = (RecyclerView) view.findViewById(R.id.recyclerview_category);
-        myAdapter = new MyCategoryListRecyclerViewAdapter(getContext(), category);
-        myrv.setLayoutManager(new GridLayoutManager(getContext(), 3));
-        myrv.setAdapter(myAdapter);
+        categoryRV = (RecyclerView) view.findViewById(R.id.recyclerview_category);
+        categoryRV.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        presenter.registerDataUser(this);
         return view;
     }
 
@@ -72,6 +79,11 @@ public class CategoryListFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void notifyDataReady() {
+        categoryRV.setAdapter(new CategoryListAdapter(categoryPresenter.getValidTitles(), categoryPresenter.getValidImages()));
     }
 
     public interface OnListFragmentInteractionListener {
