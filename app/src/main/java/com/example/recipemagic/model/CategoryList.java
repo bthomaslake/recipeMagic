@@ -10,13 +10,8 @@ public class CategoryList {
         categories = new ArrayList<Category>();
     }
 
-    public Category getCategory(String name) {
-        for (Category category : categories) {
-            if (category.getTitle().toUpperCase().equals(name.toUpperCase())) {
-                return category;
-            }
-        }
-        return null;
+    public List<Category> getCategories() {
+        return categories;
     }
 
     public List<String> getCategoryNames() {
