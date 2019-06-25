@@ -1,5 +1,6 @@
 package com.example.recipemagic.view;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
@@ -23,6 +24,7 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
 
    private List<String>titles;
    private List<Integer>images;
+   private ActionBar actionbar;
     public CategoryListAdapter(List<String> titles, List<Integer>images) {
         this.titles = titles;
         this.images = images;
@@ -49,6 +51,8 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
                     myFragment.setArguments(bundle);
 
                     //start Fragment
+                    AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment, myFragment).addToBackStack(null).commit();
 
            }
         });
