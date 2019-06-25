@@ -1,8 +1,14 @@
 package com.example.recipemagic.view;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,20 +16,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.recipemagic.R;
-import com.example.recipemagic.model.Category;
-import com.example.recipemagic.model.CategoryList;
-import com.example.recipemagic.model.CookBook;
-import com.example.recipemagic.presenter.MainPresenter;
-import com.example.recipemagic.view.CategoryListFragment.OnListFragmentInteractionListener;
-import com.example.recipemagic.view.dummy.DummyContent.DummyItem;
 
 import java.util.List;
 
-/**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
- * specified {@link OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
- */
 public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapter.ViewHolder> {
 
    private List<String>titles;
@@ -44,18 +39,19 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
     public void onBindViewHolder(final ViewHolder holder, final int i) {
         holder.category_title.setText(titles.get(i));
         holder.category_image.setImageResource(images.get(i));
-        //      holder.cardview.setOnClickListener(new View.OnClickListener(){
-        //        public void onClick(View view){
-        //             Intent intent = new Intent(context, Recipe.class);
+        holder.cardview.setOnClickListener(new View.OnClickListener(){
+                public void onClick(View view){
 
-        //           //passing data to recipe activity
-        //         intent.putExtra("Title", RecipeData.get(position).getTitle());
-        //         intent.putExtra("Thumbnail", RecipeData.get(position).getThumbNail());
+                    //passing data to recipe list activity
+                    Bundle bundle = new Bundle();
+                    bundle.putString("Category", titles.get(i));
+                    Fragment myFragment = new RecipeListFragment();
+                    myFragment.setArguments(bundle);
 
-        //       //start activity
-        //       context.startActivity(intent);
-        //   }
-        //});
+                    //start Fragment
+
+           }
+        });
     }
 
     @Override
@@ -72,8 +68,7 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
             super(view);
             category_title = (TextView) itemView.findViewById(R.id.category);
             category_image = (ImageView) itemView.findViewById(R.id.category_Img);
-            cardview = (CardView) itemView.findViewById(R.id.cardview_recipe);
+            cardview = (CardView) itemView.findViewById(R.id.cardview_category);
         }
-
     }
 }

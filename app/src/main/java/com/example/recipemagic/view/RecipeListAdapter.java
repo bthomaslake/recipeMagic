@@ -1,31 +1,26 @@
 package com.example.recipemagic.view;
 
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.recipemagic.R;
-import com.example.recipemagic.view.RecipeListFragment.OnListFragmentInteractionListener;
-import com.example.recipemagic.view.dummy.DummyContent.DummyItem;
 
 import java.util.List;
 
-/**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
- * specified {@link OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
- */
 public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
-    private final OnListFragmentInteractionListener mListener;
-
-    public RecipeListAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
-        mValues = items;
-        mListener = listener;
+    private List<String>titles;
+    private List<Integer>images;
+    public RecipeListAdapter(List<String> titles, List<Integer>images) {
+        this.titles = titles;
+        this.images = images;
     }
 
     @Override
@@ -36,44 +31,31 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Vi
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+    public void onBindViewHolder(final ViewHolder holder, final int i) {
+        holder.recipe_title.setText(titles.get(i));
+        holder.recipe_image.setImageResource(images.get(i));
+        holder.cardview.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
 
-        holder.mView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (null != mListener) {
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
-                }
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return mValues.size();
+        return titles.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public final View mView;
-        public final TextView mIdView;
-        public final TextView mContentView;
-        public DummyItem mItem;
+        TextView recipe_title;
+        ImageView recipe_image;
+        CardView cardview;
 
         public ViewHolder(View view) {
             super(view);
-            mView = view;
-            mIdView = (TextView) view.findViewById(R.id.item_number);
-            mContentView = (TextView) view.findViewById(R.id.content);
-        }
-
-        @Override
-        public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
+            recipe_title = (TextView) itemView.findViewById(R.id.recipe);
+            recipe_image = (ImageView) itemView.findViewById(R.id.recipe_Img);
+            cardview = (CardView) itemView.findViewById(R.id.cardview_recipe);
         }
     }
 }

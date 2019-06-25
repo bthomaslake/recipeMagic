@@ -23,7 +23,8 @@ public class MainActivity extends AppCompatActivity
         MyRecipes.OnListFragmentInteractionListener,
         Timer.OnFragmentInteractionListener,
         CategoryListFragment.OnListFragmentInteractionListener,
-        SearchFragment.OnFragmentInteractionListener {
+        SearchFragment.OnFragmentInteractionListener,
+        RecipeListFragment.OnListFragmentInteractionListener {
 
     private ViewPager viewPager;
     private CollectionPagerAdapter adapter;

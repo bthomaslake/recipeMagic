@@ -26,8 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text=""
             android:textSize="13sp"
-            tools:text="@string/menu_category" />
+            tools:text="@string/recipes" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

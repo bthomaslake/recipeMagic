@@ -13,20 +13,19 @@ public class RecipeHelper {
         recipe = new ArrayList<Recipe>();
     }
 
-    public Recipe getRecipe(String name) {
-        for (Recipe recipe : this.recipe) {
-            if(recipe.getTitle().toUpperCase().equals(name.toUpperCase())) {
-                return recipe;
-            }
+    public List<String> getRecipeNames() {
+        List<String> recipeNames = new ArrayList<String>();
+        for (Recipe recipes : recipe) {
+            recipeNames.add(recipes.getTitle());
         }
-        return null;
+        return recipeNames;
     }
 
-    public String getRecipeName() {
-        String recipeName = null;
-        for (Recipe singleRecipe : recipe) {
-            recipeName = singleRecipe.getTitle();
+    public List<Integer> getRecipeThumbNails() {
+        List<Integer> thumbNails = new ArrayList<Integer>();
+        for (Recipe recipes : recipe) {
+            thumbNails.add(recipes.getThumbNail());
         }
-        return recipeName;
+        return thumbNails;
     }
 }

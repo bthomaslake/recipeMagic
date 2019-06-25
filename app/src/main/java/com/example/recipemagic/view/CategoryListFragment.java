@@ -27,8 +27,6 @@ public class CategoryListFragment extends Fragment implements MainPresenter.List
     private OnListFragmentInteractionListener mListener;
     private CategoryPresenter categoryPresenter;
     private MainPresenter presenter;
-    private List<Category> category;
-    private List<CategoryList> categoryList;
     private RecyclerView categoryRV;
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the

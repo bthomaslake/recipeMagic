@@ -1,5 +1,6 @@
 package com.example.recipemagic.model;
 
+import com.example.recipemagic.R;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
@@ -15,8 +16,11 @@ public class Recipe {
     @SerializedName("strMeal")
     private String title;
 
+    @SerializedName("strMealThumb")
+    private String image;
+
     public int getThumbNail(){
-        return thumbNail;
+        return R.drawable.timer;
     }
 
     @SerializedName(value ="ingredient1", alternate = "strIngredient1")

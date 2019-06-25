@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.CategoryListFragment"
-    tools:listitem="@layout/fragment_category">
+    tools:context=".view.RecipeListFragment"
+    tools:listitem="@layout/fragment_recipelist">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_recipe"
@@ -13,4 +12,5 @@
         android:layout_height="match_parent"
         android:layout_row="0"
         android:layout_column="0" />
+
 </LinearLayout>
