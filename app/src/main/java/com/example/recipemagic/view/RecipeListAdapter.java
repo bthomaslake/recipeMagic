@@ -3,7 +3,6 @@ package com.example.recipemagic.view;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +17,9 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Vi
 
     private List<String>titles;
     private List<Integer>images;
+
     public RecipeListAdapter(List<String> titles, List<Integer>images) {
+        System.out.println("Here");
         this.titles = titles;
         this.images = images;
     }

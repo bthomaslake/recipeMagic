@@ -1,7 +1,6 @@
 package com.example.recipemagic.view;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -14,8 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.recipemagic.R;
-import com.example.recipemagic.presenter.MainPresenter;
 import com.example.recipemagic.presenter.RecipeListPresenter;
+import com.example.recipemagic.presenter.MainPresenter;
 import com.example.recipemagic.view.dummy.DummyContent.DummyItem;
 
 public class RecipeListFragment extends Fragment implements MainPresenter.Listener{
@@ -38,6 +37,10 @@ public class RecipeListFragment extends Fragment implements MainPresenter.Listen
         super.onCreate(savedInstanceState);
         presenter = ((MainActivity) getActivity()).getPresenter();
         recipePresenter = new RecipeListPresenter(presenter);
+        Bundle bundle = this.getArguments();
+        if(bundle != null) {
+            titles = bundle.get("Category").toString();
+        }
     }
 
     // TODO: Customize parameter initialization
@@ -53,16 +56,11 @@ public class RecipeListFragment extends Fragment implements MainPresenter.Listen
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_recipelist_list, container, false);
-        Bundle bundle = this.getArguments();
-        if(bundle != null) {
-            titles = bundle.get("Category").toString();
-        }
         recipeRV = (RecyclerView) view.findViewById(R.id.recyclerview_recipe);
         recipeRV.setLayoutManager(new GridLayoutManager(getContext(), 3));
         presenter.registerDataUser(this);
         return view;
     }
-
 
     @Override
     public void onAttach(Context context) {
@@ -84,6 +82,7 @@ public class RecipeListFragment extends Fragment implements MainPresenter.Listen
     @Override
     public void notifyDataReady() {
         recipeRV.setAdapter(new RecipeListAdapter(recipePresenter.getValidTitles(titles), recipePresenter.getValidImages(titles)));
+
     }
 
     public interface OnListFragmentInteractionListener {
