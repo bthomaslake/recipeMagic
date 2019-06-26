@@ -6,6 +6,6 @@ public class RecipeListPresenter {
 
     private cookBook book;
     public RecipeListPresenter(MainPresenter presenter) {
-        book = presenter.getCookBook();
+        //book = presenter.getCookBook();
     }
 }

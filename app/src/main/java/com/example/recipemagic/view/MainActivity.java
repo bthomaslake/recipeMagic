@@ -32,69 +32,41 @@ public class MainActivity extends AppCompatActivity
         FavoritesFragment.OnListFragmentInteractionListener,
         Timer.OnFragmentInteractionListener,
         CategoryListFragment.OnListFragmentInteractionListener,
-        SearchFragment.OnFragmentInteractionListener {
+        SearchFragment.OnFragmentInteractionListener,
+        RecipeListFragment.OnListFragmentInteractionListener,
+        BottomNavigationView.OnNavigationItemSelectedListener {
 
-    private ViewPager viewPager;
-    private CollectionPagerAdapter adapter;
     private MainPresenter presenter;
-    private ActionBar actionBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Standard beginning
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        actionBar = getSupportActionBar();
 
-        presenter = new MainPresenter(this);
-        adapter = new CollectionPagerAdapter(getSupportFragmentManager());
-
-        viewPager = findViewById(R.id.fragment);
-        viewPager.setAdapter(adapter);
-
-        loadFragment(R.id.menu_category);
-
+        loadFragment(new CategoryListFragment());
         BottomNavigationView bnv = findViewById(R.id.navigation);
 
-        bnv.setOnNavigationItemSelectedListener(
-                new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                loadFragment(item.getItemId());
-                return true;
-            }
-        });
-        // set something here to listen to viewPager changes...
+        bnv.setOnNavigationItemSelectedListener(this);
     }
 
-    private void loadFragment(int menuId) {
-        switch (menuId) {
-            case R.id.menu_category :
-                viewPager.setCurrentItem(0);
-                actionBar.setTitle("Categories");
-                break;
-            case R.id.menu_timer :
-                viewPager.setCurrentItem(1);
-                actionBar.setTitle("Timer");
-                break;
-            case R.id.menu_favorites :
-                viewPager.setCurrentItem(2);
-                actionBar.setTitle("Favorites");
-                break;
-            case R.id.menu_search :
-                viewPager.setCurrentItem(3);
-                actionBar.setTitle("Search");
-                break;
-            case R.id.menu_add :
-                viewPager.setCurrentItem(4);
-                actionBar.setTitle("Add Meals");
-                break;
+    private boolean loadFragment(Fragment fragment) {
+        // switch fragment based on input
+        if (fragment != null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .commit();
+            return true;
         }
+        return false;
     }
 
     public MainPresenter getPresenter() {
         return presenter;
     }
 
-    @Override
+
     public void onFragmentInteraction(Uri uri) {
         /* This function must be implemented in every
          * class that wants to use a fragment. It does not need to be
@@ -115,52 +87,27 @@ public class MainActivity extends AppCompatActivity
          */
     }
 
-    private class CollectionPagerAdapter extends FragmentPagerAdapter {
-
-        public CollectionPagerAdapter(FragmentManager fm) {
-        super(fm);
-    }
-
-        @Override
-        public Fragment getItem(int i) {
-            Fragment fragment;
-
-            switch(i) {
-                case 0:
-                    fragment = new CategoryListFragment();
-                    getSupportActionBar().setTitle("This is Working!!!"); // still not on swipe...
-                    break;
-                case 1:
-                    fragment = new Timer();
-                    getSupportActionBar().setTitle("This is Working~~~~2"); // still not on swipe...
-                    break;
-                case 2:
-                    fragment = new FavoritesFragment();
-                    getSupportActionBar().setTitle("This is Working!!!3"); // still not on swipe...
-                    break;
-                case 3:
-                    fragment = new SearchFragment();
-                    getSupportActionBar().setTitle("This is Working!!!4"); // still not on swipe...
-                    break;
-                case 4:
-                    fragment = new AddRecipe();
-                    getSupportActionBar().setTitle("This is Working!!!5"); // still not on swipe...
-                    break;
-                default:
-                    fragment = null;
-            }
-        return fragment;
-        }
-
-
-    /*
-     * This is the number of fragments that will be seen by the activity. The order
-     * is determined by the getItem() function above.
-     */
     @Override
-    public int getCount() {
-        return 5;
-    }
-}
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        Fragment fragment = null;
 
+        switch (menuItem.getItemId()) {
+            case R.id.menu_category:
+                fragment = new CategoryListFragment();
+                break;
+            case R.id.menu_timer:
+                fragment = new Timer();
+                break;
+            case R.id.menu_favorites:
+                fragment = new RecipeListFragment();
+                break;
+            case R.id.menu_search:
+                fragment = new SearchFragment();
+                break;
+            case R.id.menu_add:
+                fragment = new AddRecipe();
+                break;
+        }
+        return loadFragment(fragment);
+    }
 }
