@@ -6,7 +6,7 @@
     <string name="menu_search">Search</string>
     <string name="menu_add">Add Recipe</string>
     <string name="menu_category">Categories</string>
-    <string name="menu_favorites">Favorites</string>
+    <string name="menu_myRecipes">My Recipes</string>
     <string name="menu_timer">Timer</string>
     <string name="recipes">Recipes</string>
     <!-- TODO: Remove or change this placeholder text -->

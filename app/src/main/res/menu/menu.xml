@@ -20,8 +20,8 @@
 
     <item
         android:id="@+id/menu_favorites"
-        android:title="@string/menu_favorites"
-        android:icon="@drawable/favorites"
+        android:title="@string/menu_myRecipes"
+        android:icon="@drawable/myrecipes"
         android:enabled="true"
         app:showAsAction="always"
         app:labelVisibilityMode="labeled"

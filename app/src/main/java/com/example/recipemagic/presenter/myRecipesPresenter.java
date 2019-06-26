@@ -2,11 +2,11 @@ package com.example.recipemagic.presenter;
 
 import com.example.recipemagic.model.CookBook;
 
-public class FavoritesPresenter {
+public class myRecipesPresenter {
 
     private CookBook book;
 
-    public FavoritesPresenter(MainPresenter presenter){
+    public myRecipesPresenter(MainPresenter presenter){
         book = presenter.getCookBook();
     }
 
