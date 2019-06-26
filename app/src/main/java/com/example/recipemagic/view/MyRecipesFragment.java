@@ -24,7 +24,7 @@ import com.example.recipemagic.view.dummy.DummyContent.DummyItem;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class MyRecipes extends Fragment {
+public class MyRecipesFragment extends Fragment {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -38,13 +38,13 @@ public class MyRecipes extends Fragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public MyRecipes() {
+    public MyRecipesFragment() {
     }
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static MyRecipes newInstance(int columnCount) {
-        MyRecipes fragment = new MyRecipes();
+    public static MyRecipesFragment newInstance(int columnCount) {
+        MyRecipesFragment fragment = new MyRecipesFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -63,7 +63,7 @@ public class MyRecipes extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_myrecipes_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_myrecipe_list, container, false);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -74,7 +74,7 @@ public class MyRecipes extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new RecipesAdapter(DummyContent.ITEMS, mListener));
+            recyclerView.setAdapter(new MyRecipeAdapter(DummyContent.ITEMS, mListener));
         }
         return view;
     }

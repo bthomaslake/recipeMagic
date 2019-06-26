@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.RecipeListFragment"
-    tools:listitem="@layout/fragment_recipelist">
+    tools:context=".view.CategoryListFragment"
+    tools:listitem="@layout/fragment_category">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_recipe"
@@ -13,5 +13,4 @@
         android:layout_height="match_parent"
         android:layout_row="0"
         android:layout_column="0" />
-
 </LinearLayout>

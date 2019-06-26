@@ -13,9 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.recipemagic.R;
+import com.example.recipemagic.model.Category;
+import com.example.recipemagic.model.CategoryList;
 import com.example.recipemagic.presenter.CategoryPresenter;
 import com.example.recipemagic.presenter.MainPresenter;
 import com.example.recipemagic.view.dummy.DummyContent.DummyItem;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CategoryListFragment extends Fragment implements MainPresenter.Listener{
 

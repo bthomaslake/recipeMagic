@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryList {
-    List<Category>categories;
+    private List<Category>categories;
 
     public CategoryList(){
         categories = new ArrayList<Category>();
@@ -40,4 +40,3 @@ public class CategoryList {
         return output;
     }
 }
-

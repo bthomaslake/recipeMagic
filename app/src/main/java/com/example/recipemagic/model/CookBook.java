@@ -1,7 +1,6 @@
 package com.example.recipemagic.model;
 
 import com.google.gson.Gson;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -124,7 +123,7 @@ public class CookBook {
                 break;
             case "chicken":
                 chicken.add(recipeHelper);
-                break;
+               break;
             case "dessert":
                 dessert.add(recipeHelper);
                 break;

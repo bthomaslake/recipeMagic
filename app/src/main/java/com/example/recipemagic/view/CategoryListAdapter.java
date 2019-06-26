@@ -1,13 +1,11 @@
 package com.example.recipemagic.view;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,19 +38,19 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
         holder.category_title.setText(titles.get(i));
         holder.category_image.setImageResource(images.get(i));
         holder.cardview.setOnClickListener(new View.OnClickListener(){
-                public void onClick(View view){
+            public void onClick(View view){
 
-                    //passing data to recipe list activity
-                    Bundle bundle = new Bundle();
-                    bundle.putString("Category", titles.get(i));
-                    Fragment myFragment = new RecipeListFragment();
-                    myFragment.setArguments(bundle);
+                //passing data to recipe list activity
+                Bundle bundle = new Bundle();
+                bundle.putString("Category", titles.get(i));
+                Fragment myFragment = new RecipeListFragment();
+                myFragment.setArguments(bundle);
 
-                    //start Fragment
-                    AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment, myFragment).addToBackStack(null).commit();
+                //start Fragment
+                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myFragment).addToBackStack(null).commit();
 
-           }
+            }
         });
     }
 

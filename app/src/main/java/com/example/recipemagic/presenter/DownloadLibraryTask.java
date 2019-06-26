@@ -45,5 +45,6 @@ public class DownloadLibraryTask extends AsyncTask<Void, Void, Void> {
     @Override
     protected void onPostExecute(Void aVoid) {
         presenter.get().notifyDataUsers();
-    }
+
+   }
 }
