@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity
                 fragment = new Timer();
                 break;
             case R.id.menu_favorites:
-                fragment = new RecipeListFragment();
+                fragment = new MyRecipesFragment();
                 break;
             case R.id.menu_search:
                 fragment = new SearchFragment();

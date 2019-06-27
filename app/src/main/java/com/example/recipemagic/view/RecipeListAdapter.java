@@ -1,9 +1,11 @@
 package com.example.recipemagic.view;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,8 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Vi
 
     private List<String>titles;
     private List<Integer>images;
+    private List<String>ingredients;
+    private List<String>directions;
     public RecipeListAdapter(List<String> titles, List<Integer>images) {
         this.titles = titles;
         this.images = images;
@@ -36,7 +40,18 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Vi
         holder.recipe_image.setImageResource(images.get(i));
         holder.cardview.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
+                Bundle bundle = new Bundle();
+                bundle.putString("Title", titles.get(i));
+                Fragment myFragment = new RecipeFragment();
+                myFragment.setArguments(bundle);
 
+                //start Fragment
+                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                activity.getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, myFragment)
+                        .addToBackStack(null)
+                        .commit();
             }
         });
     }

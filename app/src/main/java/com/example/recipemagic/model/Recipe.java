@@ -19,8 +19,61 @@ public class Recipe {
     @SerializedName("strMealThumb")
     private String image;
 
+    public String getImage(){
+        return image;
+    }
+
     public int getThumbNail() {
-        return R.drawable.timer;
+        switch(image){
+            case "https://www.themealdb.com/images/media/meals/sytuqu1511553755.jpg":
+                return R.drawable.beefmustardpie;
+            case "https://www.themealdb.com/images/media/meals/wrssvt1511556563.jpg":
+                return R.drawable.beefoysterpie;
+            case "https://www.themealdb.com/images/media/meals/vtqxtu1511784197.jpg":
+                return R.drawable.beefbourguignon;
+            case "https://www.themealdb.com/images/media/meals/ursuup1487348423.jpg":
+                return R.drawable.beefpotroast;
+            case "https://www.themealdb.com/images/media/meals/uyqrrv1511553350.jpg":
+                return R.drawable.beefdumplingstew;
+            case "https://www.themealdb.com/images/media/meals/1529444830.jpg":
+                return R.drawable.beeflomein;
+            case "https://www.themealdb.com/images/media/meals/svprys1511176755.jpg":
+                return R.drawable.beefstroganoff;
+            case "https://www.themealdb.com/images/media/meals/ssrrrs1503664277.jpg":
+                return R.drawable.beefsundayroast;
+            case "https://www.themealdb.com/images/media/meals/vvpprx1487325699.jpg":
+                return R.drawable.beefwellington;
+            case "https://www.themealdb.com/images/media/meals/uuqvwu1504629254.jpg":
+                return R.drawable.braisedbeefchilli;
+            case "https://www.themealdb.com/images/media/meals/sxxpst1468569714.jpg":
+                return R.drawable.irishstew;
+            case "https://www.themealdb.com/images/media/meals/wsqqsw1515364068.jpg":
+                return R.drawable.jamaicanbeefpatties;
+            case "https://www.themealdb.com/images/media/meals/1525874812.jpg":
+                return R.drawable.mapatofu;
+            case "https://www.themealdb.com/images/media/meals/tvttqv1504640475.jpg":
+                return R.drawable.beefcurry;
+            case "https://www.themealdb.com/images/media/meals/xwutvy1511555540.jpg":
+                return R.drawable.beefpie;
+            case "https://www.themealdb.com/images/media/meals/uttupv1511815050.jpg":
+                return R.drawable.smokedmeat;
+            case "https://www.themealdb.com/images/media/meals/1520083578.jpg":
+                return R.drawable.oxtail;
+            case "https://www.themealdb.com/images/media/meals/yyrrxr1511816289.jpg":
+                return R.drawable.patechinois;
+            case "https://www.themealdb.com/images/media/meals/sqpqtp1515365614.jpg":
+                return R.drawable.redpeasoup;
+            case "https://www.themealdb.com/images/media/meals/sutysw1468247559.jpg":
+                return R.drawable.spaghettibolognese;
+            case "https://www.themealdb.com/images/media/meals/qysyss1511558054.jpg":
+                return R.drawable.steakkidneypie;
+            case "https://www.themealdb.com/images/media/meals/vussxq1511882648.jpg":
+                return R.drawable.steakdiane;
+            case "https://www.themealdb.com/images/media/meals/1529443236.jpg":
+                return R.drawable.szechuanbeef;
+            default:
+                return R.drawable.category;
+        }
     }
 
     @SerializedName(value = "ingredient1", alternate = "strIngredient1")
@@ -112,67 +165,72 @@ public class Recipe {
         return title;
     }
 
-    public List<String> getIngredients() {
-        List<String> ingredients = new ArrayList<String>();
+    public String getIngredients() {
+        List<String> ingredientList = new ArrayList<String>();
+        String ingredients = null;
         if (measurement1 != null && !measurement1.equals("")) {
-            ingredients.add(measurement1 + " " + ingredient1);
+            ingredientList.add(measurement1 + " " + ingredient1);
         }
         if (measurement2 != null && !measurement2.equals("")) {
-            ingredients.add(measurement2 + " " + ingredient2);
+            ingredientList.add(measurement2 + " " + ingredient2);
         }
         if (measurement3 != null && !measurement3.equals("")) {
-            ingredients.add(measurement3 + " " + ingredient3);
+            ingredientList.add(measurement3 + " " + ingredient3);
         }
         if (measurement4 != null && !measurement4.equals("")) {
-            ingredients.add(measurement4 + " " + ingredient4);
+            ingredientList.add(measurement4 + " " + ingredient4);
         }
         if (measurement5 != null && !measurement5.equals("")) {
-            ingredients.add(measurement5 + " " + ingredient5);
+            ingredientList.add(measurement5 + " " + ingredient5);
         }
         if (measurement6 != null && !measurement6.equals("")) {
-            ingredients.add(measurement6 + " " + ingredient6);
+            ingredientList.add(measurement6 + " " + ingredient6);
         }
         if (measurement7 != null && !measurement7.equals("")) {
-            ingredients.add(measurement7 + " " + ingredient7);
+            ingredientList.add(measurement7 + " " + ingredient7);
         }
         if (measurement8 != null && !measurement8.equals("")) {
-            ingredients.add(measurement8 + " " + ingredient8);
+            ingredientList.add(measurement8 + " " + ingredient8);
         }
         if (measurement9 != null && !measurement9.equals("")) {
-            ingredients.add(measurement9 + " " + ingredient9);
+            ingredientList.add(measurement9 + " " + ingredient9);
         }
         if (measurement10 != null && !measurement10.equals("")) {
-            ingredients.add(measurement10 + " " + ingredient10);
+            ingredientList.add(measurement10 + " " + ingredient10);
         }
         if (measurement11 != null && !measurement11.equals("")) {
-            ingredients.add(measurement11 + " " + ingredient11);
+            ingredientList.add(measurement11 + " " + ingredient11);
         }
         if (measurement12 != null && !measurement12.equals("")) {
-            ingredients.add(measurement12 + " " + ingredient12);
+            ingredientList.add(measurement12 + " " + ingredient12);
         }
         if (measurement13 != null && !measurement13.equals("")) {
-            ingredients.add(measurement13 + " " + ingredient13);
+            ingredientList.add(measurement13 + " " + ingredient13);
         }
         if (measurement14 != null && !measurement14.equals("")) {
-            ingredients.add(measurement14 + " " + ingredient14);
+            ingredientList.add(measurement14 + " " + ingredient14);
         }
         if (measurement15 != null && !measurement15.equals("")) {
-            ingredients.add(measurement15 + " " + ingredient15);
+            ingredientList.add(measurement15 + " " + ingredient15);
         }
         if (measurement16 != null && !measurement16.equals("")) {
-            ingredients.add(measurement16 + " " + ingredient16);
+            ingredientList.add(measurement16 + " " + ingredient16);
         }
         if (measurement17 != null && !measurement17.equals("")) {
-            ingredients.add(measurement17 + " " + ingredient17);
+            ingredientList.add(measurement17 + " " + ingredient17);
         }
         if (measurement18 != null && !measurement18.equals("")) {
-            ingredients.add(measurement18 + " " + ingredient18);
+            ingredientList.add(measurement18 + " " + ingredient18);
         }
         if (measurement19 != null && !measurement19.equals("")) {
-            ingredients.add(measurement19 + " " + ingredient19);
+            ingredientList.add(measurement19 + " " + ingredient19);
         }
         if (measurement20 != null && !measurement20.equals("")) {
-            ingredients.add(measurement20 + " " + ingredient20);
+            ingredientList.add(measurement20 + " " + ingredient20);
+        }
+
+        for(String ingredient: ingredientList){
+            ingredients += ingredient + "\n";
         }
         return ingredients;
     }
