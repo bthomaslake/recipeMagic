@@ -167,7 +167,7 @@ public class Recipe {
 
     public String getIngredients() {
         List<String> ingredientList = new ArrayList<String>();
-        String ingredients = null;
+        String ingredients = "";
         if (measurement1 != null && !measurement1.equals("")) {
             ingredientList.add(measurement1 + " " + ingredient1);
         }
@@ -230,7 +230,7 @@ public class Recipe {
         }
 
         for(String ingredient: ingredientList){
-            ingredients += ingredient + "\n";
+                ingredients += ingredient + "\n";
         }
         return ingredients;
     }

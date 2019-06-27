@@ -6,29 +6,33 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.recipemagic.R;
 import com.example.recipemagic.presenter.MainPresenter;
-import com.example.recipemagic.presenter.RecipeListPresenter;
-import com.example.recipemagic.presenter.RecipePresenter;
+
 import com.example.recipemagic.view.dummy.DummyContent.DummyItem;
 
-public class RecipeFragment extends Fragment implements MainPresenter.Listener{
+public class RecipeFragment extends Fragment{
 
     private OnListFragmentInteractionListener mListener;
-    private RecipePresenter recipePresenter;
     private MainPresenter presenter;
-    private RecyclerView recipeRV;
     private String category;
     private String title;
     private String directions;
     private String ingredients;
     private String image;
+    private String recipe;
+    private TextView recipe_title;
+    private ImageView recipe_image;
+    private TextView recipe_text;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -40,8 +44,6 @@ public class RecipeFragment extends Fragment implements MainPresenter.Listener{
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        presenter = ((MainActivity) getActivity()).getPresenter();
-        recipePresenter = new RecipePresenter(presenter);
     }
 
     // TODO: Customize parameter initialization
@@ -56,7 +58,7 @@ public class RecipeFragment extends Fragment implements MainPresenter.Listener{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_recipe_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_recipe, container, false);
         Bundle bundle = this.getArguments();
         if(bundle != null) {
             category = bundle.get("Category").toString();
@@ -64,10 +66,16 @@ public class RecipeFragment extends Fragment implements MainPresenter.Listener{
             directions = bundle.get("Direction").toString();
             ingredients = bundle.get("Ingredient").toString();
             image = bundle.get("Image").toString();
+            recipe = ingredients + "\n" + directions;
         }
-        recipeRV = (RecyclerView) view.findViewById(R.id.recyclerview_single_recipe);
-        recipeRV.setLayoutManager(new GridLayoutManager(getContext(), 1));
-        presenter.registerDataUser(this);
+
+        recipe_text= (TextView) view.findViewById(R.id.textDescription);
+        recipe_title = (TextView) view.findViewById(R.id.textTitle);
+        recipe_image = (ImageView) view.findViewById(R.id.recipe_picture);
+
+        recipe_title.setText(title);
+        recipe_image.setImageResource(Integer.parseInt(image));
+        recipe_text.setText(recipe);
         return view;
     }
 
@@ -87,14 +95,6 @@ public class RecipeFragment extends Fragment implements MainPresenter.Listener{
     public void onDetach() {
         super.onDetach();
         mListener = null;
-    }
-
-    @Override
-    public void notifyDataReady() {
-        recipeRV.setAdapter(new RecipeAdapter(recipePresenter.getValidTitles(category, title),
-                recipePresenter.getValidImages(category, image),
-                recipePresenter.getValidDirections(category, directions),
-                recipePresenter.getValidIngredients(category, ingredients)));
     }
 
     public interface OnListFragmentInteractionListener {
