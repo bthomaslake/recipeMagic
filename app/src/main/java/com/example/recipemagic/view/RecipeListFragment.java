@@ -23,7 +23,7 @@ public class RecipeListFragment extends Fragment implements MainPresenter.Listen
     private RecipeListPresenter recipePresenter;
     private MainPresenter presenter;
     private RecyclerView recipeRV;
-    private String titles;
+    private String category;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -54,7 +54,7 @@ public class RecipeListFragment extends Fragment implements MainPresenter.Listen
         View view = inflater.inflate(R.layout.fragment_recipelist_list, container, false);
         Bundle bundle = this.getArguments();
         if(bundle != null) {
-            titles = bundle.get("Category").toString();
+            category = bundle.get("Category").toString();
         }
         recipeRV = (RecyclerView) view.findViewById(R.id.recyclerview_recipe);
         recipeRV.setLayoutManager(new GridLayoutManager(getContext(), 3));
@@ -82,8 +82,9 @@ public class RecipeListFragment extends Fragment implements MainPresenter.Listen
 
     @Override
     public void notifyDataReady() {
-        recipeRV.setAdapter(new RecipeListAdapter(recipePresenter.getValidTitles(titles),
-                recipePresenter.getValidImages(titles)));
+        recipeRV.setAdapter(new RecipeListAdapter(recipePresenter.getValidTitles(category),
+                recipePresenter.getValidImages(category), recipePresenter.getValidDirections(category),
+                recipePresenter.getValidIngredients(category), category));
     }
 
     public interface OnListFragmentInteractionListener {

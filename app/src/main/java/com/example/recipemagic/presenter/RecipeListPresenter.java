@@ -13,7 +13,6 @@ public class RecipeListPresenter {
     }
 
     public List<String> getValidTitles(String category) {
-        System.out.println(category);
         return book.getRecipeTitles(category);
     }
 

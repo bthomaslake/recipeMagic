@@ -18,11 +18,11 @@ import java.util.List;
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder> {
 
-    private List<String>title;
-    private List<Integer>image;
-    private List<String>ingredients;
-    private List<String>directions;
-    public RecipeAdapter(List<String> title, List<Integer>image, List<String>ingredients, List<String>directions) {
+    private String title;
+    private Integer image;
+    private String ingredients;
+    private String directions;
+    public RecipeAdapter(String title, Integer image, String ingredients, String directions) {
         this.title = title;
         this.image = image;
         this.directions = directions;
@@ -38,15 +38,15 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int i) {
-        holder.recipe_title.setText(title.get(i));
-        holder.recipe_image.setImageResource(image.get(i));
-        holder.recipe_directions.setText(directions.get(i));
-        holder.recipe_ingredients.setText(ingredients.get(i));
+        holder.recipe_title.setText(title);
+        holder.recipe_image.setImageResource(image);
+        holder.recipe_directions.setText(directions);
+        holder.recipe_ingredients.setText(ingredients);
     }
 
     @Override
     public int getItemCount() {
-        return title.size();
+        return 1;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

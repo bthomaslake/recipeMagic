@@ -22,9 +22,14 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Vi
     private List<Integer>images;
     private List<String>ingredients;
     private List<String>directions;
-    public RecipeListAdapter(List<String> titles, List<Integer>images) {
+    private String category;
+
+    public RecipeListAdapter(List<String> titles, List<Integer>images, List<String>directions, List<String>ingredients, String category) {
         this.titles = titles;
         this.images = images;
+        this.category = category;
+        this.directions = directions;
+        this.ingredients = ingredients;
     }
 
     @Override
@@ -41,7 +46,11 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Vi
         holder.cardview.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 Bundle bundle = new Bundle();
+                bundle.putString("Category", category);
                 bundle.putString("Title", titles.get(i));
+                bundle.putString("Ingredient", ingredients.get(i));
+                bundle.putString("Direction", directions.get(i));
+                bundle.putInt("Image", images.get(i));
                 Fragment myFragment = new RecipeFragment();
                 myFragment.setArguments(bundle);
 

@@ -20,9 +20,10 @@ public class MainActivity extends AppCompatActivity
         MyRecipesFragment.OnListFragmentInteractionListener,
         Timer.OnFragmentInteractionListener,
         CategoryListFragment.OnListFragmentInteractionListener,
-        SearchFragment.OnFragmentInteractionListener,
+        SearchFragment.OnListFragmentInteractionListener,
         RecipeListFragment.OnListFragmentInteractionListener,
-        BottomNavigationView.OnNavigationItemSelectedListener {
+        BottomNavigationView.OnNavigationItemSelectedListener,
+        RecipeFragment.OnListFragmentInteractionListener{
 
     private MainPresenter presenter;
 
