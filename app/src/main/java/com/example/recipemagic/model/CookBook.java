@@ -6,6 +6,7 @@ import java.util.List;
 
 public class CookBook {
     private List<CategoryList> categories;
+    private List<List<RecipeHelper>> recipes;
     private List<RecipeHelper> beef;
     private List<RecipeHelper> chicken;
     private List<RecipeHelper> dessert;
@@ -37,6 +38,7 @@ public class CookBook {
         starter = new ArrayList<RecipeHelper>();
         vegan = new ArrayList<RecipeHelper>();
         vegetarian = new ArrayList<RecipeHelper>();
+        recipes = new ArrayList<List<RecipeHelper>>();
 
     }
 
@@ -429,5 +431,22 @@ public class CookBook {
                 vegetarian.add(recipeHelper);
                 break;
         }
+    }
+
+    public List<List<RecipeHelper>> getRecipes(){
+
+        recipes.add(beef);
+        recipes.add(chicken);
+        recipes.add(dessert);
+        recipes.add(lamb);
+        recipes.add(miscellaneous);
+        recipes.add(pasta);
+        recipes.add(pork);
+        recipes.add(seafood);
+        recipes.add(side);
+        recipes.add(starter);
+        recipes.add(vegan);
+
+        return recipes;
     }
 }

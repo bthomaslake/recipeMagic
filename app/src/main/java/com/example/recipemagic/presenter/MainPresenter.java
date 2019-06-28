@@ -16,7 +16,7 @@ public class MainPresenter {
         book = new CookBook();
         bookReady = false;
         registeredDataUsers = new ArrayList<Listener>();
-        DownloadLibraryTask task = new DownloadLibraryTask(this);
+        DownloadRecipes task = new DownloadRecipes(this);
         task.execute();
         if(task.getStatus() == AsyncTask.Status.PENDING){
             System.out.println("My AsyncTask has not started yet");
