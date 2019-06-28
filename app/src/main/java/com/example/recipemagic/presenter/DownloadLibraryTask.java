@@ -19,7 +19,7 @@ public class DownloadLibraryTask extends AsyncTask<Void, Void, Void> {
         presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Beef%20and%20Oyster%20pie", "beef");
         presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Beef%20Bourguignon", "beef");
         presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Beef%20Brisket%20Pot%20Roast", "beef");
-        presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Beef%20Dumpling%20Stew", "v");
+        presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Beef%20Dumpling%20Stew", "beef");
         presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Beef%20Lo%20Mein", "beef");
         presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Beef%20stroganoff", "beef");
         presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Beef%20Sunday%20Roast", "beef");

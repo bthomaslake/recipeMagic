@@ -19,4 +19,12 @@ public class RecipeListPresenter {
     public List<Integer> getValidImages(String category) {
         return book.getRecipeThumbNails(category);
     }
+
+    public List<String> getValidIngredients(String category) {
+        return book.getRecipeIngredients(category);
+    }
+
+    public List<String> getValidDirections(String category) {
+        return book.getRecipeDirections(category);
+    }
 }

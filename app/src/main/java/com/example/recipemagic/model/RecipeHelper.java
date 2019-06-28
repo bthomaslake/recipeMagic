@@ -13,19 +13,21 @@ public class RecipeHelper {
         recipe = new ArrayList<Recipe>();
     }
 
-    public List<String> getRecipeNames() {
-        List<String> recipeNames = new ArrayList<String>();
-        for (Recipe recipes : recipe) {
-            recipeNames.add(recipes.getTitle());
-        }
-        return recipeNames;
+    public String getRecipeNames() {
+        return recipe.get(0).getTitle();
     }
 
-    public List<Integer> getRecipeThumbNails() {
-        List<Integer> thumbNails = new ArrayList<Integer>();
-        for (Recipe recipes : recipe) {
-            thumbNails.add(recipes.getThumbNail());
-        }
-        return thumbNails;
+    public Integer getRecipeThumbNails() {
+        return recipe.get(0).getThumbNail();
+    }
+
+    public String getRecipeImages(){
+        return recipe.get(0).getImage();
+    }
+    public String getRecipeIngredients(){
+        return recipe.get(0).getIngredients();
+    }
+    public String getRecipeDirections(){
+        return recipe.get(0).getDirections();
     }
 }
