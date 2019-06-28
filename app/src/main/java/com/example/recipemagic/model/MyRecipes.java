@@ -1,4 +1,4 @@
 package com.example.recipemagic.model;
 
-public class Favorite {
+public class MyRecipes {
 }

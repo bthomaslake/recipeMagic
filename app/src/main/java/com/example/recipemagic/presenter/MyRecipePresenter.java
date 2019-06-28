@@ -2,18 +2,18 @@ package com.example.recipemagic.presenter;
 
 import com.example.recipemagic.model.CookBook;
 
-public class FavoritesPresenter {
+public class MyRecipePresenter {
 
     private CookBook book;
 
-    public FavoritesPresenter(MainPresenter presenter){
+    public MyRecipePresenter(MainPresenter presenter){
         book = presenter.getCookBook();
     }
 
     // functions to interact with fragments
 
     /*
-    public List<Favorite> getFavorittes(){
+    public List<MyRecipes> getFavorittes(){
         return CookBook.getFavorites();
     }*/
 }

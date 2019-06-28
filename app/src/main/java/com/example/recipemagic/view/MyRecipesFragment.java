@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.recipemagic.R;
-import com.example.recipemagic.presenter.FavoritesPresenter;
+import com.example.recipemagic.presenter.MyRecipePresenter;
 import com.example.recipemagic.presenter.MainPresenter;
 import com.example.recipemagic.view.dummy.DummyContent;
 import com.example.recipemagic.view.dummy.DummyContent.DummyItem;
@@ -29,7 +29,7 @@ public class MyRecipesFragment extends Fragment {
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
-    private FavoritesPresenter favoritesPresenter;
+    private MyRecipePresenter favoritesPresenter;
     private MainPresenter mainPresenter;
     private int mColumnCount = 3;
     private OnListFragmentInteractionListener mListener;
