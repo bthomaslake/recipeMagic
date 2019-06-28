@@ -5,11 +5,11 @@ import android.os.AsyncTask;
 import java.lang.ref.WeakReference;
 
 
-public class DownloadLibraryTask extends AsyncTask<Void, Void, Void> {
+public class DownloadRecipes extends AsyncTask<Void, Void, Void> {
 
     private WeakReference<MainPresenter> presenter;
 
-    public DownloadLibraryTask(MainPresenter presenter) {
+    public DownloadRecipes(MainPresenter presenter) {
         this.presenter = new WeakReference<MainPresenter>(presenter);
     }
 
