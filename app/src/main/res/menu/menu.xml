@@ -19,8 +19,8 @@
         />
 
     <item
-        android:id="@+id/menu_favorites"
-        android:title="@string/menu_favorites"
+        android:id="@+id/menu_my_recipes"
+        android:title="@string/menu_my_recipes"
         android:icon="@drawable/favorites"
         android:enabled="true"
         app:showAsAction="always"
