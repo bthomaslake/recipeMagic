@@ -19,10 +19,12 @@ public class CookBook {
     private List<RecipeHelper> starter;
     private List<RecipeHelper> vegan;
     private List<RecipeHelper> vegetarian;
+    private List<RecipeHelper> urlList;
     private Gson gson;
     private HTTPHelper httpHelper;
 
     public CookBook(){
+        urlList = new ArrayList<RecipeHelper>();
         categories = new ArrayList<CategoryList>();
         gson = new Gson();
         httpHelper = new HTTPHelper();
@@ -42,6 +44,17 @@ public class CookBook {
 
     }
 
+    public void loadURL(String url){
+        String data = httpHelper.readHTTP(url);
+        RecipeHelper recipeHelper = gson.fromJson(data, RecipeHelper.class);
+        urlList.add(recipeHelper);
+    }
+
+    public List<String> getUrlList(){
+        List<String>list = urlList.get(0).getNames();
+        urlList.clear();
+        return list;
+    }
     public void loadCategory(String url){
         String data = httpHelper.readHTTP(url);
         CategoryList categoryList = gson.fromJson(data, CategoryList.class);
@@ -50,13 +63,12 @@ public class CookBook {
 
     public List<String> getCategoryTitles() {
         List<String> titles = categories.get(0).getCategoryNames();
-        System.out.println("Titles: " + titles.size());
         return titles;
     }
 
-    public List<Integer> getCategoryThumbNails() {
-        List<Integer> thumbNails = categories.get(0).getCategoryThumbNails();
-        return thumbNails;
+    public List<String> getCategoryImages() {
+        List<String> images = categories.get(0).getCategoryImages();
+        return images;
     }
 
     public List<String> getRecipeTitles(String category) {
@@ -66,7 +78,6 @@ public class CookBook {
                 for(RecipeHelper categoryBeef : beef){
                     titles.add(categoryBeef.getRecipeNames());
                 }
-                System.out.println("Titles: " + titles.size());
                 return titles;
             case "Chicken":
                 for(RecipeHelper categoryChicken : chicken){
@@ -259,134 +270,68 @@ public class CookBook {
     }
 
     public List<String> getRecipeImages(String category) {
-        List<String>thumbNails = new ArrayList<String>();
+        List<String>images = new ArrayList<String>();
         switch(category){
             case "Beef":
                 for(RecipeHelper categoryBeef : beef){
-                    thumbNails.add(categoryBeef.getRecipeImages());
+                    images.add(categoryBeef.getRecipeImages());
                 }
-                return thumbNails;
+                return images;
             case "Chicken":
                 for(RecipeHelper categoryChicken : chicken){
-                    thumbNails.add(categoryChicken.getRecipeImages());
+                    images.add(categoryChicken.getRecipeImages());
                 }
-                return thumbNails;
+                return images;
             case "Dessert":
                 for(RecipeHelper categoryChicken : dessert){
-                    thumbNails.add(categoryChicken.getRecipeImages());
+                    images.add(categoryChicken.getRecipeImages());
                 }
-                return thumbNails;
+                return images;
             case "Lamb":
                 for(RecipeHelper categoryChicken : lamb){
-                    thumbNails.add(categoryChicken.getRecipeImages());
+                    images.add(categoryChicken.getRecipeImages());
                 }
-                return thumbNails;
+                return images;
             case "Miscellaneous":
                 for(RecipeHelper categoryChicken : miscellaneous){
-                    thumbNails.add(categoryChicken.getRecipeImages());
+                    images.add(categoryChicken.getRecipeImages());
                 }
-                return thumbNails;
+                return images;
             case "Pasta":
                 for(RecipeHelper categoryChicken : pasta){
-                    thumbNails.add(categoryChicken.getRecipeImages());
+                    images.add(categoryChicken.getRecipeImages());
                 }
-                return thumbNails;
+                return images;
             case "Pork":
                 for(RecipeHelper categoryChicken : pork){
-                    thumbNails.add(categoryChicken.getRecipeImages());
+                    images.add(categoryChicken.getRecipeImages());
                 }
-                return thumbNails;
+                return images;
             case "Seafood":
                 for(RecipeHelper categoryChicken : seafood){
-                    thumbNails.add(categoryChicken.getRecipeImages());
+                    images.add(categoryChicken.getRecipeImages());
                 }
-                return thumbNails;
+                return images;
             case "Side":
                 for(RecipeHelper categoryChicken : side){
-                    thumbNails.add(categoryChicken.getRecipeImages());
+                    images.add(categoryChicken.getRecipeImages());
                 }
-                return thumbNails;
+                return images;
             case "Starter":
                 for(RecipeHelper categoryChicken : starter){
-                    thumbNails.add(categoryChicken.getRecipeImages());
+                    images.add(categoryChicken.getRecipeImages());
                 }
-                return thumbNails;
+                return images;
             case "Vegan":
                 for(RecipeHelper categoryChicken : vegan){
-                    thumbNails.add(categoryChicken.getRecipeImages());
+                    images.add(categoryChicken.getRecipeImages());
                 }
-                return thumbNails;
+                return images;
             default:
                 for(RecipeHelper categoryChicken : vegetarian){
-                    thumbNails.add(categoryChicken.getRecipeImages());
+                    images.add(categoryChicken.getRecipeImages());
                 }
-                return thumbNails;
-        }
-    }
-
-    public List<Integer> getRecipeThumbNails(String category) {
-        List<Integer>thumbNails = new ArrayList<Integer>();
-        switch(category){
-            case "Beef":
-                for(RecipeHelper categoryBeef : beef){
-                    thumbNails.add(categoryBeef.getRecipeThumbNails());
-                }
-                return thumbNails;
-            case "Chicken":
-                for(RecipeHelper categoryChicken : chicken){
-                    thumbNails.add(categoryChicken.getRecipeThumbNails());
-                }
-                return thumbNails;
-            case "Dessert":
-                for(RecipeHelper categoryChicken : dessert){
-                    thumbNails.add(categoryChicken.getRecipeThumbNails());
-                }
-                return thumbNails;
-            case "Lamb":
-                for(RecipeHelper categoryChicken : lamb){
-                    thumbNails.add(categoryChicken.getRecipeThumbNails());
-                }
-                return thumbNails;
-            case "Miscellaneous":
-                for(RecipeHelper categoryChicken : miscellaneous){
-                    thumbNails.add(categoryChicken.getRecipeThumbNails());
-                }
-                return thumbNails;
-            case "Pasta":
-                for(RecipeHelper categoryChicken : pasta){
-                    thumbNails.add(categoryChicken.getRecipeThumbNails());
-                }
-                return thumbNails;
-            case "Pork":
-                for(RecipeHelper categoryChicken : pork){
-                    thumbNails.add(categoryChicken.getRecipeThumbNails());
-                }
-                return thumbNails;
-            case "Seafood":
-                for(RecipeHelper categoryChicken : seafood){
-                    thumbNails.add(categoryChicken.getRecipeThumbNails());
-                }
-                return thumbNails;
-            case "Side":
-                for(RecipeHelper categoryChicken : side){
-                    thumbNails.add(categoryChicken.getRecipeThumbNails());
-                }
-                return thumbNails;
-            case "Starter":
-                for(RecipeHelper categoryChicken : starter){
-                    thumbNails.add(categoryChicken.getRecipeThumbNails());
-                }
-                return thumbNails;
-            case "Vegan":
-                for(RecipeHelper categoryChicken : vegan){
-                    thumbNails.add(categoryChicken.getRecipeThumbNails());
-                }
-                return thumbNails;
-            default:
-                for(RecipeHelper categoryChicken : vegetarian){
-                    thumbNails.add(categoryChicken.getRecipeThumbNails());
-                }
-                return thumbNails;
+                return images;
         }
     }
 
@@ -394,37 +339,37 @@ public class CookBook {
         String data = httpHelper.readHTTP(url);
         RecipeHelper recipeHelper = gson.fromJson(data, RecipeHelper.class);
         switch(category){
-            case "beef":
+            case "Beef":
                 beef.add(recipeHelper);
                 break;
-            case "chicken":
+            case "Chicken":
                 chicken.add(recipeHelper);
                break;
-            case "dessert":
+            case "Dessert":
                 dessert.add(recipeHelper);
                 break;
-            case "lamb":
+            case "Lamb":
                 lamb.add(recipeHelper);
                 break;
-            case "miscellaneous":
+            case "Miscellaneous":
                 miscellaneous.add(recipeHelper);
                 break;
-            case "pasta":
+            case "Pasta":
                 pasta.add(recipeHelper);
                 break;
-            case "pork":
+            case "Pork":
                 pork.add(recipeHelper);
                 break;
-            case "seafood":
+            case "Seafood":
                 seafood.add(recipeHelper);
                 break;
-            case "side":
+            case "Side":
                 side.add(recipeHelper);
                 break;
-            case "starter":
+            case "Starter":
                 starter.add(recipeHelper);
                 break;
-            case "vegan":
+            case "Vegan":
                 vegan.add(recipeHelper);
                 break;
             default:

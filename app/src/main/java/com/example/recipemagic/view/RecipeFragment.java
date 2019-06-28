@@ -19,6 +19,7 @@ import com.example.recipemagic.R;
 import com.example.recipemagic.presenter.MainPresenter;
 
 import com.example.recipemagic.view.dummy.DummyContent.DummyItem;
+import com.squareup.picasso.Picasso;
 
 public class RecipeFragment extends Fragment{
 
@@ -74,7 +75,7 @@ public class RecipeFragment extends Fragment{
         recipe_image = (ImageView) view.findViewById(R.id.recipe_picture);
 
         recipe_title.setText(title);
-        recipe_image.setImageResource(Integer.parseInt(image));
+        Picasso.get().load(image).into(recipe_image);
         recipe_text.setText(recipe);
         return view;
     }

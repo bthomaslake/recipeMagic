@@ -16,7 +16,7 @@ public class CategoryPresenter {
         return book.getCategoryTitles();
     }
 
-    public List<Integer> getValidImages() {
-        return book.getCategoryThumbNails();
+    public List<String> getValidImages() {
+        return book.getCategoryImages();
     }
 }

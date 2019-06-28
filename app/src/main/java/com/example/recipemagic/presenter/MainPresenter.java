@@ -1,6 +1,5 @@
 package com.example.recipemagic.presenter;
 
-import android.os.AsyncTask;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,18 +15,8 @@ public class MainPresenter {
         book = new CookBook();
         bookReady = false;
         registeredDataUsers = new ArrayList<Listener>();
-        DownloadRecipes task = new DownloadRecipes(this);
+        DownloadCategories task = new DownloadCategories(this);
         task.execute();
-        if(task.getStatus() == AsyncTask.Status.PENDING){
-            System.out.println("My AsyncTask has not started yet");
-        }
-
-        if(task.getStatus() == AsyncTask.Status.RUNNING){
-            System.out.println("My AsyncTask is currently doing work in doInBackground()");
-        }
-        if (task.getStatus() == AsyncTask.Status.FINISHED){
-            System.out.println("LOADED!!");
-        }
     }
 
     public void registerDataUser(MainPresenter.Listener dataUser){

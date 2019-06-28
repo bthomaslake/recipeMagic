@@ -16,8 +16,8 @@ public class RecipeListPresenter {
         return book.getRecipeTitles(category);
     }
 
-    public List<Integer> getValidImages(String category) {
-        return book.getRecipeThumbNails(category);
+    public List<String> getValidImages(String category) {
+        return book.getRecipeImages(category);
     }
 
     public List<String> getValidIngredients(String category) {

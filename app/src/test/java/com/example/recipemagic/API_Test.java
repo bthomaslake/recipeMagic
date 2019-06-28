@@ -54,4 +54,97 @@ public class API_Test {
         }
         assertNotNull(categories);
     }
+
+    @Test
+    public void read_valid() {
+        System.out.println("Test 3");
+        CookBook book = new CookBook();
+        book.loadURL("https://www.themealdb.com/api/json/v1/1/filter.php?c=Beef");
+        List<String> recipes9 = book.getUrlList();
+        for (String name : recipes9) {
+            String names = name.replace(" ","%20");
+            System.out.println("presenter.get().getCookBook().loadRecipe(\"https://www.themealdb.com/api/json/v1/1/search.php?s=" +  names + "\", \"Beef\");");
+
+        }
+        book.loadURL("https://www.themealdb.com/api/json/v1/1/filter.php?c=Chicken");
+        List<String> recipes11 = book.getUrlList();
+        for (String name : recipes11) {
+            String names = name.replace(" ","%20");
+            System.out.println("presenter.get().getCookBook().loadRecipe(\"https://www.themealdb.com/api/json/v1/1/search.php?s=" +  names + "\", \"Chicken\");");
+
+        }
+        book.loadURL("https://www.themealdb.com/api/json/v1/1/filter.php?c=Dessert");
+        List<String> recipes13 = book.getUrlList();
+        for (String name : recipes13) {
+            String names = name.replace(" ","%20");
+            System.out.println("presenter.get().getCookBook().loadRecipe(\"https://www.themealdb.com/api/json/v1/1/search.php?s=" +  names + "\", \"Dessert\");");
+
+        }
+        book.loadURL("https://www.themealdb.com/api/json/v1/1/filter.php?c=Lamb");
+        List<String> recipes = book.getUrlList();
+        for (String name : recipes) {
+            String names = name.replace(" ","%20");
+            System.out.println("presenter.get().getCookBook().loadRecipe(\"https://www.themealdb.com/api/json/v1/1/search.php?s=" +  names + "\", \"Lamb\");");
+
+        }
+        book.loadURL("https://www.themealdb.com/api/json/v1/1/filter.php?c=Miscellaneous");
+        List<String> recipes1 = book.getUrlList();
+        for (String name : recipes1) {
+            String names = name.replace(" ","%20");
+            System.out.println("presenter.get().getCookBook().loadRecipe(\"https://www.themealdb.com/api/json/v1/1/search.php?s=" +  names + "\", \"Miscellaneous\");");
+
+        }
+        book.loadURL("https://www.themealdb.com/api/json/v1/1/filter.php?c=Pasta");
+        List<String> recipes2 = book.getUrlList();
+        for (String name : recipes2) {
+            String names = name.replace(" ","%20");
+            System.out.println("presenter.get().getCookBook().loadRecipe(\"https://www.themealdb.com/api/json/v1/1/search.php?s=" +  names + "\", \"Pasta\");");
+
+        }
+        book.loadURL("https://www.themealdb.com/api/json/v1/1/filter.php?c=Pork");
+        List<String> recipes3 = book.getUrlList();
+        for (String name : recipes3) {
+            String names = name.replace(" ","%20");
+            System.out.println("presenter.get().getCookBook().loadRecipe(\"https://www.themealdb.com/api/json/v1/1/search.php?s=" +  names + "\", \"Pork\");");
+
+        }
+        book.loadURL("https://www.themealdb.com/api/json/v1/1/filter.php?c=Seafood");
+        List<String> recipes4 = book.getUrlList();
+        for (String name : recipes4) {
+            String names = name.replace(" ","%20");
+            System.out.println("presenter.get().getCookBook().loadRecipe(\"https://www.themealdb.com/api/json/v1/1/search.php?s=" +  names + "\", \"Seafood\");");
+
+        }
+        book.loadURL("https://www.themealdb.com/api/json/v1/1/filter.php?c=Side");
+        List<String> recipes12 = book.getUrlList();
+        for (String name : recipes12) {
+            String names = name.replace(" ","%20");
+            System.out.println("presenter.get().getCookBook().loadRecipe(\"https://www.themealdb.com/api/json/v1/1/search.php?s=" +  names + "\", \"Side\");");
+
+        }
+
+        book.loadURL("https://www.themealdb.com/api/json/v1/1/filter.php?c=Starter");
+        List<String> recipes5 = book.getUrlList();
+        for (String name : recipes5) {
+            String names = name.replace(" ","%20");
+            System.out.println("presenter.get().getCookBook().loadRecipe(\"https://www.themealdb.com/api/json/v1/1/search.php?s=" +  names + "\", \"Starter\");");
+
+        }
+        book.loadURL("https://www.themealdb.com/api/json/v1/1/filter.php?c=Vegan");
+        List<String> recipes6 = book.getUrlList();
+        for (String name : recipes6) {
+            String names = name.replace(" ","%20");
+            System.out.println("presenter.get().getCookBook().loadRecipe(\"https://www.themealdb.com/api/json/v1/1/search.php?s=" +  names + "\", \"Vegan\");");
+
+        }
+        book.loadURL("https://www.themealdb.com/api/json/v1/1/filter.php?c=Vegetarian");
+        List<String> recipes7 = book.getUrlList();
+        for (String name : recipes7) {
+            String names = name.replace(" ","%20");
+            System.out.println("presenter.get().getCookBook().loadRecipe(\"https://www.themealdb.com/api/json/v1/1/search.php?s=" +  names + "\", \"Vegetarian\");");
+
+        }
+
+        assertNotNull(recipes);
+    }
 }

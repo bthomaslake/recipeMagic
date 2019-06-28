@@ -13,18 +13,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.recipemagic.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.ViewHolder> {
 
     private List<String>titles;
-    private List<Integer>images;
+    private List<String>images;
     private List<String>ingredients;
     private List<String>directions;
     private String category;
 
-    public RecipeListAdapter(List<String> titles, List<Integer>images, List<String>directions, List<String>ingredients, String category) {
+    public RecipeListAdapter(List<String> titles, List<String>images, List<String>directions, List<String>ingredients, String category) {
         this.titles = titles;
         this.images = images;
         this.category = category;
@@ -42,7 +43,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Vi
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int i) {
         holder.recipe_title.setText(titles.get(i));
-        holder.recipe_image.setImageResource(images.get(i));
+        Picasso.get().load(images.get(i)).into(holder.recipe_image);
         holder.cardview.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 Bundle bundle = new Bundle();
@@ -50,7 +51,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Vi
                 bundle.putString("Title", titles.get(i));
                 bundle.putString("Ingredient", ingredients.get(i));
                 bundle.putString("Direction", directions.get(i));
-                bundle.putInt("Image", images.get(i));
+                bundle.putString("Image", images.get(i));
                 Fragment myFragment = new RecipeFragment();
                 myFragment.setArguments(bundle);
 

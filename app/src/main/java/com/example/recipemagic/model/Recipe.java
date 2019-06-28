@@ -8,8 +8,6 @@ import java.util.List;
 
 public class Recipe {
 
-    private int thumbNail;
-
     @SerializedName("strInstructions")
     private String directions;
 
@@ -21,59 +19,6 @@ public class Recipe {
 
     public String getImage(){
         return image;
-    }
-
-    public int getThumbNail() {
-        switch(image){
-            case "https://www.themealdb.com/images/media/meals/sytuqu1511553755.jpg":
-                return R.drawable.beefmustardpie;
-            case "https://www.themealdb.com/images/media/meals/wrssvt1511556563.jpg":
-                return R.drawable.beefoysterpie;
-            case "https://www.themealdb.com/images/media/meals/vtqxtu1511784197.jpg":
-                return R.drawable.beefbourguignon;
-            case "https://www.themealdb.com/images/media/meals/ursuup1487348423.jpg":
-                return R.drawable.beefpotroast;
-            case "https://www.themealdb.com/images/media/meals/uyqrrv1511553350.jpg":
-                return R.drawable.beefdumplingstew;
-            case "https://www.themealdb.com/images/media/meals/1529444830.jpg":
-                return R.drawable.beeflomein;
-            case "https://www.themealdb.com/images/media/meals/svprys1511176755.jpg":
-                return R.drawable.beefstroganoff;
-            case "https://www.themealdb.com/images/media/meals/ssrrrs1503664277.jpg":
-                return R.drawable.beefsundayroast;
-            case "https://www.themealdb.com/images/media/meals/vvpprx1487325699.jpg":
-                return R.drawable.beefwellington;
-            case "https://www.themealdb.com/images/media/meals/uuqvwu1504629254.jpg":
-                return R.drawable.braisedbeefchilli;
-            case "https://www.themealdb.com/images/media/meals/sxxpst1468569714.jpg":
-                return R.drawable.irishstew;
-            case "https://www.themealdb.com/images/media/meals/wsqqsw1515364068.jpg":
-                return R.drawable.jamaicanbeefpatties;
-            case "https://www.themealdb.com/images/media/meals/1525874812.jpg":
-                return R.drawable.mapatofu;
-            case "https://www.themealdb.com/images/media/meals/tvttqv1504640475.jpg":
-                return R.drawable.beefcurry;
-            case "https://www.themealdb.com/images/media/meals/xwutvy1511555540.jpg":
-                return R.drawable.beefpie;
-            case "https://www.themealdb.com/images/media/meals/uttupv1511815050.jpg":
-                return R.drawable.smokedmeat;
-            case "https://www.themealdb.com/images/media/meals/1520083578.jpg":
-                return R.drawable.oxtail;
-            case "https://www.themealdb.com/images/media/meals/yyrrxr1511816289.jpg":
-                return R.drawable.patechinois;
-            case "https://www.themealdb.com/images/media/meals/sqpqtp1515365614.jpg":
-                return R.drawable.redpeasoup;
-            case "https://www.themealdb.com/images/media/meals/sutysw1468247559.jpg":
-                return R.drawable.spaghettibolognese;
-            case "https://www.themealdb.com/images/media/meals/qysyss1511558054.jpg":
-                return R.drawable.steakkidneypie;
-            case "https://www.themealdb.com/images/media/meals/vussxq1511882648.jpg":
-                return R.drawable.steakdiane;
-            case "https://www.themealdb.com/images/media/meals/1529443236.jpg":
-                return R.drawable.szechuanbeef;
-            default:
-                return R.drawable.category;
-        }
     }
 
     @SerializedName(value = "ingredient1", alternate = "strIngredient1")

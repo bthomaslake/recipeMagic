@@ -22,12 +22,12 @@ public class CategoryList {
         return bookNames;
     }
 
-    public List<Integer> getCategoryThumbNails() {
-        List<Integer> thumbNails = new ArrayList<Integer>();
+    public List<String> getCategoryImages() {
+        List<String> images = new ArrayList<String>();
         for (Category category : categories) {
-            thumbNails.add(category.getThumbNail());
+            images.add(category.getImage());
         }
-        return thumbNails;
+        return images;
     }
 
     public String toString() {

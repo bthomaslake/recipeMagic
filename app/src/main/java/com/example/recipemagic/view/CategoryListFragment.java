@@ -76,7 +76,7 @@ public class CategoryListFragment extends Fragment implements MainPresenter.List
 
     @Override
     public void notifyDataReady() {
-        categoryRV.setAdapter(new CategoryListAdapter(categoryPresenter.getValidTitles(), categoryPresenter.getValidImages()));
+        categoryRV.setAdapter(new CategoryListAdapter(categoryPresenter.getValidTitles(), categoryPresenter.getValidImages(), presenter));
     }
 
     public interface OnListFragmentInteractionListener {
