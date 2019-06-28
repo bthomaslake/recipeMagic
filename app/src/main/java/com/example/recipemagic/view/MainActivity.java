@@ -29,13 +29,15 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //Standard beginning
+        // Standard beginning
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         presenter = new MainPresenter(this);
         loadFragment(new CategoryListFragment());
-        BottomNavigationView bnv = findViewById(R.id.navigation);
 
+        // Set up the Bottom Navigation View bar and activate
+        BottomNavigationView bnv = findViewById(R.id.navigation);
         bnv.setOnNavigationItemSelectedListener(this);
     }
 
