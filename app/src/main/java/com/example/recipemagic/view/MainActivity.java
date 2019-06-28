@@ -7,7 +7,7 @@ import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
+import androidx.fragment.app.Fragment;;
 
 import com.example.recipemagic.presenter.MainPresenter;
 import com.example.recipemagic.R;
@@ -101,4 +101,5 @@ public class MainActivity extends AppCompatActivity
         }
         return loadFragment(fragment);
     }
+
 }

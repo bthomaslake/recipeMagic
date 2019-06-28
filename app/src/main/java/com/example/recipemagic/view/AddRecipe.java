@@ -1,17 +1,33 @@
 package com.example.recipemagic.view;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.recipemagic.R;
 import com.example.recipemagic.presenter.AddRecipePresenter;
+
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,6 +50,10 @@ public class AddRecipe extends Fragment {
     private OnFragmentInteractionListener mListener;
     private AddRecipePresenter presenter;
 
+    private Button button_picture;
+    private ImageView imageView;
+    private Uri file;
+
     public AddRecipe() {
         // Required empty public constructor
     }
@@ -45,6 +65,8 @@ public class AddRecipe extends Fragment {
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
      * @return A new instance of fragment AddRecipe.
+     * Camera access code is adapted from the tutorial on
+     * https://androidkennel.org/android-camera-access-tutorial/
      */
     // TODO: Rename and change types and number of parameters
     public static AddRecipe newInstance(String param1, String param2) {
@@ -59,6 +81,16 @@ public class AddRecipe extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+            //button_picture.setEnabled(false);
+            ActivityCompat.requestPermissions(getActivity(), new String[] {
+                    Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE
+                    }, 0);
+
+        }
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -68,14 +100,27 @@ public class AddRecipe extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_recipe, container, false);
+        View view = inflater.inflate(R.layout.fragment_add_recipe, container, false);
+        button_picture = view.findViewById(R.id.button_image);
+        imageView = view.findViewById(R.id.imageview);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                                           int[] grantResults) {
+        if (requestCode == 0) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                    && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                button_picture.setEnabled(true);
+            }
         }
     }
 
@@ -94,6 +139,37 @@ public class AddRecipe extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    public void takePicture(View view) {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        file = Uri.fromFile(getOutputMediaFile());
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, file);
+
+        startActivityForResult(intent, 100);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 100) {
+            if (resultCode == RESULT_OK) {
+                imageView.setImageURI(file);
+            }
+        }
+    }
+
+    private static File getOutputMediaFile() {
+        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES), "RecipeMagic");
+        if (!mediaStorageDir.exists()) {
+            if (!mediaStorageDir.mkdirs()) {
+                return null;
+            }
+        }
+
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        return new File(mediaStorageDir.getPath() + File.separator +
+                "IMG_" + timeStamp + ".jpg");
     }
 
     /**
