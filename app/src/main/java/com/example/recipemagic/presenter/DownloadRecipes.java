@@ -1,6 +1,10 @@
 package com.example.recipemagic.presenter;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
+
+import com.example.recipemagic.view.MainActivity;
 
 import java.lang.ref.WeakReference;
 
@@ -8,16 +12,16 @@ import java.lang.ref.WeakReference;
 public class DownloadRecipes extends AsyncTask<Void, Void, Void> {
 
     private WeakReference<MainPresenter> presenter;
-    private String category;
 
-    public DownloadRecipes(MainPresenter presenter, String category) {
-        this.presenter = new WeakReference<MainPresenter>(presenter);
-        this.category = category;
+    public DownloadRecipes(WeakReference<MainPresenter> presenter) {
+        this.presenter = presenter;
+    }
+
+    protected void onPreExecute(){
+
     }
 
     protected Void doInBackground(Void... voids) {
-        switch(category) {
-            case "Beef":
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Beef%20and%20Mustard%20Pie", "Beef");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Beef%20and%20Oyster%20pie", "Beef");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Beef%20Bourguignon", "Beef");
@@ -41,8 +45,6 @@ public class DownloadRecipes extends AsyncTask<Void, Void, Void> {
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Steak%20and%20Kidney%20Pie", "Beef");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Steak%20Diane", "Beef");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Szechuan%20Beef", "Beef");
-                break;
-            case "Chicken":
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Brown%20Stew%20Chicken", "Chicken");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Chicken%20&%20mushroom%20Hotpot", "Chicken");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Chicken%20Alfredo%20Primavera", "Chicken");
@@ -72,8 +74,6 @@ public class DownloadRecipes extends AsyncTask<Void, Void, Void> {
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Tandoori%20chicken", "Chicken");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Teriyaki%20Chicken%20Casserole", "Chicken");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Thai%20Green%20Curry", "Chicken");
-                break;
-            case"Dessert":
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Apple%20&%20Blackberry%20Crumble", "Dessert");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Apple%20Frangipan%20Tart", "Dessert");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Bakewell%20tart", "Dessert");
@@ -125,8 +125,6 @@ public class DownloadRecipes extends AsyncTask<Void, Void, Void> {
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Treacle%20Tart", "Dessert");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Tunisian%20Orange%20Cake", "Dessert");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=White%20chocolate%20creme%20brulee", "Dessert");
-                break;
-            case "Lamb":
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Kapsalon", "Lamb");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Keleya%20Zaara", "Lamb");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Lamb%20and%20Potato%20pie", "Lamb");
@@ -137,8 +135,6 @@ public class DownloadRecipes extends AsyncTask<Void, Void, Void> {
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=McSinghs%20Scotch%20pie", "Lamb");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Rigatoni%20with%20fennel%20sausage%20sauce", "Lamb");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Tunisian%20Lamb%20Soup", "Lamb");
-                break;
-            case "Miscellaneous":
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Bean%20&%20Sausage%20Hotpot", "Miscellaneous");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Callaloo%20Jamaican%20Style", "Miscellaneous");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Chakchouka%20", "Miscellaneous");
@@ -149,16 +145,12 @@ public class DownloadRecipes extends AsyncTask<Void, Void, Void> {
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Poutine", "Miscellaneous");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Three-cheese%20souffles", "Miscellaneous");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Turkey%20Meatloaf", "Miscellaneous");
-                break;
-            case "Pasta":
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Chilli%20prawn%20linguine", "Pasta");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Fettucine%20alfredo", "Pasta");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Grilled%20Mac%20and%20Cheese%20Sandwich", "Pasta");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Lasagne", "Pasta");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Pilchard%20puttanesca", "Pasta");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Venetian%20Duck%20Ragu", "Pasta");
-                break;
-            case "Pork":
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=%20Bubble%20&%20Squeak", "Pork");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Hot%20and%20Sour%20Soup", "Pork");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Pork%20Cassoulet", "Pork");
@@ -167,8 +159,6 @@ public class DownloadRecipes extends AsyncTask<Void, Void, Void> {
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Tourtiere", "Pork");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Vietnamese%20Grilled%20Pork%20(bun-thit-nuong)", "Pork");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Wontons", "Pork");
-                break;
-            case "Seafood":
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Baked%20salmon%20with%20fennel%20&%20tomatoes", "Seafood");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Cajun%20spiced%20fish%20tacos", "Seafood");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Escovitch%20Fish", "Seafood");
@@ -188,27 +178,19 @@ public class DownloadRecipes extends AsyncTask<Void, Void, Void> {
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Three%20Fish%20Pie", "Seafood");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Tuna%20and%20Egg%20Briks", "Seafood");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Tuna%20Nicoise", "Seafood");
-                break;
-            case "Side":
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Boulangère%20Potatoes", "Side");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Brie%20wrapped%20in%20prosciutto%20&%20brioche", "Side");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Fennel%20Dauphinoise", "Side");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=French%20Onion%20Soup", "Side");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Prawn%20&%20Fennel%20Bisque", "Side");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Split%20Pea%20Soup", "Side");
-                break;
-            case "Starter":
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Broccoli%20&%20Stilton%20soup", "Starter");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Clam%20chowder", "Starter");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Cream%20Cheese%20Tart", "Starter");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Creamy%20Tomato%20Soup", "Starter");
-                break;
-            case "Vegan":
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Roast%20fennel%20and%20aubergine%20paella", "Vegan");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Vegan%20Chocolate%20Cake", "Vegan");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Vegan%20Lasagna", "Vegan");
-                break;
-            default:
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Baingan%20Bharta", "Vegetarian");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Chickpea%20Fajitas", "Vegetarian");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Dal%20fry", "Vegetarian");
@@ -236,9 +218,7 @@ public class DownloadRecipes extends AsyncTask<Void, Void, Void> {
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Vegetarian%20Casserole", "Vegetarian");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Vegetarian%20Chilli", "Vegetarian");
                 presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Yaki%20Udon", "Vegetarian");
-                break;
-        }
-        return null;
+    return null;
     }
 
     @Override

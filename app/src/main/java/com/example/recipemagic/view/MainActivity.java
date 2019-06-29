@@ -7,7 +7,7 @@ import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;;
+import androidx.fragment.app.Fragment;
 
 import com.example.recipemagic.presenter.MainPresenter;
 import com.example.recipemagic.R;
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        presenter = new MainPresenter(this);
+        presenter = new MainPresenter(getApplicationContext());
         loadFragment(new CategoryListFragment());
 
         // Set up the Bottom Navigation View bar and activate
