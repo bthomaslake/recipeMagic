@@ -19,13 +19,12 @@ public class SearchPresenter {
     public void searchTerm(String term) {
         recipes.clear();
 
-        //This is where you do the loop, search for ingredients in: each category -> recipe.getIngredientString()
+        //This is where you do the loop, search for ingredients in:
         for (List<RecipeHelper> list_rh : book.getRecipes()) {
             for (RecipeHelper rh : list_rh) {
                 if (rh.getRecipeIngredients().contains(term)) {
                     recipes.add(rh);
                 }
-
             }
         }
     }
