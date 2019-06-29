@@ -17,7 +17,7 @@
         android:id="@+id/searchBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/search"
+        android:hint="@+string/search"
         android:textSize="30dp"
         />
     <Button
