@@ -6,9 +6,13 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.recipemagic.R;
 
@@ -25,6 +29,13 @@ public class Timer extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    private TextView timerDisplay;
+    private Button startButton;
+
+    private CountDownTimer countDownTimer;
+    private long timeLeftInMilliSeconds = 600000;
+    boolean timerRunning;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -55,19 +66,79 @@ public class Timer extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void  onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_timer,container, false);
+
+        timerDisplay = view.findViewById(R.id.timerDisplay);
+        startButton = view.findViewById(R.id.start_button);
+
+        startButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                startStop();
+            }
+        });
+
         return inflater.inflate(R.layout.fragment_timer, container, false);
+    }
+
+    public void startStop(){
+        if (timerRunning){
+            stopTimer();
+        }
+        else{
+            startTimer();
+        }
+    }
+
+    public void startTimer(){
+        countDownTimer = new CountDownTimer(timeLeftInMilliSeconds, 1000){
+            @Override
+            public void onTick(long l){
+                timeLeftInMilliSeconds = l;
+                updateTimer();
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        }.start();
+        startButton.setText("PAUSE");
+        timerRunning = true;
+    }
+
+    public void stopTimer() {
+        countDownTimer.cancel();
+        startButton.setText("START");
+        timerRunning = false;
+    }
+
+    public void updateTimer() {
+        int minutes = (int) timeLeftInMilliSeconds / 60000;
+        int seconds = (int) timeLeftInMilliSeconds % 60000 / 1000;
+
+        String timeLeftText;
+
+        timeLeftText = "" + minutes;
+        timeLeftText += ":";
+        if(seconds < 10) timeLeftText += "0";
+        timeLeftText += seconds;
+
+        timerDisplay.setText(timeLeftText);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
