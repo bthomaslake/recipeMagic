@@ -1,6 +1,8 @@
 package com.example.recipemagic.presenter;
 
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.List;
 import com.example.recipemagic.model.CookBook;
@@ -11,11 +13,11 @@ public class MainPresenter {
     private boolean bookReady;
     private List<Listener> registeredDataUsers;
 
-    public MainPresenter(MainActivity mainActivity){
+    public MainPresenter(Context context){
         book = new CookBook();
         bookReady = false;
         registeredDataUsers = new ArrayList<Listener>();
-        DownloadCategories task = new DownloadCategories(this);
+        DownloadCategories task = new DownloadCategories(this, context);
         task.execute();
     }
 
