@@ -1,10 +1,6 @@
 package com.example.recipemagic.presenter;
 
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.os.AsyncTask;
-
-import com.example.recipemagic.view.MainActivity;
 
 import java.lang.ref.WeakReference;
 
