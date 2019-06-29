@@ -20,11 +20,18 @@
         android:hint="@string/search"
         android:textSize="30dp"
         />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search My Recipe" />
+
     <Button
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Search" />
+        android:text="Search Recipes" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/searchResult"
@@ -34,7 +41,6 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:textSize="20dp"
-        />
+        android:textSize="20dp" />
 
 </LinearLayout>
