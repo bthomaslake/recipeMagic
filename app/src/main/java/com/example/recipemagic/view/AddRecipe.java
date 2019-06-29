@@ -25,8 +25,6 @@ import com.example.recipemagic.R;
 import com.example.recipemagic.presenter.AddRecipePresenter;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -177,9 +175,8 @@ public class AddRecipe extends Fragment {
             }
         }
 
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         return new File(mediaStorageDir.getPath() + File.separator +
-                "IMG_" + timeStamp + ".jpg");
+                "Recipe0.jpg");
     }
 
     /**
