@@ -16,17 +16,21 @@ public class SearchPresenter {
         book = presenter.getCookBook();
     }
 
-    public void searchTerm(String term) {
+    public List<RecipeHelper> searchTerm(String term) {
+
         recipes.clear();
 
-        //This is where you do the loop, search for ingredients in: each category -> recipe.getIngredientString()
-        for (List<RecipeHelper> list_rh : book.getRecipes()) {
+        List<List<RecipeHelper>> listFromPresenter = book.getRecipes();
+
+        //This is where you do the loop, search for ingredients in:
+        for (List<RecipeHelper> list_rh : listFromPresenter) {
             for (RecipeHelper rh : list_rh) {
                 if (rh.getRecipeIngredients().contains(term)) {
                     recipes.add(rh);
                 }
-
             }
         }
+
+        return recipes;
     }
 }

@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.os.Environment;
+import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -95,6 +96,9 @@ public class AddRecipe extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
     }
 
     @Override
@@ -103,6 +107,12 @@ public class AddRecipe extends Fragment {
         View view = inflater.inflate(R.layout.fragment_add_recipe, container, false);
         button_picture = view.findViewById(R.id.button_image);
         imageView = view.findViewById(R.id.imageview);
+        button_picture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                takePicture(v);
+            }
+        });
         return view;
     }
 
@@ -140,14 +150,14 @@ public class AddRecipe extends Fragment {
         super.onDetach();
         mListener = null;
     }
-
-    public void takePicture(View view) {
+    public void takePicture(View view) {;
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         file = Uri.fromFile(getOutputMediaFile());
         intent.putExtra(MediaStore.EXTRA_OUTPUT, file);
 
         startActivityForResult(intent, 100);
     }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
