@@ -6,8 +6,6 @@ import android.os.AsyncTask;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.recipemagic.view.MainActivity;
-
 import java.lang.ref.WeakReference;
 
 
