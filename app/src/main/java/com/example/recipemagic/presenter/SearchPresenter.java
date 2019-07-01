@@ -25,7 +25,7 @@ public class SearchPresenter {
         //This is where you do the loop, search for ingredients in:
         for (List<RecipeHelper> list_rh : listFromPresenter) {
             for (RecipeHelper rh : list_rh) {
-                if (rh.getRecipeIngredients().contains(term)) {
+                if (rh.getRecipeNames().contains(term)) {
                     recipes.add(rh);
                 }
             }
