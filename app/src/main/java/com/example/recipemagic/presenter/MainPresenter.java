@@ -2,6 +2,7 @@ package com.example.recipemagic.presenter;
 
 
 import android.content.Context;
+import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,11 +14,11 @@ public class MainPresenter {
     private boolean bookReady;
     private List<Listener> registeredDataUsers;
 
-    public MainPresenter(Context context){
+    public MainPresenter(Context context, ProgressBar pb){
         book = new CookBook();
         bookReady = false;
         registeredDataUsers = new ArrayList<Listener>();
-        DownloadCategories task = new DownloadCategories(this, context);
+        DownloadCategories task = new DownloadCategories(this, pb, context);
         task.execute();
     }
 

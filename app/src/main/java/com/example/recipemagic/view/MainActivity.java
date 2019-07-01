@@ -4,6 +4,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import android.view.MenuItem;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,14 +27,16 @@ public class MainActivity extends AppCompatActivity
         RecipeFragment.OnListFragmentInteractionListener{
 
     private MainPresenter presenter;
+    private ProgressBar pb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Standard beginning
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        pb = (ProgressBar) findViewById(R.id.progressBar);
 
-        presenter = new MainPresenter(getApplicationContext());
+        presenter = new MainPresenter(getApplicationContext(), pb);
         loadFragment(new CategoryListFragment());
 
         // Set up the Bottom Navigation View bar and activate
