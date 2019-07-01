@@ -47,6 +47,8 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
                 //passing data to recipe list activity
                 Bundle bundle = new Bundle();
                 bundle.putString("Category", titles.get(i));
+
+
                 Fragment myFragment = new RecipeListFragment();
                 myFragment.setArguments(bundle);
 

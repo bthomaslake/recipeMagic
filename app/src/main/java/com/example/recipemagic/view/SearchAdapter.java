@@ -1,8 +1,11 @@
 package com.example.recipemagic.view;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,10 +41,33 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.title.setText(titles.get(position));
         Picasso.get().load(images.get(position)).into(holder.image);
-        
+        holder.card.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putString("Title", titles.get(position));
+                bundle.putString("Ingredient", ingredients.get(position));
+                bundle.putString("Direction", directions.get(position));
+                bundle.putString("Image", images.get(position));
+
+                Fragment myFragment = new RecipeListFragment();
+                myFragment.setArguments(bundle);
+
+                //start fragment
+                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                activity.getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, myFragment)
+                        .addToBackStack(null)
+                        .commit();
+
+            }
+
+
+        });
     }
 
     //REturn how many items to be displayed in the
