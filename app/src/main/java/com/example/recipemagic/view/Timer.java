@@ -1,5 +1,6 @@
 package com.example.recipemagic.view;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import androidx.annotation.NonNull;
@@ -15,6 +16,9 @@ import com.example.recipemagic.R;
 
 import java.util.Locale;
 
+import static android.content.Context.MODE_PRIVATE;
+
+/* Hello Friends*/
 public class Timer extends Fragment implements View.OnClickListener {
     public Timer() {
     }
@@ -31,6 +35,8 @@ public class Timer extends Fragment implements View.OnClickListener {
     View layoutView;
 
     private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
+    private long mEndTime;
+
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         layoutView = inflater.inflate(R.layout.fragment_timer, container, false);
 
@@ -39,6 +45,8 @@ public class Timer extends Fragment implements View.OnClickListener {
 
         mButtonStartPause = layoutView.findViewById(R.id.start_button);
         mButtonReset = layoutView.findViewById(R.id.restart_button);
+
+        updateButtons();
 
         mButtonStartPause.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +70,8 @@ public class Timer extends Fragment implements View.OnClickListener {
         return layoutView;
     }
     private void startTimer() {
+        mEndTime = System.currentTimeMillis() + mTimeLeftInMillis;
+
         mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -72,29 +82,24 @@ public class Timer extends Fragment implements View.OnClickListener {
             @Override
             public void onFinish() {
                 mTimerRunning = false;
-                mButtonStartPause.setText("Start");
-                mButtonStartPause.setVisibility(View.INVISIBLE);
-                mButtonReset.setVisibility(View.VISIBLE);
+                updateButtons();
             }
         }.start();
 
         mTimerRunning = true;
-        mButtonStartPause.setText("Pause");
-        mButtonReset.setVisibility(View.INVISIBLE);
+        updateButtons();
     }
 
     private void pauseTimer() {
         mCountDownTimer.cancel();
         mTimerRunning = false;
-        mButtonStartPause.setText("Start");
-        mButtonReset.setVisibility(View.VISIBLE);
+        updateButtons();
     }
 
     private void resetTimer() {
         mTimeLeftInMillis = START_TIME_IN_MILLIS;
         updateCountDownText();
-        mButtonReset.setVisibility(View.INVISIBLE);
-        mButtonStartPause.setVisibility(View.VISIBLE);
+        updateButtons();
     }
 
     private void updateCountDownText() {
@@ -122,6 +127,68 @@ public class Timer extends Fragment implements View.OnClickListener {
 
         }
         updateCountDownText();
+    }
+
+    private void updateButtons(){
+        if(mTimerRunning){
+            mButtonReset.setVisibility(View.INVISIBLE);
+            mButtonStartPause.setText("Pause");
+        } else {
+            mButtonStartPause.setText("Start");
+
+            if (mTimeLeftInMillis < 1000) {
+                mButtonStartPause.setVisibility(View.INVISIBLE);
+            } else {
+                mButtonStartPause.setVisibility(View.VISIBLE);
+            }
+
+            if (mTimeLeftInMillis < START_TIME_IN_MILLIS){
+                mButtonReset.setVisibility(View.VISIBLE);
+            } else {
+                mButtonReset.setVisibility(View.INVISIBLE);
+            }
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        SharedPreferences prefs = getActivity().getSharedPreferences("prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putLong("millisLeft", mTimeLeftInMillis);
+        editor.putBoolean("timerRunning", mTimerRunning);
+        editor.putLong("endTime", mEndTime);
+
+        editor.apply();
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+
+        SharedPreferences prefs = getActivity().getSharedPreferences("prefs", MODE_PRIVATE);
+
+        mTimeLeftInMillis = prefs.getLong("millisLeft", START_TIME_IN_MILLIS);
+        mTimerRunning = prefs.getBoolean("timerRunning", false);
+
+        updateCountDownText();
+        updateButtons();
+
+        if (mTimerRunning) {
+            mEndTime = prefs.getLong("endTime", 0);
+            mTimeLeftInMillis = mEndTime - System.currentTimeMillis();
+
+            if (mTimeLeftInMillis < 0) {
+                mTimeLeftInMillis = 0;
+                mTimerRunning = false;
+                updateCountDownText();
+                updateButtons();
+            } else {
+                startTimer();
+            }
+        }
     }
 
     public interface OnFragmentInteractionListener {
