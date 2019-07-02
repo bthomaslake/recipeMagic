@@ -24,8 +24,6 @@ import com.squareup.picasso.Picasso;
 public class RecipeFragment extends Fragment{
 
     private OnListFragmentInteractionListener mListener;
-    private MainPresenter presenter;
-    private String category;
     private String title;
     private String directions;
     private String ingredients;
@@ -62,7 +60,6 @@ public class RecipeFragment extends Fragment{
         View view = inflater.inflate(R.layout.fragment_recipe, container, false);
         Bundle bundle = this.getArguments();
         if(bundle != null) {
-            category = bundle.get("Category").toString();
             title = bundle.get("Title").toString();
             directions = bundle.get("Direction").toString();
             ingredients = bundle.get("Ingredient").toString();

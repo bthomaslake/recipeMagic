@@ -70,7 +70,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         });
     }
 
-    //REturn how many items to be displayed in the
+    //Return how many items to be displayed in the
     @Override
     public int getItemCount() {
         return titles.size();

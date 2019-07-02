@@ -84,7 +84,7 @@ public class RecipeListFragment extends Fragment implements MainPresenter.Listen
     public void notifyDataReady() {
         recipeRV.setAdapter(new RecipeListAdapter(recipePresenter.getValidTitles(category),
                 recipePresenter.getValidImages(category), recipePresenter.getValidDirections(category),
-                recipePresenter.getValidIngredients(category), category));
+                recipePresenter.getValidIngredients(category)));
     }
 
     public interface OnListFragmentInteractionListener {

@@ -25,16 +25,19 @@
         android:id="@+id/button2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="searchMyRecipes"
         android:text="Search My Recipe" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="searchRecipes"
         android:text="Search Recipes" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/searchResult"
+        android:id="@+id/recyclerview_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
