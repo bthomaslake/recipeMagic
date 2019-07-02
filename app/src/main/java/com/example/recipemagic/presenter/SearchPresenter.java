@@ -15,6 +15,8 @@ public class SearchPresenter {
 
     public SearchPresenter(MainPresenter presenter) {
         book = presenter.getCookBook();
+        recipes = new ArrayList<RecipeHelper>();
+        myRecipes = new ArrayList<RecipeHelper>();
     }
 
     public void searchDataBase(String term) {
