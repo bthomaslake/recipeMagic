@@ -120,6 +120,7 @@ public class AddRecipe extends Fragment {
             public void onClick(View v) {
                 takePicture(v);
                 recipeName.setHint("Add another recipe");
+                recipeName.setText("");
             }
         });
         return view;
