@@ -12,18 +12,24 @@ public class SearchPresenter {
 
     private List<RecipeHelper> recipes;
     private List<RecipeHelper> myRecipes;
-
+    private List<String> images;
+    private List<String> titles;
+    private List<String> directions;
+    private List<String> ingredients;
+    List<List<RecipeHelper>> listFromPresenter;
     public SearchPresenter(MainPresenter presenter) {
         book = presenter.getCookBook();
         recipes = new ArrayList<RecipeHelper>();
         myRecipes = new ArrayList<RecipeHelper>();
+        images = new ArrayList<String>();
+        titles = new ArrayList<String>();
+        ingredients = new ArrayList<String>();
+        directions = new ArrayList<String>();
+        listFromPresenter = book.getRecipes();
     }
 
     public void searchDataBase(String term) {
         recipes.clear();
-
-        List<List<RecipeHelper>> listFromPresenter = book.getRecipes();
-
         //This is where you do the loop, search for ingredients in:
         for (List<RecipeHelper> list_rh : listFromPresenter) {
             for (RecipeHelper rh : list_rh) {
@@ -48,7 +54,7 @@ public class SearchPresenter {
     }
 
     public List<String>getRecipeTitles(){
-        List<String>titles = new ArrayList<String>();
+        titles.clear();
         for(RecipeHelper recipe : recipes){
             titles.add(recipe.getRecipeNames());
         }
@@ -56,7 +62,7 @@ public class SearchPresenter {
     }
 
     public List<String>getRecipeImages(){
-        List<String>images = new ArrayList<String>();
+        images.clear();
         for(RecipeHelper recipe : recipes){
             images.add(recipe.getRecipeImages());
         }
@@ -64,7 +70,7 @@ public class SearchPresenter {
     }
 
     public List<String>getRecipeIngredients(){
-        List<String>ingredients = new ArrayList<String>();
+        ingredients.clear();
         for(RecipeHelper recipe : recipes){
             ingredients.add(recipe.getRecipeIngredients());
         }
@@ -72,7 +78,7 @@ public class SearchPresenter {
     }
 
     public List<String>getRecipeDirections(){
-        List<String>directions = new ArrayList<String>();
+        directions.clear();
         for(RecipeHelper recipe : recipes){
             directions.add(recipe.getRecipeDirections());
         }
