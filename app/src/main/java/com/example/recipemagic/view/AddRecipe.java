@@ -26,6 +26,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.recipemagic.R;
 import com.example.recipemagic.presenter.AddRecipePresenter;
@@ -174,6 +175,7 @@ public class AddRecipe extends Fragment {
         if (requestCode == 100) {
             if (resultCode == RESULT_OK) {
                 imageView.setImageURI(file);
+                Toast.makeText(getContext(), "Recipe added", Toast.LENGTH_SHORT).show();
             }
         }
     }
