@@ -55,7 +55,7 @@ public class SearchFragment extends Fragment{
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search_list, container, false);
         Button searchRecipe = (Button) view.findViewById(R.id.button);
-        final Button searchMyRecipe = (Button) view.findViewById(R.id.button2);
+        Button searchMyRecipe = (Button) view.findViewById(R.id.button2);
         final EditText editText = (EditText) view.findViewById(R.id.editText);
 
         searchRecipe.setOnClickListener(new View.OnClickListener(){
@@ -71,19 +71,20 @@ public class SearchFragment extends Fragment{
                             searchPresenter.getRecipeIngredients(), searchPresenter.getRecipeDirections());
                     clickedSearchRecipe = true;
                     searchRV.setAdapter(searchAdapter);
-                }else if(!term.equals(compare)) {
+                }else if (compare.equals(term)) {
                     int count1 = searchAdapter.getItemCount();
                     int count2 = searchAdapter.getItemCount();
                     searchAdapter.clear();
                     for (int i = 0; i < count1; i++) {
                         searchAdapter.notifyItemRemoved(i);
-                        searchAdapter.notifyItemRangeChanged(i, count2-- );
+                        searchAdapter.notifyItemRangeChanged(i, count2);
+                        count2--;
                     }
-                    searchAdapter.setTitles(searchPresenter.getRecipeTitles());
-                    searchAdapter.setImages(searchPresenter.getRecipeImages());
-                    searchAdapter.setDirections(searchPresenter.getRecipeDirections());
-                    searchAdapter.setIngredients(searchPresenter.getRecipeIngredients());
-                    compare = term;
+                        searchAdapter.setTitles(searchPresenter.getRecipeTitles());
+                        searchAdapter.setImages(searchPresenter.getRecipeImages());
+                        searchAdapter.setDirections(searchPresenter.getRecipeDirections());
+                        searchAdapter.setIngredients(searchPresenter.getRecipeIngredients());
+                        compare = term;
                 }
             }
         });

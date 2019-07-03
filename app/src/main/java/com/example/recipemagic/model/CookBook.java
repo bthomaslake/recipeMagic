@@ -379,7 +379,7 @@ public class CookBook {
     }
 
     public List<List<RecipeHelper>> getRecipes(){
-
+        recipes.clear();
         recipes.add(beef);
         recipes.add(chicken);
         recipes.add(dessert);
