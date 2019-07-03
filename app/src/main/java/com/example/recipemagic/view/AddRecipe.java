@@ -24,6 +24,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.recipemagic.R;
@@ -57,6 +58,7 @@ public class AddRecipe extends Fragment {
     private AddRecipePresenter presenter;
 
     private Button button_picture;
+    private EditText recipeName;
     private ImageView imageView;
     private Uri file;
 
@@ -111,11 +113,13 @@ public class AddRecipe extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_recipe, container, false);
         button_picture = view.findViewById(R.id.button_image);
+        recipeName = view.findViewById(R.id.editText);
         imageView = view.findViewById(R.id.imageview);
         button_picture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 takePicture(v);
+                recipeName.setHint("Add another recipe");
             }
         });
         return view;
@@ -158,7 +162,7 @@ public class AddRecipe extends Fragment {
 
     public void takePicture(View view) {;
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        file = Uri.fromFile(getOutputMediaFile());
+        file = Uri.fromFile(getOutputMediaFile(recipeName));
         intent.putExtra(MediaStore.EXTRA_OUTPUT, file);
 
         startActivityForResult(intent, 100);
@@ -173,7 +177,7 @@ public class AddRecipe extends Fragment {
         }
     }
 
-    private static File getOutputMediaFile() {
+    private static File getOutputMediaFile(EditText editText) {
         File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES), "RecipeMagic");
         if (!mediaStorageDir.exists()) {
@@ -183,7 +187,7 @@ public class AddRecipe extends Fragment {
         }
 
         return new File(mediaStorageDir.getPath() + File.separator +
-                "Recipe0.jpg");
+                editText.getText() + ".jpg");
     }
 
     /**
@@ -213,7 +217,7 @@ public class AddRecipe extends Fragment {
 
         BitmapFactory.Options opts = new BitmapFactory.Options();
         Bitmap bm = BitmapFactory.decodeFile(file, opts);
-        Uri file1 = Uri.fromFile(getOutputMediaFile());
+        Uri file1 = Uri.fromFile(getOutputMediaFile(recipeName));
 
         int rotationAngle = getCameraPhotoOrientation(getActivity(), file1, file1.toString());
 
