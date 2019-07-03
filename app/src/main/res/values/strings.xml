@@ -22,5 +22,7 @@
     <string name="search">Search...</string>
     <string name="restart">Reset</string>
     <string name="minutes">Minutes</string>
+    <string name="search_recipes">Search Recipes</string>
+    <string name="search_my_recipe">Search My Recipes</string>
     <string name="set">Set</string>
 </resources>
