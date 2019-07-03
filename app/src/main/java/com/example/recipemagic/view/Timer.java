@@ -113,6 +113,7 @@ public class Timer extends Fragment implements View.OnClickListener {
             public void onFinish() {
                 mTimerRunning = false;
                 updateWatchInterface();
+                Toast.makeText(getContext(), "Timer Finished", Toast.LENGTH_SHORT).show();
             }
         }.start();
 
