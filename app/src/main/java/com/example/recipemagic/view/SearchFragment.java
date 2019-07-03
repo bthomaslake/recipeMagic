@@ -25,6 +25,9 @@ public class SearchFragment extends Fragment{
     private SearchPresenter searchPresenter;
     private MainPresenter presenter;
     private RecyclerView searchRV;
+    private Boolean clickedSearchRecipe;
+    private SearchAdapter searchAdapter;
+    private String compare;
 
     public SearchFragment() {
     }
@@ -43,6 +46,8 @@ public class SearchFragment extends Fragment{
         super.onCreate(savedInstanceState);
         presenter = ((MainActivity) getActivity()).getPresenter();
         searchPresenter = new SearchPresenter(presenter);
+        clickedSearchRecipe = false;
+        compare = null;
     }
 
     @Override
@@ -50,15 +55,36 @@ public class SearchFragment extends Fragment{
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search_list, container, false);
         Button searchRecipe = (Button) view.findViewById(R.id.button);
-        Button searchMyRecipe = (Button) view.findViewById(R.id.button2);
+        final Button searchMyRecipe = (Button) view.findViewById(R.id.button2);
         final EditText editText = (EditText) view.findViewById(R.id.editText);
 
         searchRecipe.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view) {
                 String term = editText.getText().toString();
+                if (compare == null){
+                    compare = term;
+                }
                 searchPresenter.searchDataBase(term);
-                searchRV.setAdapter(new SearchAdapter(searchPresenter.getRecipeTitles(), searchPresenter.getRecipeImages(),
-                        searchPresenter.getRecipeIngredients(), searchPresenter.getRecipeDirections()));
+
+                if (!clickedSearchRecipe){
+                    searchAdapter = new SearchAdapter(searchPresenter.getRecipeTitles(), searchPresenter.getRecipeImages(),
+                            searchPresenter.getRecipeIngredients(), searchPresenter.getRecipeDirections());
+                    clickedSearchRecipe = true;
+                    searchRV.setAdapter(searchAdapter);
+                }else if(!term.equals(compare)) {
+                    int count1 = searchAdapter.getItemCount();
+                    int count2 = searchAdapter.getItemCount();
+                    searchAdapter.clear();
+                    for (int i = 0; i < count1; i++) {
+                        searchAdapter.notifyItemRemoved(i);
+                        searchAdapter.notifyItemRangeChanged(i, count2-- );
+                    }
+                    searchAdapter.setTitles(searchPresenter.getRecipeTitles());
+                    searchAdapter.setImages(searchPresenter.getRecipeImages());
+                    searchAdapter.setDirections(searchPresenter.getRecipeDirections());
+                    searchAdapter.setIngredients(searchPresenter.getRecipeIngredients());
+                    compare = term;
+                }
             }
         });
 

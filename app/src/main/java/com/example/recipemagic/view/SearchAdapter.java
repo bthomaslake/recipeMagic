@@ -35,6 +35,29 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         this.directions = directions;
     }
 
+    public void clear(){
+        if (getItemCount() > 0){
+            titles.clear();
+            images.clear();
+            ingredients.clear();
+            directions.clear();
+        }
+    }
+    public void setTitles(List<String> titles) {
+        this.titles = titles;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
+    }
+
+    public void setIngredients(List<String> ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public void setDirections(List<String> directions) {
+        this.directions = directions;
+    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
