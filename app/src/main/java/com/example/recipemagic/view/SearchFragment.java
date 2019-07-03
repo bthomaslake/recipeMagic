@@ -71,7 +71,7 @@ public class SearchFragment extends Fragment{
                             searchPresenter.getRecipeIngredients(), searchPresenter.getRecipeDirections());
                     clickedSearchRecipe = true;
                     searchRV.setAdapter(searchAdapter);
-                }else if (compare.equals(term)) {
+                }else if (!compare.equals(term)) {
                     int count1 = searchAdapter.getItemCount();
                     int count2 = searchAdapter.getItemCount();
                     searchAdapter.clear();
