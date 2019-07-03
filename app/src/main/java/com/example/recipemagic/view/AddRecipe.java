@@ -116,6 +116,8 @@ public class AddRecipe extends Fragment {
         button_picture = view.findViewById(R.id.button_image);
         recipeName = view.findViewById(R.id.editText);
         imageView = view.findViewById(R.id.imageview);
+        //imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        imageView.setRotation(90);
         button_picture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -166,7 +168,6 @@ public class AddRecipe extends Fragment {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         file = Uri.fromFile(getOutputMediaFile(recipeName));
         intent.putExtra(MediaStore.EXTRA_OUTPUT, file);
-
         startActivityForResult(intent, 100);
     }
 
