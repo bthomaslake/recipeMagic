@@ -21,4 +21,6 @@
     <string name="start">Start</string>
     <string name="search">Search...</string>
     <string name="restart">Reset</string>
+    <string name="minutes">Minutes</string>
+    <string name="set">Set</string>
 </resources>
