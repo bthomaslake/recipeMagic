@@ -10,20 +10,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+
 
 import com.example.recipemagic.R;
 import com.example.recipemagic.presenter.MainPresenter;
 import com.example.recipemagic.presenter.SearchPresenter;
 import com.example.recipemagic.view.dummy.DummyContent.DummyItem;
 
-public class SearchFragment extends Fragment {
+public class SearchFragment extends Fragment{
 
     private SearchFragment.OnListFragmentInteractionListener mListener;
     private SearchPresenter searchPresenter;
     private MainPresenter presenter;
     private RecyclerView searchRV;
-    private String category;
 
     public SearchFragment() {
     }
@@ -48,12 +49,30 @@ public class SearchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search_list, container, false);
+        Button searchRecipe = (Button) view.findViewById(R.id.button);
+        Button searchMyRecipe = (Button) view.findViewById(R.id.button2);
+        final EditText editText = (EditText) view.findViewById(R.id.editText);
+
+        searchRecipe.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view) {
+                String term = editText.getText().toString();
+                searchPresenter.searchDataBase(term);
+                searchRV.setAdapter(new SearchAdapter(searchPresenter.getRecipeTitles(), searchPresenter.getRecipeImages(),
+                        searchPresenter.getRecipeIngredients(), searchPresenter.getRecipeDirections()));
+            }
+        });
+
+        searchMyRecipe.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view) {
+                String term = editText.getText().toString();
+                searchPresenter.searchDataBase(term);
+            }
+        });
 
         searchRV = (RecyclerView) view.findViewById(R.id.recyclerview_search);
         searchRV.setLayoutManager(new GridLayoutManager(getContext(), 3));
         return view;
     }
-
 
     @Override
     public void onAttach(Context context) {
@@ -70,18 +89,6 @@ public class SearchFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
-    }
-
-    public void searchRecipes(View view){
-        EditText editText = (EditText) view.findViewById(R.id.searchBox);
-        String term = editText.getText().toString();
-        searchPresenter.searchDataBase(term);
-    }
-
-    public void searchMyRecipes(View view){
-        EditText editText = (EditText) view.findViewById(R.id.searchBox);
-        String term = editText.getText().toString();
-        searchPresenter.searchMyrecipes(term);
     }
 
     public interface OnListFragmentInteractionListener {

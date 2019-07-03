@@ -9,11 +9,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.recipemagic.R;
+import com.example.recipemagic.presenter.SearchPresenter;
 import com.squareup.picasso.Picasso;
+import android.widget.EditText;
 
 import java.util.List;
 
@@ -53,7 +56,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
                 bundle.putString("Direction", directions.get(position));
                 bundle.putString("Image", images.get(position));
 
-                Fragment myFragment = new RecipeListFragment();
+                Fragment myFragment = new RecipeFragment();
                 myFragment.setArguments(bundle);
 
                 //start fragment
@@ -63,10 +66,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
                         .replace(R.id.fragment_container, myFragment)
                         .addToBackStack(null)
                         .commit();
-
             }
-
-
         });
     }
 
@@ -81,14 +81,11 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         private TextView title;
         private ImageView image;
         private CardView card;
-
         public ViewHolder(View view) {
             super(view);
-
             title = (TextView) itemView.findViewById(R.id.search);
             image = (ImageView) itemView.findViewById(R.id.search_Img);
             card = (CardView) itemView.findViewById(R.id.cardview_search);
-
         }
 
 

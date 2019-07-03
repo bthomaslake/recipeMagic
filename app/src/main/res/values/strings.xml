@@ -11,14 +11,16 @@
     <string name="button_capture_recipe">Capture</string>
     <string name="bar_set_title">Recipe Name</string>
     <string name="recipe_picture_description">Recipe</string>
-
+    <string name="start">Start</string>
+    <string name="search">Search...</string>
+    <string name="restart">Reset</string>
+    <string name="search_recipes">Search Recipes</string>
+    <string name="search_my_recipe">Search My Recipe</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-    <string name="start">Start</string>
-    <string name="search">Search...</string>
-    <string name="restart">Reset</string>
+
 </resources>

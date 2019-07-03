@@ -46,4 +46,36 @@ public class SearchPresenter {
     public List<RecipeHelper>getMyRecipes(){
         return myRecipes;
     }
+
+    public List<String>getRecipeTitles(){
+        List<String>titles = new ArrayList<String>();
+        for(RecipeHelper recipe : recipes){
+            titles.add(recipe.getRecipeNames());
+        }
+        return titles;
+    }
+
+    public List<String>getRecipeImages(){
+        List<String>images = new ArrayList<String>();
+        for(RecipeHelper recipe : recipes){
+            images.add(recipe.getRecipeImages());
+        }
+        return images;
+    }
+
+    public List<String>getRecipeIngredients(){
+        List<String>ingredients = new ArrayList<String>();
+        for(RecipeHelper recipe : recipes){
+            ingredients.add(recipe.getRecipeIngredients());
+        }
+        return ingredients;
+    }
+
+    public List<String>getRecipeDirections(){
+        List<String>directions = new ArrayList<String>();
+        for(RecipeHelper recipe : recipes){
+            directions.add(recipe.getRecipeDirections());
+        }
+        return directions;
+    }
 }
