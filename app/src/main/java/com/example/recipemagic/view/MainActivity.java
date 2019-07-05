@@ -84,7 +84,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         Fragment fragment = null;
-        if (presenter.isBookReady()) {
             switch (menuItem.getItemId()) {
                 case R.id.menu_category:
                     fragment = new CategoryListFragment();
@@ -102,7 +101,6 @@ public class MainActivity extends AppCompatActivity
                     fragment = new AddRecipe();
                     break;
             }
-        }
         return loadFragment(fragment);
     }
 }
