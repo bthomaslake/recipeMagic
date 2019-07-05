@@ -1,13 +1,18 @@
 package com.example.recipemagic.view;
 
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.recipemagic.R;
+import com.example.recipemagic.presenter.MainPresenter;
 import com.example.recipemagic.view.MyRecipesFragment.OnListFragmentInteractionListener;
 import com.example.recipemagic.view.dummy.DummyContent.DummyItem;
 
@@ -20,11 +25,12 @@ import java.util.List;
  */
 public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private final List<Bitmap> pictures;
     private final OnListFragmentInteractionListener mListener;
+    private MainPresenter presenter;
 
-    public MyRecipeAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
-        mValues = items;
+    public MyRecipeAdapter(List<Bitmap> pictures, OnListFragmentInteractionListener listener) {
+        this.pictures = pictures;
         mListener = listener;
     }
 
@@ -35,11 +41,15 @@ public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHo
         return new ViewHolder(view);
     }
 
+
+    //Bitmap bitmap = BitmapFactory.decodeFile(pathToPicture);
+
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+    public void onBindViewHolder(final ViewHolder holder, int i) {
+        holder.recipePicture = pictures.get(i);
+        holder.recipeName.setText();
+        holder.mIdView.setText(pictures.get(i).id);
+        holder.mContentView.setText(pictures.get(i).content);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,10 +65,14 @@ public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return mValues.size();
+        return pictures.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        TextView recipeName;
+        Bitmap recipePicture;
+        CardView cardView;
+
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
