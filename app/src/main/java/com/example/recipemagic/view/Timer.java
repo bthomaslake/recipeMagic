@@ -1,6 +1,7 @@
 package com.example.recipemagic.view;
 
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import androidx.annotation.NonNull;
@@ -34,7 +35,7 @@ public class Timer extends Fragment implements View.OnClickListener {
     private CountDownTimer mCountDownTimer;
 
     private boolean mTimerRunning;
-    View layoutView;
+    private View layoutView;
 
     private long mStartTimeInMillis;
     private long mTimeLeftInMillis = mStartTimeInMillis;
@@ -111,6 +112,14 @@ public class Timer extends Fragment implements View.OnClickListener {
 
             @Override
             public void onFinish() {
+                MediaPlayer mp = MediaPlayer.create(getContext(), R.raw.bell);
+                mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        mp.release();
+                    }
+                });
+                mp.start();
                 mTimerRunning = false;
                 updateWatchInterface();
                 Toast.makeText(getContext(), "Timer Finished", Toast.LENGTH_SHORT).show();
@@ -240,6 +249,6 @@ public class Timer extends Fragment implements View.OnClickListener {
         }
     }
 
-    public interface OnFragmentInteractionListener {
+    interface OnFragmentInteractionListener {
     }
 }
