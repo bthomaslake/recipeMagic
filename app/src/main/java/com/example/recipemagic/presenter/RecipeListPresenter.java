@@ -4,6 +4,10 @@ import com.example.recipemagic.model.CookBook;
 
 import java.util.List;
 
+/*
+ * This class contains all the functions that will be called in
+ * RecipeList Fragment.
+ */
 public class RecipeListPresenter {
 
     private CookBook book;

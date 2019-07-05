@@ -21,64 +21,72 @@ public class DownloadRecipes extends AsyncTask<Void, Integer, String> {
         this.context = context;
     }
 
+    /*
+    * Before the recipes begin to download, the progress bar is
+    * made visible.
+     */
     protected void onPreExecute(){
         pb.setVisibility(View.VISIBLE);
     }
 
+    /*
+     * After almost every other recipe is downloaded, the ProgressUpdate function is called
+     * in order to keep the user in the loop as to how far along the download is.
+     */
     protected String doInBackground(Void ... voids) {
         int i = 1;
         presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Beef%20and%20Mustard%20Pie", "Beef");
-        publishProgress(i);
-        i++;
         presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Beef%20and%20Oyster%20pie", "Beef");
+        publishProgress(i);
+        i++;
         presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Beef%20Bourguignon", "Beef");
-        publishProgress(i);
-        i++;
         presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Beef%20Brisket%20Pot%20Roast", "Beef");
+        publishProgress(i);
+        i++;
         presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Beef%20Dumpling%20Stew", "Beef");
-        publishProgress(i);
-        i++;
         presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Beef%20Lo%20Mein", "Beef");
+        publishProgress(i);
+        i++;
         presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Beef%20stroganoff", "Beef");
-        publishProgress(i);
-        i++;
         presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Beef%20Sunday%20Roast", "Beef");
+        publishProgress(i);
+        i++;
         presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Beef%20Wellington", "Beef");
-        publishProgress(i);
-        i++;
         presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Braised%20Beef%20Chilli", "Beef");
+        publishProgress(i);
+        i++;
         presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Irish%20stew", "Beef");
-        publishProgress(i);
-        i++;
         presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Jamaican%20Beef%20Patties", "Beef");
+        publishProgress(i);
+        i++;
         presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Ma%20Po%20Tofu", "Beef");
-        publishProgress(i);
-        i++;
         presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Massaman%20Beef%20curry", "Beef");
+        publishProgress(i);
+        i++;
         presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Minced%20Beef%20Pie", "Beef");
-        publishProgress(i);
-        i++;
         presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Montreal%20Smoked%20Meat", "Beef");
+        publishProgress(i);
+        i++;
         presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Oxtail%20with%20broad%20beans", "Beef");
-        publishProgress(i);
-        i++;
         presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Pate%20Chinois", "Beef");
+        publishProgress(i);
+        i++;
         presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Red%20Peas%20Soup", "Beef");
-        publishProgress(i);
-        i++;
         presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Spaghetti%20Bolognese", "Beef");
+        publishProgress(i);
+        i++;
         presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Steak%20and%20Kidney%20Pie", "Beef");
-        publishProgress(i);
-        i++;
         presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Steak%20Diane", "Beef");
+        publishProgress(i);
+        i++;
         presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Szechuan%20Beef", "Beef");
-        publishProgress(i);
-        i++;
         presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Brown%20Stew%20Chicken", "Chicken");
-        presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Chicken%20&%20mushroom%20Hotpot", "Chicken");
         publishProgress(i);
         i++;
+        presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Chicken%20&%20mushroom%20Hotpot", "Chicken");
         presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Chicken%20Alfredo%20Primavera", "Chicken");
+        publishProgress(i);
+        i++;
         presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Chicken%20Basquaise", "Chicken");
         publishProgress(i);
         i++;
@@ -198,7 +206,7 @@ public class DownloadRecipes extends AsyncTask<Void, Integer, String> {
         presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Peach%20&%20Blueberry%20Grunt", "Dessert");
         publishProgress(i);
         i++;
-        presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Peanut%20Butter%20Cheesecake", "Dessert");
+        presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Peanut%20Butter%20Cheesecake", "Dessert");;
         presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Peanut%20Butter%20Cookies", "Dessert");
         publishProgress(i);
         i++;
@@ -262,7 +270,7 @@ public class DownloadRecipes extends AsyncTask<Void, Integer, String> {
         presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Duck%20Confit", "Miscellaneous");
         publishProgress(i);
         i++;
-        presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=French%20Lentils%20With%20Garlic%20and%20Thyme", "Miscellaneous");
+        presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=French%20Lentils%20With%20Garlic%20and%20Thyme", "Miscellaneous");;
         presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=French%20Omelette", "Miscellaneous");
         publishProgress(i);
         i++;
@@ -326,7 +334,7 @@ public class DownloadRecipes extends AsyncTask<Void, Integer, String> {
         presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Salmon%20Avocado%20Salad", "Seafood");
         publishProgress(i);
         i++;
-        presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Salmon%20Prawn%20Risotto", "Seafood");
+        presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Salmon%20Prawn%20Risotto", "Seafood");;
         presenter.get().getCookBook().loadRecipe("https://www.themealdb.com/api/json/v1/1/search.php?s=Saltfish%20and%20Ackee", "Seafood");
         publishProgress(i);
         i++;
@@ -431,6 +439,10 @@ public class DownloadRecipes extends AsyncTask<Void, Integer, String> {
         pb.setProgress(value[0]);
     }
 
+    /*
+    * After the recipes are done downloading, the user is notified and everything
+    * is displayed.
+     */
     @Override
     protected void onPostExecute(String s) {
         presenter.get().notifyDataUsers();

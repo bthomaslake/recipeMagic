@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 import com.example.recipemagic.R;
@@ -55,35 +56,40 @@ public class SearchFragment extends Fragment{
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search_list, container, false);
         Button searchRecipe = (Button) view.findViewById(R.id.button);
-        final Button searchMyRecipe = (Button) view.findViewById(R.id.button2);
+        Button searchMyRecipe = (Button) view.findViewById(R.id.button2);
         final EditText editText = (EditText) view.findViewById(R.id.editText);
 
         searchRecipe.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view) {
-                String term = editText.getText().toString();
-                if (compare == null){
-                    compare = term;
-                }
-                searchPresenter.searchDataBase(term);
-
-                if (!clickedSearchRecipe){
-                    searchAdapter = new SearchAdapter(searchPresenter.getRecipeTitles(), searchPresenter.getRecipeImages(),
-                            searchPresenter.getRecipeIngredients(), searchPresenter.getRecipeDirections());
-                    clickedSearchRecipe = true;
-                    searchRV.setAdapter(searchAdapter);
-                }else if(!term.equals(compare)) {
-                    int count1 = searchAdapter.getItemCount();
-                    int count2 = searchAdapter.getItemCount();
-                    searchAdapter.clear();
-                    for (int i = 0; i < count1; i++) {
-                        searchAdapter.notifyItemRemoved(i);
-                        searchAdapter.notifyItemRangeChanged(i, count2-- );
+                if (presenter.isBookReady()) {
+                    String term = editText.getText().toString();
+                    if (compare == null) {
+                        compare = term;
                     }
-                    searchAdapter.setTitles(searchPresenter.getRecipeTitles());
-                    searchAdapter.setImages(searchPresenter.getRecipeImages());
-                    searchAdapter.setDirections(searchPresenter.getRecipeDirections());
-                    searchAdapter.setIngredients(searchPresenter.getRecipeIngredients());
-                    compare = term;
+                    searchPresenter.searchDataBase(term);
+
+                    if (!clickedSearchRecipe) {
+                        searchAdapter = new SearchAdapter(searchPresenter.getRecipeTitles(), searchPresenter.getRecipeImages(),
+                                searchPresenter.getRecipeIngredients(), searchPresenter.getRecipeDirections());
+                        clickedSearchRecipe = true;
+                        searchRV.setAdapter(searchAdapter);
+                    } else if (!compare.equals(term)) {
+                        int count1 = searchAdapter.getItemCount();
+                        int count2 = searchAdapter.getItemCount();
+                        searchAdapter.clear();
+                        for (int i = 0; i < count1; i++) {
+                            searchAdapter.notifyItemRemoved(i);
+                            searchAdapter.notifyItemRangeChanged(i, count2);
+                            count2--;
+                        }
+                        searchAdapter.setTitles(searchPresenter.getRecipeTitles());
+                        searchAdapter.setImages(searchPresenter.getRecipeImages());
+                        searchAdapter.setDirections(searchPresenter.getRecipeDirections());
+                        searchAdapter.setIngredients(searchPresenter.getRecipeIngredients());
+                        compare = term;
+                    }
+                }else{
+                    Toast.makeText(getContext(),"Cannot search until all recipes are loaded!", Toast.LENGTH_LONG).show();
                 }
             }
         });

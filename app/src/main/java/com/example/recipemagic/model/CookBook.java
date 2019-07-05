@@ -43,34 +43,40 @@ public class CookBook {
         recipes = new ArrayList<List<RecipeHelper>>();
 
     }
-
-    public void loadURL(String url){
-        String data = httpHelper.readHTTP(url);
-        RecipeHelper recipeHelper = gson.fromJson(data, RecipeHelper.class);
-        urlList.add(recipeHelper);
-    }
-
-    public List<String> getUrlList(){
-        List<String>list = urlList.get(0).getNames();
-        urlList.clear();
-        return list;
-    }
+    /*
+    * This function is designed for loading in all the categories from
+    * 'MealDB.com'.
+    */
     public void loadCategory(String url){
         String data = httpHelper.readHTTP(url);
         CategoryList categoryList = gson.fromJson(data, CategoryList.class);
         categories.add(categoryList);
     }
 
+    /*
+    * This function is designed to return a list of all the names
+    * of the categories from the database.
+    */
     public List<String> getCategoryTitles() {
         List<String> titles = categories.get(0).getCategoryNames();
         return titles;
     }
 
+    /*
+     * This function is designed to return a list of all the images
+     * of the categories from the database.
+     */
     public List<String> getCategoryImages() {
         List<String> images = categories.get(0).getCategoryImages();
         return images;
     }
 
+    /*
+     * Based on the category that is given as a parameter,
+     * this function is designed to return a list of all the names
+     * of the recipes loaded from the database that are stored in the
+     * specified category list.
+     */
     public List<String> getRecipeTitles(String category) {
         List<String>titles = new ArrayList<String>();
         switch(category){
@@ -137,6 +143,12 @@ public class CookBook {
         }
     }
 
+    /*
+     * Based on the category that is given as a parameter,
+     * this function is designed to return a list of all the images
+     * of the recipes loaded from the database that are stored in the
+     * specified category list.
+     */
     public List<String> getRecipeIngredients(String category) {
         List<String> ingredients = new ArrayList<>();
         switch(category){
@@ -203,6 +215,12 @@ public class CookBook {
         }
     }
 
+    /*
+     * Based on the category that is given as a parameter,
+     * this function is designed to return a list of all the directions
+     * of the recipes loaded from the database that are stored in the
+     * specified category list.
+     */
     public List<String> getRecipeDirections(String category) {
         List<String>directions = new ArrayList<String>();
         switch(category){
@@ -269,6 +287,12 @@ public class CookBook {
         }
     }
 
+    /*
+     * Based on the category that is given as a parameter,
+     * this function is designed to return a list of all the images
+     * of the recipes loaded from the database that are stored in the
+     * specified category list.
+     */
     public List<String> getRecipeImages(String category) {
         List<String>images = new ArrayList<String>();
         switch(category){
@@ -335,6 +359,10 @@ public class CookBook {
         }
     }
 
+    /*
+     * This is called in the DownloadRecipes class. When called, it puts
+     * the recipe from the url into the specified category list.
+     */
     public void loadRecipe(String url, String category){
         String data = httpHelper.readHTTP(url);
         RecipeHelper recipeHelper = gson.fromJson(data, RecipeHelper.class);
@@ -378,8 +406,15 @@ public class CookBook {
         }
     }
 
+    /*
+    * This function is used for searching the recipes from within
+    * the database. It returns a list of all the recipes stored in
+    * database so that the search feature can iterate through every
+    * recipe to determine which recipes contain the keyword provided
+    * by the user.
+     */
     public List<List<RecipeHelper>> getRecipes(){
-
+        recipes.clear();
         recipes.add(beef);
         recipes.add(chicken);
         recipes.add(dessert);

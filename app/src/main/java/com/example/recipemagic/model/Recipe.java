@@ -1,11 +1,15 @@
 package com.example.recipemagic.model;
 
-import com.example.recipemagic.R;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+* This class is designed to assist in parsing the json files
+* of recipes into the categories of directions, titles, images,
+* and ingredients.
+*/
 public class Recipe {
 
     @SerializedName("strInstructions")
@@ -21,6 +25,10 @@ public class Recipe {
         return image;
     }
 
+    /*
+    * Because the json file did not put the ingredients into a list, we
+    * have to read in each measurement and ingredient one by one.
+     */
     @SerializedName(value = "ingredient1", alternate = "strIngredient1")
     private String ingredient1;
     @SerializedName(value = "ingredient2", alternate = "strIngredient2")
@@ -110,6 +118,11 @@ public class Recipe {
         return title;
     }
 
+    /*
+    * Ingredients consist of both the measurement and the ingredient.
+    * Because of how the json file was written, we must check to make
+    * sure that the ingredient is not null.
+     */
     public String getIngredients() {
         List<String> ingredientList = new ArrayList<String>();
         String ingredients = "";
@@ -174,6 +187,10 @@ public class Recipe {
             ingredientList.add(measurement20 + " " + ingredient20);
         }
 
+        /*
+        * this for loop is used to simply organize the string of ingredients
+        * so that each ingredient is displayed on its own line.
+        */
         for(String ingredient: ingredientList){
                 ingredients += ingredient + "\n";
         }

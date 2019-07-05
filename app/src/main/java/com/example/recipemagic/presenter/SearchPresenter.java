@@ -1,22 +1,25 @@
 package com.example.recipemagic.presenter;
 
-import com.example.recipemagic.model.Category;
 import com.example.recipemagic.model.CookBook;
 import com.example.recipemagic.model.RecipeHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * This class contains all the functions that will be called in
+ * Search Fragment.
+ */
 public class SearchPresenter {
     private CookBook book;
-
     private List<RecipeHelper> recipes;
     private List<RecipeHelper> myRecipes;
     private List<String> images;
     private List<String> titles;
     private List<String> directions;
     private List<String> ingredients;
-    List<List<RecipeHelper>> listFromPresenter;
+    private List<List<RecipeHelper>> listFromPresenter;
+
     public SearchPresenter(MainPresenter presenter) {
         book = presenter.getCookBook();
         recipes = new ArrayList<RecipeHelper>();
@@ -24,7 +27,7 @@ public class SearchPresenter {
         images = new ArrayList<String>();
         titles = new ArrayList<String>();
         ingredients = new ArrayList<String>();
-        directions = new ArrayList<String>();
+        directions = new ArrayList<String>();;
         listFromPresenter = book.getRecipes();
     }
 
@@ -43,14 +46,6 @@ public class SearchPresenter {
     public void searchMyrecipes(String term) {
         myRecipes.clear();
 
-    }
-
-    public List<RecipeHelper>getRecipes(){
-        return recipes;
-    }
-
-    public List<RecipeHelper>getMyRecipes(){
-        return myRecipes;
     }
 
     public List<String>getRecipeTitles(){
