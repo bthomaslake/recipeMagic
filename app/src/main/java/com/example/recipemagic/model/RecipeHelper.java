@@ -5,20 +5,17 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+* Although the recipe json files only provide one recipe for
+* each url, the recipe is put into a list. Therefore, we have
+* to have this class so that we can get a list of the recipes.
+*/
 public class RecipeHelper {
     @SerializedName("meals")
     private List<Recipe> recipe;
 
     public RecipeHelper(){
         recipe = new ArrayList<Recipe>();
-    }
-
-    public List<String> getNames() {
-        List<String> bookNames = new ArrayList<String>();
-        for (Recipe recipes : recipe) {
-            bookNames.add(recipes.getTitle());
-        }
-        return bookNames;
     }
 
     public String getRecipeNames() {

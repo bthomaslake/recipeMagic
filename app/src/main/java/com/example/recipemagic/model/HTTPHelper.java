@@ -9,6 +9,10 @@ import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
 
+/*
+* This class is designed to read assist in opening the jason files
+* provided in the url and reading them into a string.
+*/
 public class HTTPHelper {
 
     public String readHTTP(String url) {

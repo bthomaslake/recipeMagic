@@ -84,25 +84,25 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         Fragment fragment = null;
-
-        switch (menuItem.getItemId()) {
-            case R.id.menu_category:
-                fragment = new CategoryListFragment();
-                break;
-            case R.id.menu_timer:
-                fragment = new Timer();
-                break;
-            case R.id.menu_my_recipes:
-                fragment = new MyRecipesFragment();
-                break;
-            case R.id.menu_search:
-                fragment = new SearchFragment();
-                break;
-            case R.id.menu_add:
-                fragment = new AddRecipe();
-                break;
+        if (presenter.isBookReady()) {
+            switch (menuItem.getItemId()) {
+                case R.id.menu_category:
+                    fragment = new CategoryListFragment();
+                    break;
+                case R.id.menu_timer:
+                    fragment = new Timer();
+                    break;
+                case R.id.menu_my_recipes:
+                    fragment = new MyRecipesFragment();
+                    break;
+                case R.id.menu_search:
+                    fragment = new SearchFragment();
+                    break;
+                case R.id.menu_add:
+                    fragment = new AddRecipe();
+                    break;
+            }
         }
         return loadFragment(fragment);
     }
-
 }

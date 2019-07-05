@@ -7,8 +7,12 @@ import android.widget.ProgressBar;
 import java.util.ArrayList;
 import java.util.List;
 import com.example.recipemagic.model.CookBook;
-import com.example.recipemagic.view.MainActivity;
 
+/*
+* MainPresenter is used to start the downloading process
+* and to store all recipes and categories inside the cookbook
+* that will be used throughout the program.
+*/
 public class MainPresenter {
     private CookBook book;
     private boolean bookReady;
@@ -29,6 +33,9 @@ public class MainPresenter {
         }
     }
 
+    /*
+    * When the cookbook is done loading, then everything is displayed.
+    */
     public void notifyDataUsers() {
         bookReady = true;
         for (MainPresenter.Listener dataUser : registeredDataUsers) {
@@ -38,6 +45,10 @@ public class MainPresenter {
 
     public CookBook getCookBook() {
         return book;
+    }
+
+    public boolean isBookReady(){
+        return bookReady;
     }
 
     public interface Listener{
