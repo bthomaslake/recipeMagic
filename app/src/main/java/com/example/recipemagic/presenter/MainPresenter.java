@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.example.recipemagic.model.CookBook;
 
-/*
+/**
 * MainPresenter is used to start the downloading process
 * and to store all recipes and categories inside the cookbook
 * that will be used throughout the program.
@@ -26,6 +26,10 @@ public class MainPresenter {
         task.execute();
     }
 
+    /**
+     * 
+     * @param dataUser
+     */
     public void registerDataUser(MainPresenter.Listener dataUser){
         registeredDataUsers.add(dataUser);
         if (bookReady){
@@ -33,8 +37,8 @@ public class MainPresenter {
         }
     }
 
-    /*
-    * When the cookbook is done loading, then everything is displayed.
+    /**
+    * Only after the cookbook is done loading, everything is displayed.
     */
     public void notifyDataUsers() {
         bookReady = true;
@@ -43,14 +47,25 @@ public class MainPresenter {
         }
     }
 
+    /**
+     * This returns the cookBook that everything is downloaded into.
+     * @return
+     */
     public CookBook getCookBook() {
         return book;
     }
 
+    /**
+     * This function lets the user know if all the downloading is done.
+     * @return
+     */
     public boolean isBookReady(){
         return bookReady;
     }
 
+    /**
+     * This interface has is implemented in the fragments
+     */
     public interface Listener{
         void notifyDataReady();
     }

@@ -27,7 +27,7 @@ public class SearchPresenter {
         images = new ArrayList<String>();
         titles = new ArrayList<String>();
         ingredients = new ArrayList<String>();
-        directions = new ArrayList<String>();;
+        directions = new ArrayList<String>();
         listFromPresenter = book.getRecipes();
     }
 

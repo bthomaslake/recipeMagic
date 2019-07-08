@@ -17,6 +17,11 @@ import com.example.recipemagic.presenter.CategoryPresenter;
 import com.example.recipemagic.presenter.MainPresenter;
 import com.example.recipemagic.view.dummy.DummyContent.DummyItem;
 
+/**
+ * This class is designed to create a fragment view from the list of
+ * categories obtained from the API. The needed information is
+ * obtained from the CategoryPresenter.
+ */
 public class CategoryListFragment extends Fragment implements MainPresenter.Listener{
 
     private OnListFragmentInteractionListener mListener;
@@ -46,6 +51,13 @@ public class CategoryListFragment extends Fragment implements MainPresenter.List
         return fragment;
     }
 
+    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

@@ -9,12 +9,17 @@ import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
 
-/*
-* This class is designed to read assist in opening the jason files
+/**
+* This class is designed to read assist in opening the JSON files
 * provided in the url and reading them into a string.
 */
 public class HTTPHelper {
 
+    /**
+     * This function is designed to read the JSON file from the API database.
+     * @param url
+     * @return
+     */
     public String readHTTP(String url) {
         try {
             URL urlObj = new URL(url);

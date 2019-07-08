@@ -2,7 +2,7 @@ package com.example.recipemagic.model;
 
 import java.util.ArrayList;
 import java.util.List;
-/*
+/**
 * This class is designed to create a list of all the categories
 * read in from the API
 */
@@ -17,10 +17,11 @@ public class CategoryList {
         return categories;
     }
 
-    /*
-    * This function returns a list of all the categories from
-    * 'MealDB.com'.
-    */
+    /**
+     * This function returns a list of all the categories from
+     * 'MealDB.com'.
+     * @return
+     */
     public List<String> getCategoryNames() {
         List<String> bookNames = new ArrayList<String>();
         for (Category category : categories) {
@@ -29,9 +30,10 @@ public class CategoryList {
         return bookNames;
     }
 
-    /*
+    /**
      * This function returns a list of all the category images
      * from 'MealDB.com'.
+     * @return
      */
     public List<String> getCategoryImages() {
         List<String> images = new ArrayList<String>();

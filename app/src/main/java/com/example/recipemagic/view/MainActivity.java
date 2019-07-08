@@ -15,7 +15,9 @@ import com.example.recipemagic.R;
 
 import com.example.recipemagic.view.dummy.DummyContent;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
+/*
+* The MainActivity of
+*/
 public class MainActivity extends AppCompatActivity
         implements AddRecipe.OnFragmentInteractionListener,
         MyRecipesFragment.OnListFragmentInteractionListener,

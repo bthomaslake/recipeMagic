@@ -18,6 +18,11 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+/*
+* This class is designed to connect the CategoryListFragment with the
+* RecyclerView. The XML layout fragment_categorylist_list.xml has a
+* recyclerView that has multiple fragment_category.list.xml layouts.
+*/
 public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapter.ViewHolder> {
 
     private List<String> titles;
