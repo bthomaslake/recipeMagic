@@ -46,12 +46,10 @@ public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int i) {
-        holder.recipePicture = pictures.get(i);
-        holder.recipeName.setText();
-        holder.mIdView.setText(pictures.get(i).id);
-        holder.mContentView.setText(pictures.get(i).content);
+        holder.recipePicture.setImageBitmap(pictures.get(i));
 
-        holder.mView.setOnClickListener(new View.OnClickListener() {
+
+        holder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (null != mListener) {
@@ -70,13 +68,8 @@ public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView recipeName;
-        Bitmap recipePicture;
+        ImageView recipePicture;
         CardView cardView;
-
-        public final View mView;
-        public final TextView mIdView;
-        public final TextView mContentView;
-        public DummyItem mItem;
 
         public ViewHolder(View view) {
             super(view);
