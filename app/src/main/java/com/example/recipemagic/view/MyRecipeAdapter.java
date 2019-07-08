@@ -73,7 +73,7 @@ public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHo
 
         public ViewHolder(View view) {
             super(view);
-            mView = view;
+            recipeName = (TextView) itemView.findViewById(R.id.);
             mIdView = (TextView) view.findViewById(R.id.item_number);
             mContentView = (TextView) view.findViewById(R.id.content);
         }
