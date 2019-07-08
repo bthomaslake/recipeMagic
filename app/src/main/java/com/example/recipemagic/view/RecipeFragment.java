@@ -5,9 +5,6 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,11 +13,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.recipemagic.R;
-import com.example.recipemagic.presenter.MainPresenter;
 
 import com.example.recipemagic.view.dummy.DummyContent.DummyItem;
 import com.squareup.picasso.Picasso;
 
+/**
+ * This function is designed to display the recipe title, image, instructions,
+ * and directions to the user.
+ */
 public class RecipeFragment extends Fragment{
 
     private OnListFragmentInteractionListener mListener;

@@ -27,7 +27,9 @@ public class MainPresenter {
     }
 
     /**
-     * 
+     * This is function is called inside notifyDataUsers. It
+     * is designed to help notify every app if each fragment is
+     * ready to display
      * @param dataUser
      */
     public void registerDataUser(MainPresenter.Listener dataUser){

@@ -17,6 +17,10 @@ import com.example.recipemagic.presenter.MainPresenter;
 import com.example.recipemagic.presenter.RecipeListPresenter;
 import com.example.recipemagic.view.dummy.DummyContent.DummyItem;
 
+/**
+ * This function is used to display a list of recipes based on the category
+ * that the user selects.
+ */
 public class RecipeListFragment extends Fragment implements MainPresenter.Listener{
 
     private OnListFragmentInteractionListener mListener;

@@ -52,7 +52,9 @@ public class CategoryListFragment extends Fragment implements MainPresenter.List
     }
 
     /**
-     *
+     * This function creates the view of the fragment. When it is called it
+     * inflates, or displays, the fragment_category_list layout into the
+     * RecyclerView.
      * @param inflater
      * @param container
      * @param savedInstanceState
@@ -86,6 +88,10 @@ public class CategoryListFragment extends Fragment implements MainPresenter.List
         mListener = null;
     }
 
+    /**
+     * After the app is done downloading the recipes and categories, this
+     * function is called in order to set the adapter.
+     */
     @Override
     public void notifyDataReady() {
         categoryRV.setAdapter(new CategoryListAdapter(categoryPresenter.getValidTitles(), categoryPresenter.getValidImages(), presenter));

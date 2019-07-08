@@ -6,7 +6,7 @@ import com.example.recipemagic.model.RecipeHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
+/**
  * This class contains all the functions that will be called in
  * Search Fragment.
  */
@@ -31,6 +31,11 @@ public class SearchPresenter {
         listFromPresenter = book.getRecipes();
     }
 
+    /**
+     * This function is designed to search through the recipes and
+     * add the recipes with the given term into a list.
+     * @param term
+     */
     public void searchDataBase(String term) {
         recipes.clear();
         //This is where you do the loop, search for ingredients in:
@@ -43,11 +48,21 @@ public class SearchPresenter {
         }
     }
 
+    /**
+     * This function is designed to search through the recipes added by the user and
+     * add the recipes with the given term into a list.
+     * @param term
+     */
     public void searchMyrecipes(String term) {
         myRecipes.clear();
 
     }
 
+    /**
+     * This function is designed to get all the recipe titles from
+     * the list created from the search function
+     * @return
+     */
     public List<String>getRecipeTitles(){
         titles.clear();
         for(RecipeHelper recipe : recipes){
@@ -56,6 +71,11 @@ public class SearchPresenter {
         return titles;
     }
 
+    /**
+     * This function is designed to get all the recipe images from
+     * the list created from the search function
+     * @return
+     */
     public List<String>getRecipeImages(){
         images.clear();
         for(RecipeHelper recipe : recipes){
@@ -64,6 +84,11 @@ public class SearchPresenter {
         return images;
     }
 
+    /**
+     * This function is designed to get all the recipe ingredients from
+     * the list created from the search function
+     * @return
+     */
     public List<String>getRecipeIngredients(){
         ingredients.clear();
         for(RecipeHelper recipe : recipes){
@@ -72,6 +97,11 @@ public class SearchPresenter {
         return ingredients;
     }
 
+    /**
+     * This function is designed to get all the recipe directions from
+     * the list created from the search function
+     * @return
+     */
     public List<String>getRecipeDirections(){
         directions.clear();
         for(RecipeHelper recipe : recipes){

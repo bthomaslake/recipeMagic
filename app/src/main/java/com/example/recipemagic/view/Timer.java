@@ -21,7 +21,10 @@ import java.util.Locale;
 
 import static android.content.Context.MODE_PRIVATE;
 
-/* Hello Friends*/
+/**
+ * This class creates the timer and handles the setting of the timer
+ * and the countdown feature.
+ */
 public class Timer extends Fragment implements View.OnClickListener {
     public Timer() {
     }
