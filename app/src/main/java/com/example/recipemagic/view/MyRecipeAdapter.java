@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.recipemagic.R;
 import com.example.recipemagic.presenter.MainPresenter;
+import com.example.recipemagic.presenter.MyRecipePresenter;
 import com.example.recipemagic.view.MyRecipesFragment.OnListFragmentInteractionListener;
 import com.example.recipemagic.view.dummy.DummyContent.DummyItem;
 
@@ -27,7 +28,8 @@ public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHo
 
     private final List<Bitmap> pictures;
     private final OnListFragmentInteractionListener mListener;
-    private MainPresenter presenter;
+    private MainPresenter mainPresenter;
+    private MyRecipePresenter myRecipePresenter;
 
     public MyRecipeAdapter(List<Bitmap> pictures, OnListFragmentInteractionListener listener) {
         this.pictures = pictures;
@@ -47,8 +49,6 @@ public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHo
     @Override
     public void onBindViewHolder(final ViewHolder holder, int i) {
         holder.recipePicture.setImageBitmap(pictures.get(i));
-
-
         holder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,9 +73,7 @@ public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHo
 
         public ViewHolder(View view) {
             super(view);
-            recipeName = (TextView) itemView.findViewById(R.id.);
-            mIdView = (TextView) view.findViewById(R.id.item_number);
-            mContentView = (TextView) view.findViewById(R.id.content);
+            recipeName = itemView.findViewById(R.id.);
         }
 
         @Override
