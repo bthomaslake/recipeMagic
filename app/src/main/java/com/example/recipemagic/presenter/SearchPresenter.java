@@ -1,12 +1,20 @@
 package com.example.recipemagic.presenter;
+import android.graphics.Bitmap;
+import android.util.Log;
+import android.graphics.BitmapFactory;
+import android.os.Environment;
+
 
 import com.example.recipemagic.model.CookBook;
 import com.example.recipemagic.model.RecipeHelper;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-/**
+/*
  * This class contains all the functions that will be called in
  * Search Fragment.
  */
@@ -19,6 +27,8 @@ public class SearchPresenter {
     private List<String> directions;
     private List<String> ingredients;
     private List<List<RecipeHelper>> listFromPresenter;
+    public Map<String, Bitmap> pictures;
+
 
     public SearchPresenter(MainPresenter presenter) {
         book = presenter.getCookBook();
@@ -27,7 +37,7 @@ public class SearchPresenter {
         images = new ArrayList<String>();
         titles = new ArrayList<String>();
         ingredients = new ArrayList<String>();
-        directions = new ArrayList<String>();
+        directions = new ArrayList<String>();;
         listFromPresenter = book.getRecipes();
     }
 
@@ -48,6 +58,22 @@ public class SearchPresenter {
         }
     }
 
+    public Map<String, Bitmap> readPictures() {
+        pictures = new HashMap<>();
+        String path = Environment.getExternalStorageDirectory().toString()
+                + "/Pictures/RecipeMagic/";
+        Log.d("Files", "Path: " + path);
+        File directory = new File(path);
+        File[] files = directory.listFiles();
+        Log.d("Files", "Size: "+ files.length);
+        for (int i = 0; i < files.length; i++)
+        {
+            Log.d("Files", "FileName:" + files[i].getName());
+            pictures.put(files[i].getName(), BitmapFactory.decodeFile(files[i].getPath()));
+        }
+        return pictures;
+    }
+
     /**
      * This function is designed to search through the recipes added by the user and
      * add the recipes with the given term into a list.
@@ -55,7 +81,12 @@ public class SearchPresenter {
      */
     public void searchMyrecipes(String term) {
         myRecipes.clear();
+        readPictures();
 
+        if (pictures.containsKey(term))
+        {
+
+        }
     }
 
     /**
