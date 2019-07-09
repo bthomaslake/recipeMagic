@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
+/**
 * This class is designed to assist in parsing the json files
 * of recipes into the categories of directions, titles, images,
 * and ingredients.
@@ -118,10 +118,11 @@ public class Recipe {
         return title;
     }
 
-    /*
+    /**
     * Ingredients consist of both the measurement and the ingredient.
     * Because of how the json file was written, we must check to make
     * sure that the ingredient is not null.
+     * @return
      */
     public String getIngredients() {
         List<String> ingredientList = new ArrayList<String>();

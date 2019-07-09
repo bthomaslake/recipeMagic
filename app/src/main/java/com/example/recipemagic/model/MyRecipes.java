@@ -8,5 +8,5 @@ public class MyRecipes {
     MyRecipes() {}
 
     public List<Bitmap> pictures;
-    void addRecipe()
+    void addRecipe() {}
 }

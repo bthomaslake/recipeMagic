@@ -20,6 +20,10 @@ import android.widget.EditText;
 
 import java.util.List;
 
+/**
+ * The search adapter is used to help display the different recipes that are
+ * to be displayed based on the term that was searched.
+ */
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder> {
 
     private List<String> titles;

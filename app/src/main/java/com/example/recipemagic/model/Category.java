@@ -2,7 +2,7 @@ package com.example.recipemagic.model;
 
 import com.google.gson.annotations.SerializedName;
 
-/*
+/**
 * This class is used to read in the categories from the API. Each category has
 * a title and a picture associated with it.
 */

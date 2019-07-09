@@ -8,7 +8,10 @@ import android.widget.Toast;
 
 import java.lang.ref.WeakReference;
 
-
+/**
+ * This function is designed to load all the recipes and send it to the correct
+ * category list found in the cookbook.
+ */
 public class DownloadRecipes extends AsyncTask<Void, Integer, String> {
 
     private WeakReference<MainPresenter> presenter;
@@ -21,17 +24,20 @@ public class DownloadRecipes extends AsyncTask<Void, Integer, String> {
         this.context = context;
     }
 
-    /*
-    * Before the recipes begin to download, the progress bar is
-    * made visible.
+    /**
+     * Before the recipes begin to download, the progress bar is
+     * made visible.
+     * @return
      */
     protected void onPreExecute(){
         pb.setVisibility(View.VISIBLE);
     }
 
-    /*
+    /**
      * After almost every other recipe is downloaded, the ProgressUpdate function is called
      * in order to keep the user in the loop as to how far along the download is.
+     * @param voids
+     * @return
      */
     protected String doInBackground(Void ... voids) {
         int i = 1;
@@ -433,15 +439,20 @@ public class DownloadRecipes extends AsyncTask<Void, Integer, String> {
         return "Finished Downloading Recipes";
     }
 
+    /**
+     * This function is called 100 times to update the progress bar.
+     * @param value
+     */
     @Override
     protected void onProgressUpdate(Integer ... value){
         super.onProgressUpdate(value);
         pb.setProgress(value[0]);
     }
 
-    /*
-    * After the recipes are done downloading, the user is notified and everything
-    * is displayed.
+    /**
+     * After the recipes are done downloading, the user is notified and everything
+     * is displayed.
+     * @param s
      */
     @Override
     protected void onPostExecute(String s) {

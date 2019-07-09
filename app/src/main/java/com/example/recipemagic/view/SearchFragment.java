@@ -20,6 +20,11 @@ import com.example.recipemagic.presenter.MainPresenter;
 import com.example.recipemagic.presenter.SearchPresenter;
 import com.example.recipemagic.view.dummy.DummyContent.DummyItem;
 
+/**
+ * This class implements the search feature within the application.
+ * It creates the initial view of the fragment and also displays
+ * the recipes that are given based on the searched term.
+ */
 public class SearchFragment extends Fragment{
 
     private SearchFragment.OnListFragmentInteractionListener mListener;

@@ -4,9 +4,11 @@ import com.example.recipemagic.model.CookBook;
 
 import java.util.List;
 
-/*
+/**
 * This class contains all the functions that will be called in
-* CategoryList Fragment.
+* CategoryList Fragment. Each function in the class gets the data
+* from the CookBook about the list of categories read in from the
+* API database.
 */
 public class CategoryPresenter {
 
