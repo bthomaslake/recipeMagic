@@ -28,6 +28,7 @@ public class CategoryListFragment extends Fragment implements MainPresenter.List
     private CategoryPresenter categoryPresenter;
     private MainPresenter presenter;
     private RecyclerView categoryRV;
+
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -94,7 +95,7 @@ public class CategoryListFragment extends Fragment implements MainPresenter.List
      */
     @Override
     public void notifyDataReady() {
-        categoryRV.setAdapter(new CategoryListAdapter(categoryPresenter.getValidTitles(), categoryPresenter.getValidImages(), presenter));
+        categoryRV.setAdapter(new CategoryListAdapter(categoryPresenter.getValidTitles(), categoryPresenter.getValidImages()));
     }
 
     public interface OnListFragmentInteractionListener {

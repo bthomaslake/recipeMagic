@@ -27,13 +27,11 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
 
     private List<String> titles;
     private List<String> images;
-    private MainPresenter presenter;
 
 
-    public CategoryListAdapter(List<String> titles, List<String> images, MainPresenter presenter) {
+    public CategoryListAdapter(List<String> titles, List<String> images) {
         this.titles = titles;
         this.images = images;
-        this.presenter = presenter;
     }
 
     @Override
