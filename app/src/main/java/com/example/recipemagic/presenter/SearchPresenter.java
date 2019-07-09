@@ -1,10 +1,18 @@
 package com.example.recipemagic.presenter;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Environment;
+import android.util.Log;
+
 import com.example.recipemagic.model.CookBook;
 import com.example.recipemagic.model.RecipeHelper;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /*
  * This class contains all the functions that will be called in
@@ -19,6 +27,8 @@ public class SearchPresenter {
     private List<String> directions;
     private List<String> ingredients;
     private List<List<RecipeHelper>> listFromPresenter;
+    public Map<String, Bitmap> pictures;
+
 
     public SearchPresenter(MainPresenter presenter) {
         book = presenter.getCookBook();
@@ -43,9 +53,30 @@ public class SearchPresenter {
         }
     }
 
+    public Map<String, Bitmap> readPictures() {
+        pictures = new HashMap<>();
+        String path = Environment.getExternalStorageDirectory().toString()
+                + "/Pictures/RecipeMagic/";
+        Log.d("Files", "Path: " + path);
+        File directory = new File(path);
+        File[] files = directory.listFiles();
+        Log.d("Files", "Size: "+ files.length);
+        for (int i = 0; i < files.length; i++)
+        {
+            Log.d("Files", "FileName:" + files[i].getName());
+            pictures.put(files[i].getName(), BitmapFactory.decodeFile(files[i].getPath()));
+        }
+        return pictures;
+    }
+
     public void searchMyrecipes(String term) {
         myRecipes.clear();
+        readPictures();
 
+        if (pictures.containsKey(term))
+        {
+
+        }
     }
 
     public List<String>getRecipeTitles(){
