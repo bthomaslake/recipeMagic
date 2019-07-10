@@ -13,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.recipemagic.R;
-import com.example.recipemagic.presenter.MainPresenter;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
