@@ -26,13 +26,10 @@ import com.example.recipemagic.view.dummy.DummyContent.DummyItem;
  */
 public class MyRecipesFragment extends Fragment {
 
-    // TODO: Customize parameter argument names
-    private static final String ARG_COLUMN_COUNT = "column-count";
-    // TODO: Customize parameters
+    private OnListFragmentInteractionListener mListener;
     private MyRecipePresenter favoritesPresenter;
     private MainPresenter mainPresenter;
-    private int mColumnCount = 3;
-    private OnListFragmentInteractionListener mListener;
+    private RecyclerView myRecipeRV;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -41,23 +38,17 @@ public class MyRecipesFragment extends Fragment {
     public MyRecipesFragment() {
     }
 
-    // TODO: Customize parameter initialization
-    @SuppressWarnings("unused")
-    public static MyRecipesFragment newInstance(int columnCount) {
-        MyRecipesFragment fragment = new MyRecipesFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getArguments() != null) {
-            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
-        }
+    }
+
+    public static MyRecipesFragment newInstance(int columnCount) {
+        MyRecipesFragment fragment = new MyRecipesFragment();
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
@@ -65,20 +56,10 @@ public class MyRecipesFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_myrecipe_list, container, false);
 
-        // Set the adapter
-        if (view instanceof RecyclerView) {
-            Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
-            if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
-            }
-            //recyclerView.setAdapter(new MyRecipeAdapter(DummyContent.ITEMS, mListener));
-        }
+
+        //recyclerView.setAdapter(new MyRecipeAdapter(DummyContent.ITEMS, mListener));
         return view;
     }
-
 
     @Override
     public void onAttach(Context context) {
