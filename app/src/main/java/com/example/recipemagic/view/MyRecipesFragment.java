@@ -27,9 +27,9 @@ import com.example.recipemagic.view.dummy.DummyContent.DummyItem;
 public class MyRecipesFragment extends Fragment {
 
     private OnListFragmentInteractionListener mListener;
-    private MyRecipePresenter favoritesPresenter;
+    private MyRecipePresenter myRecipePresenter;
     private MainPresenter mainPresenter;
-    private RecyclerView myRecipeRV;
+    private RecyclerView myRecipeRecyclerView;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -41,9 +41,11 @@ public class MyRecipesFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        mainPresenter = ((MainActivity) getActivity()).getPresenter();
+        myRecipePresenter = new MyRecipePresenter(mainPresenter);
     }
 
+    @SuppressWarnings("unused")
     public static MyRecipesFragment newInstance(int columnCount) {
         MyRecipesFragment fragment = new MyRecipesFragment();
         Bundle args = new Bundle();
@@ -55,9 +57,9 @@ public class MyRecipesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_myrecipe_list, container, false);
-
-
-        //recyclerView.setAdapter(new MyRecipeAdapter(DummyContent.ITEMS, mListener));
+        myRecipeRecyclerView = view.findViewById(R.id.recyclerview_recipe);
+        myRecipeRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        myRecipeRecyclerView.setAdapter(new MyRecipeAdapter(myRecipePresenter.readPictures(), mainPresenter));
         return view;
     }
 
