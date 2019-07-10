@@ -41,6 +41,14 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Vi
         return new ViewHolder(view);
     }
 
+    /**
+     * This function is designed to set all the titles and images into the cardview
+     * in the recipeListFragment. It then bundles the title, ingredients, image, and
+     * directions of the clicked on card and sends it to the recipeFragment so that
+     * all the information can be displayed
+     * @param holder
+     * @param i
+     */
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int i) {
         holder.recipe_title.setText(titles.get(i));

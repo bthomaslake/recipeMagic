@@ -84,6 +84,10 @@ public class RecipeListFragment extends Fragment implements MainPresenter.Listen
         mListener = null;
     }
 
+    /**
+     * This function sets the recyclerview adapter after the app is done downloading
+     * all of the recipes.
+     */
     @Override
     public void notifyDataReady() {
         recipeRV.setAdapter(new RecipeListAdapter(recipePresenter.getValidTitles(category),
