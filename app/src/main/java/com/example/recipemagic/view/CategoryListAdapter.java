@@ -34,6 +34,7 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
         this.images = images;
     }
 
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
@@ -41,6 +42,14 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
         return new ViewHolder(view);
     }
 
+    /**
+     * This function puts a category title and a picture inside each cardview.
+     * It then implements an onClickListener for the cardview so that
+     * each card, when clicked, will display the list of recipes in the
+     * category selected.
+     * @param holder
+     * @param i
+     */
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int i) {
         holder.category_title.setText(titles.get(i));
@@ -71,6 +80,10 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
         return titles.size();
     }
 
+    /**
+     * This class is designed to set the view of each variable to a
+     * specific part of the cardview.
+     */
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView category_title;
         ImageView category_image;

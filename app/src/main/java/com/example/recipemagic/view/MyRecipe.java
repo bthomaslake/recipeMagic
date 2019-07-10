@@ -12,6 +12,10 @@ import android.view.ViewGroup;
 
 import com.example.recipemagic.R;
 
+/**
+ * This class is designed to display the recipes that are
+ * added into the app by the user.
+ */
 public class MyRecipe extends Fragment {
 
     private OnFragmentInteractionListener mListener;

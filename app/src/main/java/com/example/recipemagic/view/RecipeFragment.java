@@ -54,6 +54,16 @@ public class RecipeFragment extends Fragment{
         return fragment;
     }
 
+    /**
+     * This function officially creates the view of the recipes.
+     * It sets the title, directions, ingredients and images from
+     * a bundle created in the RecipeListAdapter. It then sets these
+     * variables into the view.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
