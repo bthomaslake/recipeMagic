@@ -23,6 +23,7 @@ import com.example.recipemagic.view.dummy.DummyContent.DummyItem;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
@@ -34,7 +35,7 @@ public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHo
     private final List<Bitmap> pictures;
     private final List<String> pictureNames;
 
-    public MyRecipeAdapter(HashMap<String, Bitmap> pictureFiles, MainPresenter mainPresenter) {
+    public MyRecipeAdapter(Map<String, Bitmap> pictureFiles, MainPresenter mainPresenter) {
         pictures = new ArrayList<>();
         pictureNames = new ArrayList<>();
         for (String key : pictureFiles.keySet()) {
