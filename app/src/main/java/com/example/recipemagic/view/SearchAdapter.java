@@ -39,6 +39,11 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         this.directions = directions;
     }
 
+    /**
+     * This function clears the list of titles, images, ingredients, and
+     * directions so that the search feature can display only what is
+     * searched for.
+     */
     public void clear(){
         if (getItemCount() > 0){
             titles.clear();
@@ -47,6 +52,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
             directions.clear();
         }
     }
+
     public void setTitles(List<String> titles) {
         this.titles = titles;
     }
@@ -70,6 +76,14 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         return new ViewHolder(view);
     }
 
+    /**
+     * This function sets the titles and images of the cards based on which
+     * recipes are found within the search. When a card is clicked, the title,
+     * image, ingredients, and directions of that recipe are bundled and sent
+     * to the recipefragment to be displayed.
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.title.setText(titles.get(position));

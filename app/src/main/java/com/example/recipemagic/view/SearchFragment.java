@@ -56,6 +56,15 @@ public class SearchFragment extends Fragment{
         compare = null;
     }
 
+    /**
+     * This function is designed to set the onClickListeners for the search buttons.
+     * The recyclerview is cleared when the user clicks the search buttons so that
+     * only the desired recipes are shown.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
