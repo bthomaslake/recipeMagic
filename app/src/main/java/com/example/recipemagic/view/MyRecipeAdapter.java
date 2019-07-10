@@ -1,10 +1,13 @@
 package com.example.recipemagic.view;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +20,8 @@ import com.example.recipemagic.presenter.MyRecipePresenter;
 import com.example.recipemagic.view.MyRecipesFragment.OnListFragmentInteractionListener;
 import com.example.recipemagic.view.dummy.DummyContent.DummyItem;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -27,13 +32,15 @@ import java.util.List;
 public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHolder> {
 
     private final List<Bitmap> pictures;
-    private final OnListFragmentInteractionListener mListener;
-    private MainPresenter mainPresenter;
-    private MyRecipePresenter myRecipePresenter;
+    private final List<String> pictureNames;
 
-    public MyRecipeAdapter(List<Bitmap> pictures, OnListFragmentInteractionListener listener) {
-        this.pictures = pictures;
-        mListener = listener;
+    public MyRecipeAdapter(HashMap<String, Bitmap> pictureFiles, MainPresenter mainPresenter) {
+        pictures = new ArrayList<>();
+        pictureNames = new ArrayList<>();
+        for (String key : pictureFiles.keySet()) {
+            pictures.add(pictureFiles.get(key));
+            pictureNames.add(key);
+        }
     }
 
     @Override
@@ -47,16 +54,25 @@ public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHo
     //Bitmap bitmap = BitmapFactory.decodeFile(pathToPicture);
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int i) {
+    public void onBindViewHolder(final ViewHolder holder, final int i) {
         holder.recipePicture.setImageBitmap(pictures.get(i));
-        holder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (null != mListener) {
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
-                }
+
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                // Passing data to MyRecipe fragment
+                Bundle bundle = new Bundle();
+                bundle.putString("Recipe", pictureNames.get(i));
+
+                Fragment fragment = new MyRecipe();
+                fragment.setArguments(bundle);
+
+                // Start Fragment
+                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                activity.getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, fragment)
+                        .addToBackStack(null)
+                        .commit();
             }
         });
     }
@@ -73,12 +89,9 @@ public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHo
 
         public ViewHolder(View view) {
             super(view);
-            recipeName = itemView.findViewById(R.id.);
-        }
-
-        @Override
-        public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
+            recipeName = itemView.findViewById(R.id.my_recipe_title);
+            recipePicture = itemView.findViewById(R.id.my_recipe_picture);
+            cardView = itemView.findViewById(R.id.cardview_myRecipe);
         }
     }
 }

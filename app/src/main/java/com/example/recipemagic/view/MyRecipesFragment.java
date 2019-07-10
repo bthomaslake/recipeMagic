@@ -74,7 +74,7 @@ public class MyRecipesFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyRecipeAdapter(DummyContent.ITEMS, mListener));
+            //recyclerView.setAdapter(new MyRecipeAdapter(DummyContent.ITEMS, mListener));
         }
         return view;
     }
