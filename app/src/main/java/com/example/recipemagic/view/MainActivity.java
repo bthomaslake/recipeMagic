@@ -29,7 +29,8 @@ public class MainActivity extends AppCompatActivity
         SearchFragment.OnListFragmentInteractionListener,
         RecipeListFragment.OnListFragmentInteractionListener,
         BottomNavigationView.OnNavigationItemSelectedListener,
-        RecipeFragment.OnListFragmentInteractionListener{
+        RecipeFragment.OnListFragmentInteractionListener ,
+        MyRecipe.OnFragmentInteractionListener{
 
     private MainPresenter presenter;
     private ProgressBar pb;
