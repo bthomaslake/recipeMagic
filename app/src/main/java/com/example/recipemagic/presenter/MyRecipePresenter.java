@@ -11,6 +11,8 @@ import android.view.WindowManager;
 import com.example.recipemagic.model.CookBook;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +34,13 @@ public class MyRecipePresenter {
         return CookBook.getFavorites();
     }*/
 
+    public List<File> readPictureFiles() {
+        File directory = new File(Environment.getExternalStorageDirectory().toString()
+                + "/Pictures/RecipeMagic/");
+
+        return new ArrayList<>(Arrays.asList(directory.listFiles()));
+    }
+
     public Map<String, Bitmap> readPictures(int width, int height) {
         pictures = new HashMap<>();
         String path = Environment.getExternalStorageDirectory().toString()
@@ -41,10 +50,9 @@ public class MyRecipePresenter {
         File[] files = directory.listFiles();
         Log.d("Files", "Size: "+ files.length);
         final BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inSampleSize = 16;
+        options.inSampleSize = 4;
 
-        for (int i = 0; i < files.length; i++)
-        {
+        for (int i = 0; i < files.length; i++) {
             Log.d("Files", "FileName:" + files[i].getName());
             pictures.put(files[i].getName(), BitmapFactory.decodeFile(files[i].getPath(), options));
         }

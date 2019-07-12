@@ -5,8 +5,6 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,14 +14,12 @@ import android.widget.TextView;
 
 import com.example.recipemagic.R;
 import com.example.recipemagic.presenter.MainPresenter;
-import com.example.recipemagic.presenter.MyRecipePresenter;
 import com.example.recipemagic.view.MyRecipesFragment.OnListFragmentInteractionListener;
 import com.example.recipemagic.view.dummy.DummyContent.DummyItem;
+import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.io.File;
 import java.util.List;
-import java.util.Map;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
@@ -32,17 +28,17 @@ import java.util.Map;
  */
 public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHolder> {
 
-    private final List<Bitmap> pictures;
-    private final List<String> pictureNames;
+    private final List<File> pictureFiles;
     ImageView imageView;
 
-    public MyRecipeAdapter(Map<String, Bitmap> pictureFiles, MainPresenter mainPresenter) {
-        pictures = new ArrayList<>();
+    public MyRecipeAdapter(List<File> pictureFiles, MainPresenter mainPresenter) {
+        /*pictures = new ArrayList<>();
         pictureNames = new ArrayList<>();
         for (String key : pictureFiles.keySet()) {
             pictures.add(pictureFiles.get(key));
             pictureNames.add(key);
-        }
+        }*/
+        this.pictureFiles = pictureFiles;
     }
 
     @Override
@@ -54,13 +50,15 @@ public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int i) {
-        holder.recipePicture.setImageBitmap(pictures.get(i));
+        holder.recipeName.setText(pictureFiles.get(i).getName());
+        Picasso.get().load(pictureFiles.get(i)).into(holder.recipePicture);
+        //holder.recipePicture.setImageBitmap(pictures.get(i));
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 // Passing data to MyRecipe fragment
                 Bundle bundle = new Bundle();
-                bundle.putParcelable("Recipe", pictures.get(i));
+                //bundle.putString("Recipe", pictureFiles.get(i));
 
                 Fragment fragment = new MyRecipe();
                 fragment.setArguments(bundle);
@@ -77,7 +75,7 @@ public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return pictures.size();
+        return pictureFiles.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

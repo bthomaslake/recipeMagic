@@ -17,9 +17,13 @@
         <ImageView
             android:id="@+id/myRecipe_Img"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:scaleType="centerCrop"
-            android:background="@color/colorPrimaryDark"/>
+            android:layout_height="wrap_content"
+            android:scaleType="centerInside"
+            android:rotation="90"
+            android:background="@color/colorPrimaryDark"
+            android:minHeight="160dp"
+            android:minWidth="@dimen/activity_horizontal_margin"
+            />
 
         <TextView
             android:id="@+id/myRecipe_title"

@@ -80,7 +80,7 @@ public class MyRecipesFragment extends Fragment {
         myRecipeRecyclerView = view.findViewById(R.id.recyclerview_recipe);
         myRecipeRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
         myRecipeRecyclerView.setAdapter(
-                new MyRecipeAdapter(myRecipePresenter.readPictures(width, height), mainPresenter));
+                new MyRecipeAdapter(myRecipePresenter.readPictureFiles(), mainPresenter));
         return view;
     }
 
