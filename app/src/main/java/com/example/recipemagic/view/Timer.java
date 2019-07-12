@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +31,7 @@ public class Timer extends Fragment implements View.OnClickListener {
     public Timer() {
     }
 
+    private String channel_id = "com.example.recipemagic.view.NOTIFICATION_CHANNEL";
     private EditText mEditTextInput;
     private TextView mTextViewCountDown;
     private Button mSetButton;
@@ -59,6 +62,8 @@ public class Timer extends Fragment implements View.OnClickListener {
         mButtonReset = layoutView.findViewById(R.id.restart_button);
 
         //updateWatchInterface();
+
+
 
         mSetButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -138,6 +143,7 @@ public class Timer extends Fragment implements View.OnClickListener {
                 mTimerRunning = false;
                 updateWatchInterface();
                 Toast.makeText(getContext(), "Timer Finished", Toast.LENGTH_SHORT).show();
+                sendNotification(getView());
             }
         }.start();
 
@@ -286,10 +292,31 @@ public class Timer extends Fragment implements View.OnClickListener {
         }
     }
 
-    /**
-     * Mandatory function to be implemented in each fragment.
-     *
-     */
+    public void sendNotification(View view) {
+
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getActivity(), channel_id)
+
+                .setSmallIcon(R.drawable.ic_launcher_foreground)
+
+                .setContentTitle("Recipe Magic")
+
+                .setContentText("Your Recipe Magic Timer has Finished!")
+
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+
+        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(getActivity());
+
+
+        notificationManagerCompat.notify(0, mBuilder.build());
+
+        System.out.println("Finished Notification");
+    }
+
+
+        /**
+         * Mandatory function to be implemented in each fragment.
+         */
     interface OnFragmentInteractionListener {
     }
 }
