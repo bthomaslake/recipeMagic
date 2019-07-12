@@ -60,9 +60,9 @@ public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHo
             public void onClick(View view) {
                 // Passing data to MyRecipe fragment
                 Bundle bundle = new Bundle();
+                bundle.putParcelable("Recipe", pictures.get(i));
 
                 Fragment fragment = new MyRecipe();
-                fragment.setArguments(pictures.get(i));
 
                 // Start Fragment
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();

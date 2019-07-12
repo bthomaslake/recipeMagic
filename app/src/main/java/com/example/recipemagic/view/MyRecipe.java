@@ -23,7 +23,7 @@ import com.squareup.picasso.Picasso;
 public class MyRecipe extends Fragment {
 
     private OnFragmentInteractionListener mListener;
-    private String image;
+    private Bitmap image;
     private ImageView myRecipe_image;
 
     public MyRecipe() {
@@ -49,12 +49,12 @@ public class MyRecipe extends Fragment {
         View view = inflater.inflate(R.layout.fragment_my_recipe, container, false);
         Bundle bundle = this.getArguments();
         if(bundle != null) {
-            image = bundle.get("Recipe").toString();
+            image = bundle.getParcelable("Recipe");
         }
 
         myRecipe_image = (ImageView) view.findViewById(R.id.my_recipe_picture);
 
-        Picasso.get().load(image).into(myRecipe_image);
+        myRecipe_image.setImageBitmap(image);
         return view;
     }
 
