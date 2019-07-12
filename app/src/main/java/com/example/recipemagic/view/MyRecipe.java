@@ -32,10 +32,9 @@ public class MyRecipe extends Fragment {
 
     // TODO: Rename and change types and number of parameters
     @SuppressWarnings("unused")
-    public static MyRecipe newInstance() {
+    public static MyRecipe newInstance() { ;
         MyRecipe fragment = new MyRecipe();
         Bundle args = new Bundle();
-        fragment.setArguments(args);
         return fragment;
     }
 
