@@ -63,7 +63,7 @@ public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHo
                 bundle.putParcelable("Recipe", pictures.get(i));
 
                 Fragment fragment = new MyRecipe();
-
+                fragment.setArguments(bundle);
                 // Start Fragment
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
                 activity.getSupportFragmentManager()
