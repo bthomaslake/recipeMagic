@@ -41,7 +41,7 @@ public class MyRecipePresenter {
         File[] files = directory.listFiles();
         Log.d("Files", "Size: "+ files.length);
         final BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inSampleSize = 32;
+        options.inSampleSize = 16;
 
         for (int i = 0; i < files.length; i++)
         {
