@@ -44,6 +44,14 @@ public class Timer extends Fragment implements View.OnClickListener {
     private long mTimeLeftInMillis = mStartTimeInMillis;
     private long mEndTime;
 
+    /**
+     * This function creates the view of the fragment. When it is called it
+     * displays the text fields and buttons to the screen.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         layoutView = inflater.inflate(R.layout.fragment_timer, container, false);
 
@@ -54,7 +62,7 @@ public class Timer extends Fragment implements View.OnClickListener {
         mButtonStartPause = layoutView.findViewById(R.id.start_button);
         mButtonReset = layoutView.findViewById(R.id.restart_button);
 
-        updateWatchInterface();
+        //updateWatchInterface();
 
         mSetButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -75,6 +83,7 @@ public class Timer extends Fragment implements View.OnClickListener {
                 mEditTextInput.setText("");
             }
         });
+
 
         mButtonStartPause.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,11 +107,19 @@ public class Timer extends Fragment implements View.OnClickListener {
         return layoutView;
     }
 
+    /**
+     *  Set the time for the timer based on the input from the user.
+     *  default value is 00:00.
+     * @param milliseconds
+     */
     private void setTime(long milliseconds){
         mStartTimeInMillis = milliseconds;
         resetTimer();
     }
 
+    /**
+     * Starts the timer based on the value shown in the text field.
+     */
     private void startTimer() {
         mEndTime = System.currentTimeMillis() + mTimeLeftInMillis;
 
@@ -133,18 +150,27 @@ public class Timer extends Fragment implements View.OnClickListener {
         updateWatchInterface();
     }
 
+    /**
+     * This function pauses the timer.
+     */
     private void pauseTimer() {
         mCountDownTimer.cancel();
         mTimerRunning = false;
         updateWatchInterface();
     }
 
+    /**
+     * this function resets the timer back to the last value entered.
+     */
     private void resetTimer() {
         mTimeLeftInMillis = mStartTimeInMillis;
         updateCountDownText();
         updateWatchInterface();
     }
 
+    /**
+     * this function updates the time left on the screen. it updates every second.
+     */
     private void updateCountDownText() {
         int hours = (int) (mTimeLeftInMillis / 1000) / 3600;
         int minutes = (int) ((mTimeLeftInMillis / 1000) %3600) / 60;
@@ -162,6 +188,10 @@ public class Timer extends Fragment implements View.OnClickListener {
         mTextViewCountDown.setText(timeLeftFormatted);
     }
 
+    /**
+     * this function determines what is done when each button is clicked.
+     * @param v
+     */
     @Override
     public void onClick(View v) {
         switch (layoutView.getId()) {
@@ -180,6 +210,9 @@ public class Timer extends Fragment implements View.OnClickListener {
         updateCountDownText();
     }
 
+    /**
+     * This function changes the visibility and text of the buttons.
+     */
     private void updateWatchInterface(){
         if(mTimerRunning){
             mEditTextInput.setVisibility(View.INVISIBLE);
@@ -192,7 +225,7 @@ public class Timer extends Fragment implements View.OnClickListener {
             mButtonStartPause.setText("Start");
 
             if (mTimeLeftInMillis < 1000) {
-                mButtonStartPause.setVisibility(View.INVISIBLE);
+                mButtonStartPause.setVisibility(View.VISIBLE);
             } else {
                 mButtonStartPause.setVisibility(View.VISIBLE);
             }
@@ -205,6 +238,10 @@ public class Timer extends Fragment implements View.OnClickListener {
         }
     }
 
+    /**
+     * saves time left on timer using the system time.
+     * Saves into shared preferences.
+     */
     @Override
     public void onStop() {
         super.onStop();
@@ -224,6 +261,9 @@ public class Timer extends Fragment implements View.OnClickListener {
         }
     }
 
+    /**
+     * gets time left on timer when called.
+     */
     @Override
     public void onStart(){
         super.onStart();
@@ -252,6 +292,10 @@ public class Timer extends Fragment implements View.OnClickListener {
         }
     }
 
+    /**
+     * Mandatory function to be implemented in each fragment.
+     *
+     */
     interface OnFragmentInteractionListener {
     }
 }
