@@ -19,7 +19,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scaleType="centerInside"
-            android:rotation="90"
             android:background="@color/colorPrimaryDark"
             android:minHeight="160dp"
             android:minWidth="@dimen/activity_horizontal_margin"

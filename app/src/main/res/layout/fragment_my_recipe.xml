@@ -19,7 +19,6 @@
                 android:layout_height="match_parent"
                 android:background="@color/colorPrimaryDark"
                 android:scaleType="centerCrop"
-                android:rotation="90"
                 />
 
         </LinearLayout>

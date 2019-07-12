@@ -50,15 +50,16 @@ public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int i) {
-        holder.recipeName.setText(pictureFiles.get(i).getName());
-        Picasso.get().load(pictureFiles.get(i)).into(holder.recipePicture);
+        String fileName = pictureFiles.get(i).getName();
+        Picasso.get().load(pictureFiles.get(i)).fit().into(holder.recipePicture);
+        holder.recipeName.setText(fileName.substring(0, fileName.length() - 4));
         //holder.recipePicture.setImageBitmap(pictures.get(i));
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 // Passing data to MyRecipe fragment
                 Bundle bundle = new Bundle();
-                //bundle.putString("Recipe", pictureFiles.get(i));
+                bundle.putString("Recipe", pictureFiles.get(i).toString());
 
                 Fragment fragment = new MyRecipe();
                 fragment.setArguments(bundle);
