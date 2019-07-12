@@ -34,6 +34,7 @@ public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHo
 
     private final List<Bitmap> pictures;
     private final List<String> pictureNames;
+    ImageView imageView;
 
     public MyRecipeAdapter(Map<String, Bitmap> pictureFiles, MainPresenter mainPresenter) {
         pictures = new ArrayList<>();
@@ -50,9 +51,6 @@ public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHo
                 .inflate(R.layout.fragment_myrecipe, parent, false);
         return new ViewHolder(view);
     }
-
-
-    //Bitmap bitmap = BitmapFactory.decodeFile(pathToPicture);
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int i) {

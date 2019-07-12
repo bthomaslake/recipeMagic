@@ -1,6 +1,8 @@
 package com.example.recipemagic.view;
 
+import android.app.Activity;
 import android.content.Context;
+import android.graphics.Point;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,9 +10,11 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 
 import com.example.recipemagic.R;
 import com.example.recipemagic.presenter.MyRecipePresenter;
@@ -53,13 +57,30 @@ public class MyRecipesFragment extends Fragment {
         return fragment;
     }
 
+    /**
+     * Code is adapted from
+     * https://stackoverflow.com/questions/1016896/get-screen-dimensions-in-pixels#1016941
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_myrecipe_list, container, false);
+        WindowManager windowManager = (WindowManager) container.getContext().
+                getSystemService(Context.WINDOW_SERVICE);
+        Display display = windowManager.getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = size.x;
+        int height = size.y;
+
         myRecipeRecyclerView = view.findViewById(R.id.recyclerview_recipe);
         myRecipeRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
-        myRecipeRecyclerView.setAdapter(new MyRecipeAdapter(myRecipePresenter.readPictures(), mainPresenter));
+        myRecipeRecyclerView.setAdapter(
+                new MyRecipeAdapter(myRecipePresenter.readPictures(width, height), mainPresenter));
         return view;
     }
 
