@@ -111,7 +111,8 @@ public class SearchFragment extends Fragment{
         searchMyRecipe.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view) {
                 String term = editText.getText().toString();
-                searchPresenter.searchDataBase(term);
+                searchPresenter.searchMyrecipes(term);
+
             }
         });
 

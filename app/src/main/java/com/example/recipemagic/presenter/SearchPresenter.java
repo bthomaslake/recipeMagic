@@ -21,19 +21,23 @@ import java.util.Map;
 public class SearchPresenter {
     private CookBook book;
     private List<RecipeHelper> recipes;
-    private List<RecipeHelper> myRecipes;
+    //private List<RecipeHelper> myRecipes;
     private List<String> images;
     private List<String> titles;
     private List<String> directions;
     private List<String> ingredients;
     private List<List<RecipeHelper>> listFromPresenter;
-    public Map<String, Bitmap> pictures;
+
+    //My recipes Search stuff
+    private Map<String, Bitmap> pictures;
+    private List<String> myRecipesTitle;
+    private List<Bitmap> myRecipesSearchResult;
 
 
     public SearchPresenter(MainPresenter presenter) {
         book = presenter.getCookBook();
         recipes = new ArrayList<RecipeHelper>();
-        myRecipes = new ArrayList<RecipeHelper>();
+        //myRecipes = new ArrayList<RecipeHelper>();
         images = new ArrayList<String>();
         titles = new ArrayList<String>();
         ingredients = new ArrayList<String>();
@@ -80,13 +84,22 @@ public class SearchPresenter {
      * @param term
      */
     public void searchMyrecipes(String term) {
-        myRecipes.clear();
+        myRecipesSearchResult.clear();
         readPictures();
 
         if (pictures.containsKey(term))
         {
-
+            myRecipesSearchResult.add(pictures.get(term));
+            myRecipesTitle.add(term);
         }
+    }
+
+    public List<Bitmap> getMyRecipesSearchResult() {
+        return myRecipesSearchResult;
+    }
+
+    public List<String> getMyRecipesTitle() {
+        return myRecipesTitle;
     }
 
     /**
