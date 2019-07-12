@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,7 +52,12 @@ public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHo
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int i) {
         String fileName = pictureFiles.get(i).getName();
-        Picasso.get().load(pictureFiles.get(i)).fit().into(holder.recipePicture);
+        Picasso
+                .get()
+                .load(pictureFiles.get(i))
+                .fit()
+                .into(holder.recipePicture);
+
         holder.recipeName.setText(fileName.substring(0, fileName.length() - 4));
         //holder.recipePicture.setImageBitmap(pictures.get(i));
 
@@ -59,7 +65,7 @@ public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHo
             public void onClick(View view) {
                 // Passing data to MyRecipe fragment
                 Bundle bundle = new Bundle();
-                bundle.putString("Recipe", pictureFiles.get(i).toString());
+                bundle.putString("Recipe", pictureFiles.get(i).getPath());
 
                 Fragment fragment = new MyRecipe();
                 fragment.setArguments(bundle);

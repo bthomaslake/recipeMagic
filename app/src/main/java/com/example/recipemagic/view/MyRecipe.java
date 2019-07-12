@@ -15,6 +15,8 @@ import android.widget.ImageView;
 import com.example.recipemagic.R;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
+
 
 /**
  * This class is designed to display the recipes that are
@@ -23,7 +25,9 @@ import com.squareup.picasso.Picasso;
 public class MyRecipe extends Fragment {
 
     private OnFragmentInteractionListener mListener;
-    private Bitmap image;
+    private File image;
+    private String filePath;
+    private String fileName;
     private ImageView myRecipe_image;
 
     public MyRecipe() {
@@ -50,12 +54,14 @@ public class MyRecipe extends Fragment {
         View view = inflater.inflate(R.layout.fragment_my_recipe, container, false);
         Bundle bundle = this.getArguments();
         if(bundle != null) {
-            image = bundle.getParcelable("Recipe");
+             image = new File (bundle.getString("Recipe"));
+             Picasso
+                     .get()
+                     .load(image)
+                     .fit()
+                     .into((ImageView) view.findViewById(R.id.my_recipe_picture));
         }
 
-        myRecipe_image = (ImageView) view.findViewById(R.id.my_recipe_picture);
-
-        myRecipe_image.setImageBitmap(image);
         return view;
     }
 
