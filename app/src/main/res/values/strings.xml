@@ -25,4 +25,5 @@
     <string name="search_recipes">Search Recipes</string>
     <string name="search_my_recipe">Search My Recipes</string>
     <string name="set">Set</string>
+    <string name="pause">Pause</string>
 </resources>

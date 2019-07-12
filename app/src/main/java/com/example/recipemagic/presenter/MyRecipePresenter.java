@@ -1,9 +1,12 @@
 package com.example.recipemagic.presenter;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
 import android.util.Log;
+import android.view.Display;
+import android.view.WindowManager;
 
 import com.example.recipemagic.model.CookBook;
 
@@ -16,6 +19,7 @@ public class MyRecipePresenter {
 
     private CookBook book;
     public Map<String, Bitmap> pictures;
+    Context context;
 
     public MyRecipePresenter(MainPresenter presenter){
         book = presenter.getCookBook();
@@ -28,7 +32,7 @@ public class MyRecipePresenter {
         return CookBook.getFavorites();
     }*/
 
-    public Map<String, Bitmap> readPictures() {
+    public Map<String, Bitmap> readPictures(int width, int height) {
         pictures = new HashMap<>();
         String path = Environment.getExternalStorageDirectory().toString()
                 + "/Pictures/RecipeMagic/";
@@ -36,10 +40,13 @@ public class MyRecipePresenter {
         File directory = new File(path);
         File[] files = directory.listFiles();
         Log.d("Files", "Size: "+ files.length);
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inSampleSize = 16;
+
         for (int i = 0; i < files.length; i++)
         {
             Log.d("Files", "FileName:" + files[i].getName());
-            pictures.put(files[i].getName(), BitmapFactory.decodeFile(files[i].getPath()));
+            pictures.put(files[i].getName(), BitmapFactory.decodeFile(files[i].getPath(), options));
         }
 
 

@@ -34,6 +34,7 @@ public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHo
 
     private final List<Bitmap> pictures;
     private final List<String> pictureNames;
+    ImageView imageView;
 
     public MyRecipeAdapter(Map<String, Bitmap> pictureFiles, MainPresenter mainPresenter) {
         pictures = new ArrayList<>();
@@ -51,9 +52,6 @@ public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHo
         return new ViewHolder(view);
     }
 
-
-    //Bitmap bitmap = BitmapFactory.decodeFile(pathToPicture);
-
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int i) {
         holder.recipePicture.setImageBitmap(pictures.get(i));
@@ -62,11 +60,10 @@ public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHo
             public void onClick(View view) {
                 // Passing data to MyRecipe fragment
                 Bundle bundle = new Bundle();
-                bundle.putString("Recipe", pictureNames.get(i));
+                bundle.putParcelable("Recipe", pictures.get(i));
 
                 Fragment fragment = new MyRecipe();
                 fragment.setArguments(bundle);
-
                 // Start Fragment
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
                 activity.getSupportFragmentManager()
