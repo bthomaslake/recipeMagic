@@ -1,6 +1,7 @@
 package com.example.recipemagic.view;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -19,6 +20,7 @@ import com.example.recipemagic.R;
 public class MyRecipe extends Fragment {
 
     private OnFragmentInteractionListener mListener;
+    private Bitmap picture;
 
     public MyRecipe() {
         // Required empty public constructor
@@ -26,10 +28,9 @@ public class MyRecipe extends Fragment {
 
     // TODO: Rename and change types and number of parameters
     @SuppressWarnings("unused")
-    public static MyRecipe newInstance() {
+    public static MyRecipe newInstance() { ;
         MyRecipe fragment = new MyRecipe();
         Bundle args = new Bundle();
-        fragment.setArguments(args);
         return fragment;
     }
 
