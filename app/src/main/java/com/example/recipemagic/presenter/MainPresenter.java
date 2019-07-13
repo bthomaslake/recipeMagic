@@ -17,11 +17,13 @@ public class MainPresenter {
     private CookBook book;
     private boolean bookReady;
     private List<Listener> registeredDataUsers;
+    private Context context;
 
     public MainPresenter(Context context, ProgressBar pb){
         book = new CookBook();
         bookReady = false;
         registeredDataUsers = new ArrayList<Listener>();
+        this.context = context;
         DownloadCategories task = new DownloadCategories(this, pb, context);
         task.execute();
     }
@@ -63,6 +65,10 @@ public class MainPresenter {
      */
     public boolean isBookReady(){
         return bookReady;
+    }
+
+    public Context getContext(){
+        return context;
     }
 
     /**

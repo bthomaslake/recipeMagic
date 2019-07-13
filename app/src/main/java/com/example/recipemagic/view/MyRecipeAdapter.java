@@ -5,6 +5,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,9 +30,10 @@ import java.util.List;
 public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHolder> {
 
     private final List<File> pictureFiles;
-
+    private Context context;
     public MyRecipeAdapter(List<File> pictureFiles, MainPresenter mainPresenter) {
         this.pictureFiles = pictureFiles;
+        context = mainPresenter.getContext();
     }
 
     @Override
@@ -56,7 +58,6 @@ public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHo
                 // Passing data to MyRecipe fragment
                 Bundle bundle = new Bundle();
                 bundle.putString("Recipe", pictureFiles.get(i).getPath());
-
                 Fragment fragment = new MyRecipe();
                 fragment.setArguments(bundle);
                 // Start Fragment
@@ -66,6 +67,7 @@ public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHo
                         .replace(R.id.fragment_container, fragment)
                         .addToBackStack(null)
                         .commit();
+
             }
         });
     }

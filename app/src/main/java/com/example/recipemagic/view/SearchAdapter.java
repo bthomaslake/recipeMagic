@@ -9,14 +9,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.recipemagic.R;
-import com.example.recipemagic.presenter.SearchPresenter;
 import com.squareup.picasso.Picasso;
-import android.widget.EditText;
 
 import java.util.List;
 

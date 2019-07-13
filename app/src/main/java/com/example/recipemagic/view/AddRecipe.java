@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.recipemagic.R;
+import com.example.recipemagic.presenter.MainPresenter;
 
 import java.io.File;
 
@@ -37,6 +38,7 @@ public class AddRecipe extends Fragment {
     private EditText recipeName;
     private ImageView imageView;
     private Uri file;
+    private MainPresenter presenter;
 
     public AddRecipe() {
         // Required empty public constructor
@@ -66,6 +68,7 @@ public class AddRecipe extends Fragment {
 
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
+        presenter = ((MainActivity) getActivity()).getPresenter();
     }
 
     @Override
@@ -79,9 +82,14 @@ public class AddRecipe extends Fragment {
         button_picture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                takePicture(v);
-                recipeName.setHint("Add another recipe");
-                recipeName.setText("");
+                String input = recipeName.getText().toString();
+                if (input.equals("")) {
+                    Toast.makeText(presenter.getContext(), "Please enter a recipe name and try again!", Toast.LENGTH_LONG).show();
+                }else {
+                    takePicture(v);
+                    recipeName.setHint("Add another recipe");
+                    recipeName.setText("");
+                }
             }
         });
         return view;

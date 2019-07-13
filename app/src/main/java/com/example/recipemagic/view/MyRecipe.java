@@ -26,9 +26,6 @@ public class MyRecipe extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     private File image;
-    private String filePath;
-    private String fileName;
-    private ImageView myRecipe_image;
 
     public MyRecipe() {
         // Required empty public constructor

@@ -63,8 +63,6 @@ public class Timer extends Fragment implements View.OnClickListener {
 
         //updateWatchInterface();
 
-
-
         mSetButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){

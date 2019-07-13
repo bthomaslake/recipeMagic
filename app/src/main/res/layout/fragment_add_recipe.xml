@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="60dp"
         android:ems="10"
         android:hint="@string/bar_set_title"
         android:inputType="textPersonName"
