@@ -1,13 +1,11 @@
 package com.example.recipemagic.view;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Point;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Display;
@@ -19,7 +17,6 @@ import android.view.WindowManager;
 import com.example.recipemagic.R;
 import com.example.recipemagic.presenter.MyRecipePresenter;
 import com.example.recipemagic.presenter.MainPresenter;
-import com.example.recipemagic.view.dummy.DummyContent;
 import com.example.recipemagic.view.dummy.DummyContent.DummyItem;
 
 /**
@@ -74,8 +71,6 @@ public class MyRecipesFragment extends Fragment {
         Display display = windowManager.getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        int width = size.x;
-        int height = size.y;
 
         myRecipeRecyclerView = view.findViewById(R.id.recyclerview_recipe);
         myRecipeRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
@@ -101,16 +96,6 @@ public class MyRecipesFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
         void onListFragmentInteraction(DummyItem item);

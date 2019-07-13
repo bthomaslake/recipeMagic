@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,15 +29,8 @@ import java.util.List;
 public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHolder> {
 
     private final List<File> pictureFiles;
-    ImageView imageView;
 
     public MyRecipeAdapter(List<File> pictureFiles, MainPresenter mainPresenter) {
-        /*pictures = new ArrayList<>();
-        pictureNames = new ArrayList<>();
-        for (String key : pictureFiles.keySet()) {
-            pictures.add(pictureFiles.get(key));
-            pictureNames.add(key);
-        }*/
         this.pictureFiles = pictureFiles;
     }
 
@@ -52,14 +44,12 @@ public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHo
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int i) {
         String fileName = pictureFiles.get(i).getName();
-        Picasso
-                .get()
+        Picasso.get()
                 .load(pictureFiles.get(i))
                 .fit()
                 .into(holder.recipePicture);
 
         holder.recipeName.setText(fileName.substring(0, fileName.length() - 4));
-        //holder.recipePicture.setImageBitmap(pictures.get(i));
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {

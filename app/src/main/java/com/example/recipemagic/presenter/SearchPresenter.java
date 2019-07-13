@@ -1,18 +1,10 @@
 package com.example.recipemagic.presenter;
-import android.graphics.Bitmap;
-import android.util.Log;
-import android.graphics.BitmapFactory;
-import android.os.Environment;
-
 
 import com.example.recipemagic.model.CookBook;
 import com.example.recipemagic.model.RecipeHelper;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /*
  * This class contains all the functions that will be called in
@@ -21,17 +13,11 @@ import java.util.Map;
 public class SearchPresenter {
     private CookBook book;
     private List<RecipeHelper> recipes;
-    //private List<RecipeHelper> myRecipes;
     private List<String> images;
     private List<String> titles;
     private List<String> directions;
     private List<String> ingredients;
     private List<List<RecipeHelper>> listFromPresenter;
-
-    //My recipes Search stuff
-    private Map<String, Bitmap> pictures;
-    private List<String> myRecipesTitle;
-    private List<Bitmap> myRecipesSearchResult;
 
 
     public SearchPresenter(MainPresenter presenter) {
@@ -62,44 +48,13 @@ public class SearchPresenter {
         }
     }
 
-    public Map<String, Bitmap> readPictures() {
-        pictures = new HashMap<>();
-        String path = Environment.getExternalStorageDirectory().toString()
-                + "/Pictures/RecipeMagic/";
-        Log.d("Files", "Path: " + path);
-        File directory = new File(path);
-        File[] files = directory.listFiles();
-        Log.d("Files", "Size: "+ files.length);
-        for (int i = 0; i < files.length; i++)
-        {
-            Log.d("Files", "FileName:" + files[i].getName());
-            pictures.put(files[i].getName(), BitmapFactory.decodeFile(files[i].getPath()));
-        }
-        return pictures;
-    }
-
     /**
      * This function is designed to search through the recipes added by the user and
      * add the recipes with the given term into a list.
      * @param term
      */
     public void searchMyrecipes(String term) {
-        myRecipesSearchResult.clear();
-        readPictures();
 
-        if (pictures.containsKey(term))
-        {
-            myRecipesSearchResult.add(pictures.get(term));
-            myRecipesTitle.add(term);
-        }
-    }
-
-    public List<Bitmap> getMyRecipesSearchResult() {
-        return myRecipesSearchResult;
-    }
-
-    public List<String> getMyRecipesTitle() {
-        return myRecipesTitle;
     }
 
     /**
