@@ -3,6 +3,7 @@ package com.example.recipemagic.presenter;
 import com.example.recipemagic.model.CookBook;
 import com.example.recipemagic.model.RecipeHelper;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import java.util.List;
  * Search Fragment.
  */
 public class SearchPresenter {
+    // Variables for the database recipe search
     private CookBook book;
     private List<RecipeHelper> recipes;
     private List<String> images;
@@ -19,16 +21,23 @@ public class SearchPresenter {
     private List<String> ingredients;
     private List<List<RecipeHelper>> listFromPresenter;
 
+    // Variables for the my recipe search
+    private List<File> files;
+    private MyRecipePresenter mpPresenter;
+    private List<File> myRecipes;
+
 
     public SearchPresenter(MainPresenter presenter) {
         book = presenter.getCookBook();
         recipes = new ArrayList<RecipeHelper>();
-        //myRecipes = new ArrayList<RecipeHelper>();
         images = new ArrayList<String>();
         titles = new ArrayList<String>();
         ingredients = new ArrayList<String>();
         directions = new ArrayList<String>();;
         listFromPresenter = book.getRecipes();
+        mpPresenter = new MyRecipePresenter(presenter);
+        files = mpPresenter.readPictureFiles();
+        myRecipes = new ArrayList<File>();
     }
 
     /**
@@ -54,7 +63,24 @@ public class SearchPresenter {
      * @param term
      */
     public void searchMyrecipes(String term) {
+        myRecipes.clear();
+        if(files != null){
+            System.out.println("yes!");
+            for (File searchedFile : files){
+                if (searchedFile.getName().toUpperCase().contains(term.toUpperCase())){
+                    myRecipes.add(searchedFile);
+                }
+            }
+        }
+    }
 
+    /**
+     * This function returns a list of recipes that contained the term the user
+     * searched for.
+     * @return
+     */
+    public List<File> getMyRecipes() {
+        return myRecipes;
     }
 
     /**

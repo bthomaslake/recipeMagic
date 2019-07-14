@@ -45,13 +45,12 @@ public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int i) {
-        String fileName = pictureFiles.get(i).getName();
-        Picasso.get()
-                .load(pictureFiles.get(i))
-                .fit()
-                .into(holder.recipePicture);
-
-        holder.recipeName.setText(fileName.substring(0, fileName.length() - 4));
+            String fileName = pictureFiles.get(i).getName();
+            Picasso.get()
+                    .load(pictureFiles.get(i))
+                    .fit()
+                    .into(holder.recipePicture);
+            holder.recipeName.setText(fileName.substring(0, fileName.length() - 4));
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -74,7 +73,12 @@ public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return pictureFiles.size();
+        if (pictureFiles != null) {
+            return pictureFiles.size();
+        }
+        else{
+            return 0;
+        }
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

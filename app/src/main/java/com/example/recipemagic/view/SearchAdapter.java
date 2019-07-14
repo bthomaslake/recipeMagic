@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.example.recipemagic.R;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.util.List;
 
 /**
@@ -27,6 +28,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     private List<String> images;
     private List<String> ingredients;
     private List<String> directions;
+    private List<File> recipes;
+    private Integer numParams;
 
     //Constructor:
     public SearchAdapter(List<String> titles, List<String> images, List<String> ingredients, List<String> directions) {
@@ -34,6 +37,12 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         this.images = images;
         this.ingredients = ingredients;
         this.directions = directions;
+        numParams = 4;
+    }
+
+    public SearchAdapter(List<File> recipes){
+        this.recipes = recipes;
+        numParams = 1;
     }
 
     /**
@@ -42,12 +51,10 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
      * searched for.
      */
     public void clear(){
-        if (getItemCount() > 0){
-            titles.clear();
-            images.clear();
-            ingredients.clear();
-            directions.clear();
-        }
+        titles.clear();
+        ingredients.clear();
+        directions.clear();
+        images.clear();
     }
 
     public void setTitles(List<String> titles) {
@@ -64,6 +71,10 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
 
     public void setDirections(List<String> directions) {
         this.directions = directions;
+    }
+
+    public void setMyRecipes(List<File> recipes){
+        this.recipes = recipes;
     }
 
     @Override
@@ -83,35 +94,60 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
      */
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        holder.title.setText(titles.get(position));
-        Picasso.get().load(images.get(position)).into(holder.image);
-        holder.card.setOnClickListener(new View.OnClickListener() {
+        if (numParams == 4){
+            holder.title.setText(titles.get(position));
+            Picasso.get().load(images.get(position)).into(holder.image);
+            holder.card.setOnClickListener(new View.OnClickListener() {
 
-            public void onClick(View view) {
-                Bundle bundle = new Bundle();
-                bundle.putString("Title", titles.get(position));
-                bundle.putString("Ingredient", ingredients.get(position));
-                bundle.putString("Direction", directions.get(position));
-                bundle.putString("Image", images.get(position));
+                public void onClick(View view) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("Title", titles.get(position));
+                    bundle.putString("Ingredient", ingredients.get(position));
+                    bundle.putString("Direction", directions.get(position));
+                    bundle.putString("Image", images.get(position));
 
-                Fragment myFragment = new RecipeFragment();
-                myFragment.setArguments(bundle);
+                    Fragment myFragment = new RecipeFragment();
+                    myFragment.setArguments(bundle);
 
-                //start fragment
-                AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                activity.getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragment_container, myFragment)
-                        .addToBackStack(null)
-                        .commit();
-            }
-        });
+                    //start fragment
+                    AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                    activity.getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fragment_container, myFragment)
+                            .addToBackStack(null)
+                            .commit();
+                }
+            });
+        }else{
+            String filename = recipes.get(position).getName();
+            holder.title.setText(filename.substring(0, filename.length() - 4));
+            Picasso.get().load(recipes.get(position)).fit().into(holder.image);
+            holder.card.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View view) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("Recipe", recipes.get(position).getPath());
+                    Fragment fragment = new MyRecipe();
+                    fragment.setArguments(bundle);
+                    // Start Fragment
+                    AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                    activity.getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fragment_container, fragment)
+                            .addToBackStack(null)
+                            .commit();
+                }
+            });
+        }
     }
 
     //Return how many items to be displayed in the
     @Override
     public int getItemCount() {
-        return titles.size();
+        if (numParams == 4){
+            return titles.size();
+        }else{
+            return recipes.size();
+        }
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -119,6 +155,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         private TextView title;
         private ImageView image;
         private CardView card;
+
         public ViewHolder(View view) {
             super(view);
             title = (TextView) itemView.findViewById(R.id.search);

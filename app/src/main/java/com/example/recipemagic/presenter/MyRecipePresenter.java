@@ -9,7 +9,7 @@ import java.util.List;
 
 public class MyRecipePresenter {
 
-    public MyRecipePresenter(MainPresenter presenter){
+    public MyRecipePresenter(MainPresenter presenter) {
     }
 
     // functions to interact with fragments
@@ -17,7 +17,10 @@ public class MyRecipePresenter {
     public List<File> readPictureFiles() {
         File directory = new File(Environment.getExternalStorageDirectory().toString()
                 + "/Pictures/RecipeMagic/");
-
-        return new ArrayList<>(Arrays.asList(directory.listFiles()));
+        if (directory.listFiles() != null) {
+            return new ArrayList<>(Arrays.asList(directory.listFiles()));
+        } else {
+            return null;
+        }
     }
 }
