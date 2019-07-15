@@ -29,7 +29,13 @@ import java.io.File;
 
 import static android.app.Activity.RESULT_OK;
 
-
+/**
+ * This class manages the part of the application that allows the user to
+ * add recipes of their own in the form of a picture. It is a fragment that
+ * displays in the main fragment. It interfaces with the camera and file storage
+ * operations of android. A file name is attached to the picture
+ * through user input, making it searchable in other parts of the app.
+ */
 public class AddRecipe extends Fragment {
 
     private OnFragmentInteractionListener mListener;
@@ -44,7 +50,6 @@ public class AddRecipe extends Fragment {
         // Required empty public constructor
     }
 
-    // TODO: Rename and change types and number of parameters
     @SuppressWarnings("unused")
     public static AddRecipe newInstance() {
         AddRecipe fragment = new AddRecipe();
@@ -53,6 +58,11 @@ public class AddRecipe extends Fragment {
         return fragment;
     }
 
+    /**
+     * Checks for the permissions needed to use the camera and storage writing/reading. If the
+     * permissions have not been granted, the permissions are requested from the user.
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +81,14 @@ public class AddRecipe extends Fragment {
         presenter = ((MainActivity) getActivity()).getPresenter();
     }
 
+    /**
+     * Manages what happens when the 'capture' button is clicked. Views are set, and the
+     * takePicture method is called.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -85,8 +103,8 @@ public class AddRecipe extends Fragment {
                 String input = recipeName.getText().toString();
                 if (input.equals("")) {
                     Toast.makeText(presenter.getContext(), "Please enter a recipe name and try again!", Toast.LENGTH_LONG).show();
-                }else {
-                    takePicture(v);
+                } else {
+                    takePicture();
                     recipeName.setHint("Add another recipe");
                     recipeName.setText("");
                 }
@@ -95,6 +113,13 @@ public class AddRecipe extends Fragment {
         return view;
     }
 
+    /**
+     * Checks for the result of requesting permissions. If permission is not granted, the user's
+     * ability is restricted.
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     */
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions,
                                            int[] grantResults) {
@@ -106,6 +131,10 @@ public class AddRecipe extends Fragment {
         }
     }
 
+    /**
+     * Is not necessary in this fragment, but is required to be implemented.
+     * @param context
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -123,13 +152,22 @@ public class AddRecipe extends Fragment {
         mListener = null;
     }
 
-    public void takePicture(View view) {;
+    /**
+     * Captures a picture and stores in a file using the specified recipe name.
+     */
+    private void takePicture() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         file = Uri.fromFile(getOutputMediaFile(recipeName));
         intent.putExtra(MediaStore.EXTRA_OUTPUT, file);
         startActivityForResult(intent, 100);
     }
 
+    /**
+     * Confirms to the user that the recipe was successfully added.
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 100) {
@@ -140,6 +178,12 @@ public class AddRecipe extends Fragment {
         }
     }
 
+    /**
+     * Takes care of naming the picture file that was created. It is saved as a JPEG and placed
+     * in the pictures directtory of the RecipeMagic application.
+     * @param editText The input text describing the recipe
+     * @return The new file that will be created.
+     */
     private static File getOutputMediaFile(EditText editText) {
         File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES), "RecipeMagic");
@@ -153,8 +197,8 @@ public class AddRecipe extends Fragment {
                 editText.getText() + ".jpg");
     }
 
+    @SuppressWarnings("unused")
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 }
