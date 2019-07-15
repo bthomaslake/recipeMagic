@@ -1,7 +1,10 @@
 package com.example.recipemagic.view;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import androidx.annotation.NonNull;
@@ -292,6 +295,15 @@ public class Timer extends Fragment implements View.OnClickListener {
 
     public void sendNotification(View view) {
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+            NotificationChannel channel = new NotificationChannel(channel_id, channel_id, NotificationManager.IMPORTANCE_HIGH);
+
+            NotificationManager notificationManager = getActivity().getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+
+
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getActivity(), channel_id)
 
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
@@ -300,7 +312,7 @@ public class Timer extends Fragment implements View.OnClickListener {
 
                 .setContentText("Your Recipe Magic Timer has Finished!")
 
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+                .setPriority(NotificationCompat.PRIORITY_HIGH);
 
 
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(getActivity());
