@@ -11,6 +11,8 @@
     <string name="button_capture_recipe">Capture</string>
     <string name="bar_set_title">Recipe Name</string>
     <string name="recipe_picture_description">Recipe</string>
+    <string name="recipe">RECIPE</string>
+    <string name="magic">MAGIC</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

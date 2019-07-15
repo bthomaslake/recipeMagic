@@ -44,6 +44,7 @@
         android:ems="10"
         android:hint="@string/bar_set_title"
         android:inputType="textPersonName"
+        android:maxLength="32"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button_image"
         app:layout_constraintHorizontal_bias="0.5"
