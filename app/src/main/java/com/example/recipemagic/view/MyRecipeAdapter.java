@@ -23,19 +23,28 @@ import java.io.File;
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
- * specified {@link OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
+ * This class handles the presentation of as many recipes as are available in a grid list.
  */
 public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHolder> {
 
     private final List<File> pictureFiles;
     private Context context;
+
+    /**
+     *
+     * @param pictureFiles All of the pictures in the picture directory
+     * @param mainPresenter Potentially used for a local MyRecipe presenter
+     */
     public MyRecipeAdapter(List<File> pictureFiles, MainPresenter mainPresenter) {
         this.pictureFiles = pictureFiles;
         context = mainPresenter.getContext();
     }
 
+    /**
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
@@ -43,6 +52,13 @@ public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHo
         return new ViewHolder(view);
     }
 
+    /**
+     * Handles each of the recipes that need to be presented. Picasso does the heavy lifting
+     * and only pulls a small thumbnail for this list using fit() so the memory won't be
+     * swamped.
+     * @param holder
+     * @param i
+     */
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int i) {
             String fileName = pictureFiles.get(i).getName();
@@ -52,6 +68,10 @@ public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHo
                     .into(holder.recipePicture);
             holder.recipeName.setText(fileName.substring(0, fileName.length() - 4));
 
+        /**
+         * Handles the action of clicking on a recipe. Passes information to the MyRecipe
+         * fragment to display a single recipe.
+         */
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 // Passing data to MyRecipe fragment
@@ -71,6 +91,10 @@ public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHo
         });
     }
 
+    /**
+     * This allows the fragment to find the number of recipes that need to be presented.
+     * @return The number of recipes to be presented
+     */
     @Override
     public int getItemCount() {
         if (pictureFiles != null) {
@@ -81,6 +105,10 @@ public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHo
         }
     }
 
+    /**
+     * Manages the data of a single view and attaches each
+     * piece of data to the right part of the layout.
+     */
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView recipeName;
         ImageView recipePicture;

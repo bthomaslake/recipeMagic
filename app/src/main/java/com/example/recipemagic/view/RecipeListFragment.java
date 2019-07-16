@@ -43,7 +43,6 @@ public class RecipeListFragment extends Fragment implements MainPresenter.Listen
         recipePresenter = new RecipeListPresenter(presenter);
     }
 
-    // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
     public static RecipeListFragment newInstance(int columnCount) {
         RecipeListFragment fragment = new RecipeListFragment();

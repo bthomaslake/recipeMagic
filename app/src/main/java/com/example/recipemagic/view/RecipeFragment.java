@@ -45,7 +45,6 @@ public class RecipeFragment extends Fragment{
         super.onCreate(savedInstanceState);
     }
 
-    // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
     public static RecipeListFragment newInstance(int columnCount) {
         RecipeListFragment fragment = new RecipeListFragment();
@@ -106,7 +105,6 @@ public class RecipeFragment extends Fragment{
     }
 
     public interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onListFragmentInteraction(DummyItem item);
     }
 }

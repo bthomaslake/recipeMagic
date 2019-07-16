@@ -44,6 +44,15 @@ public class MyRecipe extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
+    /**
+     * Gets the file name of the recipe that was clicked on and retrieves
+     * a photo size to match the phone screen size. Fills imageview with photo using the
+     * Picasso library.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -61,7 +70,10 @@ public class MyRecipe extends Fragment {
         return view;
     }
 
-
+    /**
+     * Required to implement, but unused in this case.
+     * @param context
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);

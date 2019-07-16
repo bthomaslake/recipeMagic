@@ -1,5 +1,6 @@
 package com.example.recipemagic.view;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
@@ -32,7 +33,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     private Integer numParams;
 
     //Constructor:
-    public SearchAdapter(List<String> titles, List<String> images, List<String> ingredients, List<String> directions) {
+    SearchAdapter(List<String> titles, List<String> images, List<String> ingredients, List<String> directions) {
         this.titles = titles;
         this.images = images;
         this.ingredients = ingredients;
@@ -40,7 +41,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         numParams = 4;
     }
 
-    public SearchAdapter(List<File> recipes){
+    SearchAdapter(List<File> recipes){
         this.recipes = recipes;
         numParams = 1;
     }
@@ -50,30 +51,30 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
      * directions so that the search feature can display only what is
      * searched for.
      */
-    public void clear(){
+    void clear(){
         titles.clear();
         ingredients.clear();
         directions.clear();
         images.clear();
     }
 
-    public void setTitles(List<String> titles) {
+    void setTitles(List<String> titles) {
         this.titles = titles;
     }
 
-    public void setImages(List<String> images) {
+    void setImages(List<String> images) {
         this.images = images;
     }
 
-    public void setIngredients(List<String> ingredients) {
+    void setIngredients(List<String> ingredients) {
         this.ingredients = ingredients;
     }
 
-    public void setDirections(List<String> directions) {
+    void setDirections(List<String> directions) {
         this.directions = directions;
     }
 
-    public void setMyRecipes(List<File> recipes){
+    void setMyRecipes(List<File> recipes){
         this.recipes = recipes;
     }
 
@@ -156,7 +157,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         private ImageView image;
         private CardView card;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
             title = (TextView) itemView.findViewById(R.id.search);
             image = (ImageView) itemView.findViewById(R.id.search_Img);
@@ -165,6 +166,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
 
 
 
+        @NonNull
         @Override
         public String toString() {
             return super.toString();

@@ -39,7 +39,6 @@ public class SearchFragment extends Fragment{
     public SearchFragment() {
     }
 
-    // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
     public static SearchFragment newInstance(int columnCount) {
         SearchFragment fragment = new SearchFragment();
