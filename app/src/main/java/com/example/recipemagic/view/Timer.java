@@ -292,7 +292,9 @@ public class Timer extends Fragment implements View.OnClickListener {
             }
         }
     }
-
+/*
+    Sends notifications to the user when the timer expires
+ */
     public void sendNotification(View view) {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
