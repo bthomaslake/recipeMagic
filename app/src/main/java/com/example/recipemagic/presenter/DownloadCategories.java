@@ -1,5 +1,6 @@
 package com.example.recipemagic.presenter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.ProgressBar;
@@ -13,7 +14,9 @@ import java.lang.ref.WeakReference;
 public class DownloadCategories extends AsyncTask<Void, Void, Void> {
 
     private WeakReference<MainPresenter> presenter;
+    @SuppressLint("StaticFieldLeak")
     private ProgressBar pb;
+    @SuppressLint("StaticFieldLeak")
     private Context context;
 
     public DownloadCategories(MainPresenter presenter, ProgressBar pb, Context context) {

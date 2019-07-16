@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Point;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +20,8 @@ import com.example.recipemagic.presenter.MyRecipePresenter;
 import com.example.recipemagic.presenter.MainPresenter;
 import com.example.recipemagic.view.dummy.DummyContent.DummyItem;
 
+import java.util.Objects;
+
 /**
  * A fragment representing a list of Items.
  * <p/>
@@ -30,7 +33,6 @@ public class MyRecipesFragment extends Fragment {
     private OnListFragmentInteractionListener mListener;
     private MyRecipePresenter myRecipePresenter;
     private MainPresenter mainPresenter;
-    private RecyclerView myRecipeRecyclerView;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -42,7 +44,7 @@ public class MyRecipesFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mainPresenter = ((MainActivity) getActivity()).getPresenter();
+        mainPresenter = ((MainActivity) Objects.requireNonNull(getActivity())).getPresenter();
         myRecipePresenter = new MyRecipePresenter(mainPresenter);
     }
 
@@ -63,7 +65,7 @@ public class MyRecipesFragment extends Fragment {
      * @return
      */
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_myrecipe_list, container, false);
         WindowManager windowManager = (WindowManager) container.getContext().
@@ -72,7 +74,7 @@ public class MyRecipesFragment extends Fragment {
         Point size = new Point();
         display.getSize(size);
 
-        myRecipeRecyclerView = view.findViewById(R.id.recyclerview_recipe);
+        RecyclerView myRecipeRecyclerView = view.findViewById(R.id.recyclerview_recipe);
         myRecipeRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
         myRecipeRecyclerView.setAdapter(
                 new MyRecipeAdapter(myRecipePresenter.readPictureFiles(), mainPresenter));

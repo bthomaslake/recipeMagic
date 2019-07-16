@@ -1,5 +1,6 @@
 package com.example.recipemagic.view;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
@@ -27,7 +28,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Vi
     private List<String>ingredients;
     private List<String>directions;
 
-    public RecipeListAdapter(List<String> titles, List<String>images, List<String>directions, List<String>ingredients) {
+    RecipeListAdapter(List<String> titles, List<String> images, List<String> directions, List<String> ingredients) {
         this.titles = titles;
         this.images = images;
         this.directions = directions;
@@ -35,7 +36,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Vi
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_recipelist, parent, false);
         return new ViewHolder(view);
@@ -79,12 +80,12 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Vi
         return titles.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         TextView recipe_title;
         ImageView recipe_image;
         CardView cardview;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
             recipe_title = (TextView) itemView.findViewById(R.id.recipe);
             recipe_image = (ImageView) itemView.findViewById(R.id.recipe_Img);

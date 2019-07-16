@@ -12,8 +12,6 @@ import java.util.List;
  * Search Fragment.
  */
 public class SearchPresenter {
-    // Variables for the database recipe search
-    private CookBook book;
     private List<RecipeHelper> recipes;
     private List<String> images;
     private List<String> titles;
@@ -23,19 +21,19 @@ public class SearchPresenter {
 
     // Variables for the my recipe search
     private List<File> files;
-    private MyRecipePresenter mpPresenter;
     private List<File> myRecipes;
 
 
     public SearchPresenter(MainPresenter presenter) {
-        book = presenter.getCookBook();
+        // Variables for the database recipe search
+        CookBook book = presenter.getCookBook();
         recipes = new ArrayList<RecipeHelper>();
         images = new ArrayList<String>();
         titles = new ArrayList<String>();
         ingredients = new ArrayList<String>();
         directions = new ArrayList<String>();;
         listFromPresenter = book.getRecipes();
-        mpPresenter = new MyRecipePresenter(presenter);
+        MyRecipePresenter mpPresenter = new MyRecipePresenter(presenter);
         files = mpPresenter.readPictureFiles();
         myRecipes = new ArrayList<File>();
     }

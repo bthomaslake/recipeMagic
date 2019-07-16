@@ -38,8 +38,6 @@ import static android.app.Activity.RESULT_OK;
  */
 public class AddRecipe extends Fragment {
 
-    private OnFragmentInteractionListener mListener;
-
     private Button button_picture;
     private EditText recipeName;
     private ImageView imageView;
@@ -139,7 +137,6 @@ public class AddRecipe extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -149,7 +146,6 @@ public class AddRecipe extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
     }
 
     /**

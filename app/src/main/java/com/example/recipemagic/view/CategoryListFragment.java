@@ -3,6 +3,7 @@ package com.example.recipemagic.view;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -16,6 +17,8 @@ import com.example.recipemagic.R;
 import com.example.recipemagic.presenter.CategoryPresenter;
 import com.example.recipemagic.presenter.MainPresenter;
 import com.example.recipemagic.view.dummy.DummyContent.DummyItem;
+
+import java.util.Objects;
 
 /**
  * This class is designed to create a fragment view from the list of
@@ -39,7 +42,7 @@ public class CategoryListFragment extends Fragment implements MainPresenter.List
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        presenter = ((MainActivity) getActivity()).getPresenter();
+        presenter = ((MainActivity) Objects.requireNonNull(getActivity())).getPresenter();
         categoryPresenter = new CategoryPresenter(presenter);
     }
 
@@ -62,7 +65,7 @@ public class CategoryListFragment extends Fragment implements MainPresenter.List
      * @return
      */
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_category_list, container, false);
         categoryRV = (RecyclerView) view.findViewById(R.id.recyclerview_category);
@@ -99,7 +102,6 @@ public class CategoryListFragment extends Fragment implements MainPresenter.List
     }
 
     public interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onListFragmentInteraction(DummyItem item);
     }
 }

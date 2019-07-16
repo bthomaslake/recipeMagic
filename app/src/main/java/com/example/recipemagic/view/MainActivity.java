@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity
         MyRecipe.OnFragmentInteractionListener{
 
     private MainPresenter presenter;
-    private ProgressBar pb;
 
     /**
      * This function creates the whole application when the user runs
@@ -46,7 +45,7 @@ public class MainActivity extends AppCompatActivity
         // Standard beginning
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        pb = (ProgressBar) findViewById(R.id.progressBar);
+        ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
 
         presenter = new MainPresenter(getApplicationContext(), pb);
         loadFragment(new CategoryListFragment());

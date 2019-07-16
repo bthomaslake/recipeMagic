@@ -78,8 +78,9 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         this.recipes = recipes;
     }
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_search, parent, false);
         return new ViewHolder(view);
@@ -94,7 +95,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
      * @param position
      */
     @Override
-    public void onBindViewHolder(final ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         if (numParams == 4){
             holder.title.setText(titles.get(position));
             Picasso.get().load(images.get(position)).into(holder.image);
@@ -141,7 +142,9 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         }
     }
 
-    //Return how many items to be displayed in the
+    /**
+     * Return how many items to be displayed
+     */
     @Override
     public int getItemCount() {
         if (numParams == 4){

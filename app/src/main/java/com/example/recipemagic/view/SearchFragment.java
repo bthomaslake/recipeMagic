@@ -20,6 +20,8 @@ import com.example.recipemagic.presenter.MainPresenter;
 import com.example.recipemagic.presenter.SearchPresenter;
 import com.example.recipemagic.view.dummy.DummyContent.DummyItem;
 
+import java.util.Objects;
+
 /**
  * This class implements the search feature within the application.
  * It creates the initial view of the fragment and also displays
@@ -50,7 +52,7 @@ public class SearchFragment extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        presenter = ((MainActivity) getActivity()).getPresenter();
+        presenter = ((MainActivity) Objects.requireNonNull(getActivity())).getPresenter();
         searchPresenter = new SearchPresenter(presenter);
         clickedSearchRecipe = false;
         clickedSearchMyRecipe = false;
@@ -150,7 +152,6 @@ public class SearchFragment extends Fragment{
     }
 
     public interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onListFragmentInteraction(DummyItem item);
     }
 }

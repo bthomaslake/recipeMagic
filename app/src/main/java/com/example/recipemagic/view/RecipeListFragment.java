@@ -3,6 +3,7 @@ package com.example.recipemagic.view;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -16,6 +17,8 @@ import com.example.recipemagic.R;
 import com.example.recipemagic.presenter.MainPresenter;
 import com.example.recipemagic.presenter.RecipeListPresenter;
 import com.example.recipemagic.view.dummy.DummyContent.DummyItem;
+
+import java.util.Objects;
 
 /**
  * This function is used to display a list of recipes based on the category
@@ -39,7 +42,7 @@ public class RecipeListFragment extends Fragment implements MainPresenter.Listen
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        presenter = ((MainActivity) getActivity()).getPresenter();
+        presenter = ((MainActivity) Objects.requireNonNull(getActivity())).getPresenter();
         recipePresenter = new RecipeListPresenter(presenter);
     }
 
@@ -52,12 +55,12 @@ public class RecipeListFragment extends Fragment implements MainPresenter.Listen
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_recipelist_list, container, false);
         Bundle bundle = this.getArguments();
         if(bundle != null) {
-            category = bundle.get("Category").toString();
+            category = Objects.requireNonNull(bundle.get("Category")).toString();
         }
         recipeRV = (RecyclerView) view.findViewById(R.id.recyclerview_recipe);
         recipeRV.setLayoutManager(new GridLayoutManager(getContext(), 3));
@@ -95,7 +98,6 @@ public class RecipeListFragment extends Fragment implements MainPresenter.Listen
     }
 
     public interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onListFragmentInteraction(DummyItem item);
     }
 }

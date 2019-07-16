@@ -1,5 +1,6 @@
 package com.example.recipemagic.view;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
@@ -28,14 +29,15 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
     private List<String> images;
 
 
-    public CategoryListAdapter(List<String> titles, List<String> images) {
+    CategoryListAdapter(List<String> titles, List<String> images) {
         this.titles = titles;
         this.images = images;
     }
 
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_category, parent, false);
         return new ViewHolder(view);
@@ -83,12 +85,12 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
      * This class is designed to set the view of each variable to a
      * specific part of the cardview.
      */
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         TextView category_title;
         ImageView category_image;
         CardView cardview;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
             category_title = (TextView) itemView.findViewById(R.id.category);
             category_image = (ImageView) itemView.findViewById(R.id.category_Img);

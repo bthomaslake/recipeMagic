@@ -1,5 +1,6 @@
 package com.example.recipemagic.view;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
@@ -28,7 +29,6 @@ import java.util.List;
 public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHolder> {
 
     private final List<File> pictureFiles;
-    private Context context;
 
     /**
      *
@@ -37,7 +37,7 @@ public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHo
      */
     public MyRecipeAdapter(List<File> pictureFiles, MainPresenter mainPresenter) {
         this.pictureFiles = pictureFiles;
-        context = mainPresenter.getContext();
+        Context context = mainPresenter.getContext();
     }
 
     /**
@@ -46,7 +46,7 @@ public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHo
      * @return
      */
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_myrecipe, parent, false);
         return new ViewHolder(view);
@@ -60,7 +60,7 @@ public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHo
      * @param i
      */
     @Override
-    public void onBindViewHolder(final ViewHolder holder, final int i) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int i) {
             String fileName = pictureFiles.get(i).getName();
             Picasso.get()
                     .load(pictureFiles.get(i))
@@ -68,7 +68,7 @@ public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHo
                     .into(holder.recipePicture);
             holder.recipeName.setText(fileName.substring(0, fileName.length() - 4));
 
-        /**
+        /*
          * Handles the action of clicking on a recipe. Passes information to the MyRecipe
          * fragment to display a single recipe.
          */
@@ -109,12 +109,12 @@ public class MyRecipeAdapter extends RecyclerView.Adapter<MyRecipeAdapter.ViewHo
      * Manages the data of a single view and attaches each
      * piece of data to the right part of the layout.
      */
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         TextView recipeName;
         ImageView recipePicture;
         CardView cardView;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
             recipeName = itemView.findViewById(R.id.myRecipe_title);
             recipePicture = itemView.findViewById(R.id.myRecipe_Img);

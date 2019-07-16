@@ -44,7 +44,7 @@ public class MainPresenter {
     /**
     * Only after the cookbook is done loading, everything is displayed.
     */
-    public void notifyDataUsers() {
+    void notifyDataUsers() {
         bookReady = true;
         for (MainPresenter.Listener dataUser : registeredDataUsers) {
             dataUser.notifyDataReady();
@@ -55,7 +55,7 @@ public class MainPresenter {
      * This returns the cookBook that everything is downloaded into.
      * @return
      */
-    public CookBook getCookBook() {
+    CookBook getCookBook() {
         return book;
     }
 
