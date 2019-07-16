@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -25,13 +26,11 @@ import java.io.File;
 public class MyRecipe extends Fragment {
 
     private OnFragmentInteractionListener mListener;
-    private File image;
 
     public MyRecipe() {
         // Required empty public constructor
     }
 
-    // TODO: Rename and change types and number of parameters
     @SuppressWarnings("unused")
     public static MyRecipe newInstance() { ;
         MyRecipe fragment = new MyRecipe();
@@ -46,12 +45,12 @@ public class MyRecipe extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_my_recipe, container, false);
         Bundle bundle = this.getArguments();
         if(bundle != null) {
-             image = new File (bundle.getString("Recipe"));
+            File image = new File(bundle.getString("Recipe"));
              Picasso
                      .get()
                      .load(image)
@@ -80,8 +79,8 @@ public class MyRecipe extends Fragment {
         mListener = null;
     }
 
+    @SuppressWarnings("unused")
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 }

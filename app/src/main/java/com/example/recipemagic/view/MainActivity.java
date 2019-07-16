@@ -78,25 +78,27 @@ public class MainActivity extends AppCompatActivity
         return presenter;
     }
 
-
+    /**
+     * This function must be implemented in every
+     * class that wants to use a fragment. It does not need to be
+     * used, but it can make it possible to communicate between fragments.
+     * Information from
+     * https://stackoverflow.com/questions/24777985/how-to-implement-onfragmentinteractionlistener#27666001
+     */
     public void onFragmentInteraction(Uri uri) {
-        /* This function must be implemented in every
-         * class that wants to use a fragment. It does not need to be
-         * used, but it can make it possible to communicate between fragments.
-         * Information from
-         * https://stackoverflow.com/questions/24777985/how-to-implement-onfragmentinteractionlistener#27666001
-         */
 
     }
 
+    /**
+     * This function must be implemented in every
+     * class that wants to use a fragment. It does not need to be
+     * used, but it can make it possible to communicate between fragments.
+     * Information from
+     * https://stackoverflow.com/questions/24777985/how-to-implement-onfragmentinteractionlistener#27666001
+     */
     @Override
     public void onListFragmentInteraction(DummyContent.DummyItem item) {
-        /* This function must be implemented in every
-         * class that wants to use a fragment. It does not need to be
-         * used, but it can make it possible to communicate between fragments.
-         * Information from
-         * https://stackoverflow.com/questions/24777985/how-to-implement-onfragmentinteractionlistener#27666001
-         */
+
     }
 
     /**
